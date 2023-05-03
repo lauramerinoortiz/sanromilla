@@ -24,7 +24,6 @@
         $parametrosQuery=null;
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
         parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
-        $body = json_decode(file_get_contents('php://input'));
 
        switch($controlador){
             case 'controladorpreguntas'://AQUI $FILE
