@@ -6,7 +6,7 @@
  */
 export  class Router  {
     cargar(route){
-        $('#app-container').load('././php/vistas/' + route + '.php?', () => {});
+        $('#app-container').load('./js/vistas/' + route + '.html?', () => {});
     }
 
 }

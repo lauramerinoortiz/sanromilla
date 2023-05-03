@@ -1,11 +1,13 @@
 "use strict" //activo modo estricto
 import {Router}  from './router.js'
+import {Modelo}  from '../modelos/modelo.js'
 
 class Controlador{
 
     constructor() {
 		$(document).ready(this.iniciar.bind(this))
         this.router=new Router;
+        this.modelo=new Modelo;
         //Ejecutamos el mostrarInicio para que muestre la vista del inicio
         this.mostrarInicio()
 	}
@@ -30,8 +32,11 @@ class Controlador{
     /**
      * Método que muestra la vista Inicio
      */
-    mostrarInicio(){
+    async mostrarInicio(){
         this.router.cargar("inicio")
+        
+        var payload = await this.modelo.getCategorias()
+        console.log(payload)
     }
 
     /**

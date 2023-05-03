@@ -5,12 +5,12 @@
 
     //Confirmamos que existe una sesión iniciada, sino, seria reenviado de vuelta a la página de juego
     session_start();
-    if(isset($_SESSION['nombre'])){
+    if( true){
         //Obtenemos el array de configuración descrito en config/config.php para así facilitar la gestión
         $config=require_once("config/config.php");
-        $usuario=$_SESSION['nombre'];
+        // $usuario=$_SESSION['nombre'];
         //Leemos el metodo de la petición que recibimos
-        $metodo=$_SERVER['REQUEST_METHOD'];
+        // $metodo=$_SERVER['REQUEST_METHOD'];
 
         //Recogemos los pathparams, en nuestro caso, seran los indicadores de a que controlador deben de dirigirse dicha solicitud
         $pathParams=null;
@@ -20,15 +20,19 @@
         }
         //El controlador siempre sera el primero en recibirse, no se pone el 0 por que viene vacío
         $controlador=$pathParams[1];
-        $método=$pathParams[2];
+        $metodo=$pathParams[2];
         $parametrosQuery=null;
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
         parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
 
        switch($controlador){
-            case 'controladorpreguntas'://AQUI $FILE
-                require_once($config['path_controladores'].'controladorpreguntas.php');
-                // $controlador=new ControladorPreguntas();
+            case 'categorias'://AQUI $FILE
+                require_once($config['path_controladores'].'controladorcategorias.php');
+                // print_r($controlador) ;
+                // echo $metodo;
+                $controlador=new ControladorCategorias();
+                
+                return $controlador->$metodo();
                 break;
             case 'controladorreflexiones':
                 require_once($config['path_controladores'].'controladorreflexiones.php');
