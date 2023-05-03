@@ -20,6 +20,7 @@ class ModeloCategorias{
     private function conectar()
     {     
         $this->conexion = new mysqli($this->servidor,  $this->usuario,  $this->contrasenia, $this->bd);
+        $this->conexion->set_charset("utf8");
     }
 
     /**

@@ -13,8 +13,10 @@ class ControladorCategorias{
         $datos= $this->modelo->getCategorias();
         $datos=$datos->fetch_all( $resulttype = MYSQLI_ASSOC);
         // print_r($datos) ;
-        echo json_encode($datos);
-        
+        header('Content-type: application/json; charset=uft-8');
+        // print_r ($datos);
+         $cosas= json_encode($datos);
+         echo $cosas;
     }
 }
 

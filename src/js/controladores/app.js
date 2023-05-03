@@ -46,7 +46,12 @@ class Controlador{
         this.router.cargar("inicio")
         this.ocultarMenu()
         var payload = await this.modelo.getCategorias()
-        console.log(payload.data)
+        // payload=JSON.stringify(payload.data)
+        console.log(payload)
+        for(let dato of payload.data){
+                console.log(dato.nombre)
+        }
+        
     }
 
     /**
