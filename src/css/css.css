@@ -46,6 +46,7 @@ nav li a{
 
 .nav-link:hover{
     color: #D9C45B !important;
+    cursor: pointer;
 }
 
 #logo{
@@ -145,7 +146,7 @@ a:hover{
 
 #col1 {
     height: 200px;
-    background-image: url(images/col1.jpg);
+    background-image: url(../assets/images/col1.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -153,7 +154,7 @@ a:hover{
 
 #col2{
     height: 200px;
-    background-image: url(images/col2.jpg);
+    background-image: url(../assets/images/col2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -161,7 +162,7 @@ a:hover{
 
  #col3{
     height: 200px;
-    background-image: url(images/col3.jpg);
+    background-image: url(../assets/images/col3.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

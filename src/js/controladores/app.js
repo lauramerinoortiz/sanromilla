@@ -31,7 +31,6 @@ class Controlador{
      * Método que muestra la vista Inicio
      */
     mostrarInicio(){
-        console.log('click inicio')
         this.router.cargar("inicio")
     }
 
@@ -39,7 +38,6 @@ class Controlador{
      * Método que muestra la vista Inscripciones
      */
     mostrarInscripciones(){
-        console.log('click inscripciones')
         this.router.cargar("inscripcion")
     }
 
