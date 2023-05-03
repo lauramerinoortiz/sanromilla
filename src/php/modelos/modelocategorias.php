@@ -1,5 +1,5 @@
 <?php
- class ModeloCategorias{
+class ModeloCategorias{
     
  }
 
