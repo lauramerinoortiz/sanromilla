@@ -8,6 +8,7 @@ export class Modelo{
     getCategorias(){
         return new Promise(resolve => {
             $.get(this.base_url + 'categorias/'+'getCategorias', {
+                
             }, (data) => {
                 resolve({
                     data

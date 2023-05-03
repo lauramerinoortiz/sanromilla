@@ -28,6 +28,7 @@ class Controlador{
         let fotos= document.getElementById('fotos')
         fotos.onclick=this.mostrarFotos.bind(this)
 
+        
     }
 
     /**
@@ -39,6 +40,7 @@ class Controlador{
         let desplegable=$('#collapsibleNavbar')
         desplegable.removeClass('show');
     }
+
     /**
      * Método que muestra la vista Inicio
      */

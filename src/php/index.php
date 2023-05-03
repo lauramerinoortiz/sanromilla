@@ -25,24 +25,13 @@
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
         parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
 
-       switch($controlador){
-            case 'categorias'://AQUI $FILE
+        switch($controlador){
+            case 'categorias':
                 require_once($config['path_controladores'].'controladorcategorias.php');
                 // print_r($controlador) ;
                 // echo $metodo;
                 $controlador=new ControladorCategorias();
-                
                 return $controlador->$metodo();
-                break;
-            case 'controladorreflexiones':
-                require_once($config['path_controladores'].'controladorreflexiones.php');
-                // $controlador=new ControladorReflexiones();
-                break;
-            case 'obtenerreflexiones':
-                require_once($config['path_controladores'].'controladorreflexiones.php');
-                // $controlador=new ControladorReflexiones();
-                $metodo='obtenerreflexiones';
-                // $controlador->$metodo();
                 break;
        }
        
