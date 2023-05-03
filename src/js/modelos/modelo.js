@@ -2,7 +2,7 @@
 
 export class Modelo{
     constructor(){
-        this.base_url='http://localhost/san_romilla/src/php/index.php/'
+        this.base_url='./php/index.php/'
     }
 
     getCategorias(){
