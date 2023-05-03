@@ -168,6 +168,17 @@ a:hover{
     background-size: cover;
 }
 
+
+
+@media (max-width: 1000px) {
+    #col1 , #col2 , #col3{
+        height: 150px;
+    }
+    #col1:hover , #col2:hover , #col3:hover{
+        height: 170px;
+    }
+}
+
 @media (max-width: 880px) {
     #carousel{
         height: 20%;
@@ -179,7 +190,33 @@ a:hover{
     #cartel{
         width: 80%;
     }
-  }
+    #col1 , #col2 , #col3{
+        height: 100px;
+    }
 
+    #col1:hover , #col2:hover , #col3:hover{
+        height: 120px;
+    }
+}
+
+@media (max-width: 776px) {
+
+    #col1 , #col2 , #col3{
+        margin: 20px;
+        height: 150px;
+    }
+
+    #botones button{
+        margin: 9px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #botones{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
 
  
