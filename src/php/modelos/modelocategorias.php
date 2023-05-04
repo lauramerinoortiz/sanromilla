@@ -28,7 +28,7 @@ class ModeloCategorias{
      */
     function getCategorias(){
         $this->conectar();
-        $consulta='SELECT * FROM CATEGORIAS';
+        $consulta='SELECT * FROM categorias';
         $respuesta=$this->conexion->query($consulta);
         $this->conexion->close();
         return $respuesta;

@@ -13,33 +13,33 @@ VALUES
 -- Inscripciones para la categoría BABYRUNNER
 INSERT INTO inscripciones (nombre, apellidos, genero, id_categoria, fecha_nacimiento, dni, email, telefono, dorsal, codigo_inscripcion, talla_camiseta, importe, estado_pago)
 VALUES
-('Lucía', 'García Pérez', 'f', 1, '2019-06-08', '12345678A', 'luciagarcia@mail.com', '601234567', 1, 'BR001', 'XS', 5, 1),
-('Pablo', 'Martínez López', 'm', 1, '2018-04-18', '23456789B', 'pablomartinez@mail.com', '602345678', 2, 'BR002', 'S', 5, 1),
+('Lucía', 'García Pérez', 'f', 1, '2019-06-08', '12345678A', 'luciagarcia@mail.com', '601234567', 1, '00001', 'XS', 5, 1),
+('Pablo', 'Martínez López', 'm', 1, '2018-04-18', '23456789B', 'pablomartinez@mail.com', '602345678', 2, '00002', 'S', 5, 1),
 
 -- Inscripciones para la categoría PREBENJAMÍN
-('Sofía', 'Fernández Ruiz', 'f', 2, '2015-03-20', '34567890C', 'sofiafernandez@mail.com', '603456789', 3, 'PB001', 'M', 8, 1),
-('Juan', 'González Sánchez', 'm', 2, '2016-02-25', '45678901D', 'juangonzalez@mail.com', '604567890', 4, 'PB002', 'L', 8, 1),
+('Sofía', 'Fernández Ruiz', 'f', 2, '2015-03-20', '34567890C', 'sofiafernandez@mail.com', '603456789', 3, '00003', 'M', 8, 1),
+('Juan', 'González Sánchez', 'm', 2, '2016-02-25', '45678901D', 'juangonzalez@mail.com', '604567890', 4, '00004', 'L', 8, 1),
 
 -- Inscripciones para la categoría BENJAMÍN
-('María', 'López García', 'f', 3, '2014-01-15', '56789012E', 'marialopez@mail.com', '605678901', 5, 'B001', 'M', 10, 1),
-('Pedro', 'Hernández Fernández', 'm', 3, '2015-08-12', '67890123F', 'pedrohernandez@mail.com', '606789012', 6, 'B002', 'L', 10, 1),
+('María', 'López García', 'f', 3, '2014-01-15', '56789012E', 'marialopez@mail.com', '605678901', 5, '00004', 'M', 10, 1),
+('Pedro', 'Hernández Fernández', 'm', 3, '2015-08-12', '67890123F', 'pedrohernandez@mail.com', '606789012', 6, '00006', 'L', 10, 1),
 
 -- Inscripciones para la categoría ALEVÍN
 ('Lucas', 'Martínez Pérez', 'm', 4, '2012-05-18', '78901234G', 'lucasmartinez@mail.com', '607890123', 7, 'AL001', 'M', 12, 1),
-('Javier', 'González Rodríguez', 'm', 4, '2013-09-05', '89012345H', 'javiergonzalez@mail.com', '608901234', 8, 'AL002', 'L', 12, 1),
+('Javier', 'González Rodríguez', 'm', 4, '2013-09-05', '89012345H', 'javiergonzalez@mail.com', '608901234', 8, '00007', 'L', 12, 1),
 
 -- Inscripciones para la categoría INFANTIL
-('Juan', 'López', 'm', 5, '2010-06-12', '12345678A', 'juan.lopez@gmail.com', '123456789',  1001, 'INSC001', 'S', 15, true),
-('María', 'González', 'f', 5, '2011-07-05', '98765432B', 'maria.gonzalez@gmail.com', '987654321',  1002, 'INSC002', 'M', 15, true),
+('Juan', 'López', 'm', 5, '2010-06-12', '12345678A', 'juan.lopez@gmail.com', '123456789',  1001, '00009', 'S', 15, true),
+('María', 'González', 'f', 5, '2011-07-05', '98765432B', 'maria.gonzalez@gmail.com', '987654321',  1002, '00008', 'M', 15, true),
 
 -- Inscripciones para la categoría CADETE
-('José', 'Martínez', 'm', 6, '2009-05-21', '45678901C', 'jose.martinez@gmail.com', '666777888',  2001, 'INSC003', 'S', 18, true),
-('Laura', 'Pérez', 'f', 6, '2008-03-15', '01234567D', 'laura.perez@gmail.com', '555444333', 2002, 'INSC004', 'M', 18, true),
+('José', 'Martínez', 'm', 6, '2009-05-21', '45678901C', 'jose.martinez@gmail.com', '666777888',  2001, '00010', 'S', 18, true),
+('Laura', 'Pérez', 'f', 6, '2008-03-15', '01234567D', 'laura.perez@gmail.com', '555444333', 2002, '00011', 'M', 18, true),
 
 -- Inscripciones para la categoría JUVENIL
-('Carlos', 'Ruiz', 'm', 7, '2006-02-10', '76543210E', 'carlos.ruiz@gmail.com', '111222333',  3001, 'INSC005', 'S', 20, true),
-('Ana', 'Fernández', 'f', 7, '2007-01-03', '10987654F', 'ana.fernandez@gmail.com', '444555666',  3002, 'INSC006', 'M', 20, true),
+('Carlos', 'Ruiz', 'm', 7, '2006-02-10', '76543210E', 'carlos.ruiz@gmail.com', '111222333',  3001, '00012', 'S', 20, true),
+('Ana', 'Fernández', 'f', 7, '2007-01-03', '10987654F', 'ana.fernandez@gmail.com', '444555666',  3002, '00013', 'M', 20, true),
 
 -- Inscripciones para la categoría ABSOLUTA
-('Daniel', 'García', 'm', 8, '2005-11-27', '23456789G', 'daniel.garcia@gmail.com', '777888999', 4001, 'INSC007', 'S', 25, true),
-('Lucía', 'Sánchez', 'f', 8, '2000-10-20', '89012345H',  'lucia.sanchez@gmail.com', '111222333', 4002, 'INSC008', 'M', 25, true);
+('Daniel', 'García', 'm', 8, '2005-11-27', '23456789G', 'daniel.garcia@gmail.com', '777888999', 4001, '00014', 'S', 25, true),
+('Lucía', 'Sánchez', 'f', 8, '2000-10-20', '89012345H',  'lucia.sanchez@gmail.com', '111222333', 4002, '00015', 'M', 25, true);
