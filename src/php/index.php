@@ -33,6 +33,11 @@
                 $controlador=new ControladorCategorias();
                 return $controlador->$metodo();
                 break;
+            case 'inscripciones':
+                require_once($config['path_controladores'].'controladorinscripciones.php');
+                $controlador=new ControladorInscripciones();
+                return $controlador->$metodo();
+                break;
        }
        
     }else{

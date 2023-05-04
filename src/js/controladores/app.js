@@ -1,8 +1,10 @@
 "use strict" //activo modo estricto
 import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
+import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
+import {VistaPago} from '../vistas/pago/vistapago.js'
 
-class Controlador{
+export class Controlador{
 
     constructor() {
 		$(document).ready(this.iniciar.bind(this))
@@ -23,12 +25,13 @@ class Controlador{
         boton.onclick=this.mostrarInscripciones.bind(this)
         let inicio= document.getElementById('inicio')
         inicio.onclick=this.mostrarInicio.bind(this)
+        let icono= document.getElementById('sanromilla')
+        icono.onclick=this.mostrarInicio.bind(this)
         let clasificacion= document.getElementById('clasificacion')
         clasificacion.onclick=this.mostrarClasificacion.bind(this)
         let fotos= document.getElementById('fotos')
         fotos.onclick=this.mostrarFotos.bind(this)
-
-        //Vista Inscripción
+        
     }
 
     /**
@@ -47,13 +50,6 @@ class Controlador{
     async mostrarInicio(){
         this.router.cargar("inicio")
         this.ocultarMenu()
-        var payload = await this.modelo.getCategorias()
-        // payload=JSON.stringify(payload.data)
-        console.log(payload)
-        for(let dato of payload.data){
-                console.log(dato.nombre)
-        }
-        
     }
 
     /**
@@ -62,6 +58,8 @@ class Controlador{
     mostrarInscripciones(){
         this.ocultarMenu()
         this.router.cargar("inscripcion")
+        //Vista Inscripción
+        this.vistaInscripcion=new VistaInscripcion(this)
     }
 
     /**
@@ -69,7 +67,9 @@ class Controlador{
      */
     mostrarClasificacion(){
         this.ocultarMenu()
-        this.router.cargar("clasificacion")
+        
+        this.router.cargar("pago")
+        this.vistaPago=new VistaPago(this,'1')
     }
 
     /**
@@ -80,5 +80,22 @@ class Controlador{
         this.router.cargar("fotos")
     }
     
+
+    async sacarCategorias(){
+        let datos = await this.modelo.getCategorias()
+        return datos;
+    }
+
+    async sacarCodigos(){
+        let datos =await this.modelo.getCodigos()
+        return datos.data
+    }
+
+    async insertarCodigo(id, codigo){
+        let respuesta =await this.modelo.insertarCodigo(id, codigo)
+        if(respuesta.data!=1){
+            console.log('Ha ocurrido un error')
+        }
+    }
 }
 const app= new Controlador()
