@@ -28,7 +28,7 @@ class Controlador{
         let fotos= document.getElementById('fotos')
         fotos.onclick=this.mostrarFotos.bind(this)
 
-        
+        //Vista Inscripción
     }
 
     /**
