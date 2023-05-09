@@ -25,23 +25,19 @@
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
         parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
 
-        switch($controlador){
-            case 'categorias':
-                require_once($config['path_controladores'].'controladorcategorias.php');
-                // print_r($controlador) ;
-                // echo $metodo;
-                $controlador=new ControladorCategorias();
-                return $controlador->$metodo();
-                break;
-            case 'inscripciones':
-                require_once($config['path_controladores'].'controladorinscripciones.php');
-                $controlador=new ControladorInscripciones();
-                return $controlador->$metodo();
-                break;
-       }
+        if($controlador=='' || $metodo==''){
+            header('../');
+
+        }
+        else{
+            require_once($config['path_controladores'].'controlador'.$controlador.'.php');
+            $nombreControlador=$controlador.'Controller';
+            $control=new $nombreControlador();
+            return $control->$metodo();
+        }
        
     }else{
-        header('location:../index/html/index.html');
+        header('location:../');
     }
     
 ?>

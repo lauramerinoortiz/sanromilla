@@ -37,7 +37,7 @@ class ModeloInscripciones{
 
     function insertarCodigo($id, $codigo){
         $this->conectar();
-        $consulta=' UPDATE inscripciones SET codigo_inscripcion="'.$codigo.'" WHERE id_inscripcion='.$id.' ';
+        $consulta=' UPDATE inscripciones SET codigo_inscripcion="'.$codigo.'" WHERE id_inscripcion='.$id.'; ';
         try{
             $respuesta=$this->conexion->query($consulta);
             $this->conexion->close();

@@ -1,6 +1,6 @@
 <?php 
 require_once('modelos/modelocategorias.php');
-class ControladorCategorias{
+class categoriasController{
     private $modelo;
     function __construct(){
         $this->modelo=new ModeloCategorias();

@@ -1,6 +1,6 @@
 <?php 
 require_once('modelos/modeloinscripciones.php');
-class ControladorInscripciones{
+class inscripcionesController{
     private $modelo;
     function __construct(){
         $this->modelo=new ModeloInscripciones();
@@ -30,7 +30,7 @@ class ControladorInscripciones{
         $codigo=$_GET['codigo'];
         $datos= $this->modelo->insertarCodigo($id, $codigo);
         if($datos==1){
-            echo 1;
+            echo $datos;
         }
         else{
             echo 0;
