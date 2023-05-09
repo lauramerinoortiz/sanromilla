@@ -18,18 +18,19 @@
             $pathParams=explode('/',$_SERVER['PATH_INFO']);//Con el siguiente método, estamos conformando un array que parte de $_SERVER['PATH_INFO'] y que
                                                             //y que separamos con / que es como viene en la petición
         }
-        //El controlador siempre sera el primero en recibirse, no se pone el 0 por que viene vacío
-        $controlador=$pathParams[1];
-        $metodo=$pathParams[2];
-        $parametrosQuery=null;
-        //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
-        parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
-
-        if($controlador=='' || $metodo==''){
-            header('../');
+        
+        //Si no viene el nombre del controlador o el método, hay algo mal entonces redirigimos al index html
+        if(!isset($pathParams[1]) || !isset($pathParams[2])){
+            header('location: ../');
 
         }
         else{
+            //El controlador siempre sera el primero en recibirse, no se pone el 0 por que viene vacío
+            $controlador=$pathParams[1];
+            $metodo=$pathParams[2];
+            $parametrosQuery=null;
+            //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
+            parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
             require_once($config['path_controladores'].'controlador'.$controlador.'.php');
             $nombreControlador=$controlador.'Controller';
             $control=new $nombreControlador();
