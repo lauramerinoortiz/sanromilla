@@ -8,4 +8,9 @@
     define('USUARIO', 'root');
     define('CONTRASENIA', '');
     define('BD', 'san_romilla_db');
+
+    // define('SERVIDOR', '2daw.esvirgua.com');
+    // define('USUARIO', 'user2daw_22');
+    // define('CONTRASENIA', 'eJtFSfaZhqcI');
+    // define('BD', 'user2daw_BD1-22');
 ?>

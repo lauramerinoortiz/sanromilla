@@ -1,5 +1,7 @@
 "use strict" //activo modo estricto
+import {InscripcionModel} from '../../modelos/inscripcionModel.js'
 export class VistaInscripcion{
+    inscripciones = [];
     constructor(controlador){
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
@@ -13,7 +15,8 @@ export class VistaInscripcion{
         console.log(datos)
         this.fecha=document.getElementById('fecha')
         fecha.onchange=this.cargarCategoria.bind(this,datos)
-
+        this.btnAnadirInscripcion = document.getElementById('btnAnadirInscripcion')
+        this.btnAnadirInscripcion.onclick = this.anadirInscripcion.bind(this)
     }
 
     cargarCategoria(datos){
@@ -63,5 +66,39 @@ export class VistaInscripcion{
         categoria.placeholder=this.categoria
         let precio=document.getElementById('precio')
         precio.placeholder=this.precio
+    }
+
+    anadirInscripcion(){
+        console.log('Añadiendo inscripción...');
+        console.log(document.getElementsByTagName('input')[1].value);
+
+        //Valor radiobutton
+        var generoRadios = document.getElementsByName('genero');
+        var generoSeleccionado;
+        for (var i = 0; i < generoRadios.length; i++) {
+            if (generoRadios[i].checked) {
+                generoSeleccionado = generoRadios[i].value;
+                break;
+            }
+        }
+        //Valor Select
+        var camisetaSelect = document.getElementById('camiseta');
+        var tallaCamisetaSeleccionada = camisetaSelect.options[camisetaSelect.selectedIndex].value;
+
+        this.inscripciones.push(new InscripcionModel(
+            document.getElementsByTagName('input')[0].value,//nombre
+            document.getElementsByTagName('input')[1].value,//apellidos
+            generoSeleccionado,//genero
+            document.getElementsByTagName('input')[2].value,//fecha
+            document.getElementsByTagName('input')[3].value,//categoria
+            document.getElementsByTagName('input')[4].value,//precio
+            tallaCamisetaSeleccionada,//camiseta
+            document.getElementsByTagName('input')[6].value,//dni
+            document.getElementsByTagName('input')[7].value,//email
+            document.getElementsByTagName('input')[8].value,//telefono
+            document.getElementsByTagName('input')[9].value,//info
+        ))
+
+        console.log(this.inscripciones)
     }
 }
