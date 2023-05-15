@@ -14,6 +14,8 @@ export class VistaInscripcion{
         this.fecha=document.getElementById('fecha')
         fecha.onchange=this.cargarCategoria.bind(this,datos)
 
+        this.aceptarInscripciones = document.getElementById('aceptarInscripciones')
+        this.aceptarInscripciones.onclick = this.guardarDatosInscripciones.bind(this)
     }
 
     cargarCategoria(datos){
@@ -64,4 +66,10 @@ export class VistaInscripcion{
         let precio=document.getElementById('precio')
         precio.placeholder=this.precio
     }
+
+
+    guardarDatosInscripciones(){
+        this.controlador.mostrarConfirmacion()
+    }
+
 }
