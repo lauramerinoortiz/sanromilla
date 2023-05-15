@@ -1,8 +1,7 @@
 "use strict" //activo modo estricto
 import {InscripcionModel} from '../../modelos/inscripcionModel.js'
 export class VistaInscripcion{
-    inscripciones = [];
-    inscripcionCounter = 1;
+
     constructor(controlador){
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
@@ -12,12 +11,16 @@ export class VistaInscripcion{
         this.div=document.getElementById('inscripcion')
         console.log(this.div)
         console.log(this.controlador)
-        let datos=await this.controlador.sacarCategorias()
-        console.log(datos)
+        this.datos=await this.controlador.sacarCategorias()
+        console.log(this.datos)
         this.aceptarInscripciones = document.getElementById('aceptarInscripciones')
         this.aceptarInscripciones.onclick = this.guardarDatosInscripciones.bind(this)
         this.fecha=document.getElementById('fecha')
-        fecha.onchange=this.cargarCategoria.bind(this,datos)
+        this.fecha.onchange=this.cargarCategoria.bind(this,this.datos)
+
+        this.inscripciones = [];
+        this.inscripcionCounter = 1;
+
         this.btnAnadirInscripcion = document.getElementById('btnAnadirInscripcion')
         this.btnAnadirInscripcion.onclick = this.anadirInscripcion.bind(this)
 
@@ -29,16 +32,21 @@ export class VistaInscripcion{
         divInscripcion.children[0].appendChild(h1);
     }
 
-    cargarCategoria(datos){
+    /**
+     * Carga la categoría dependiendo del valor introducido en la feha de nacimiento
+     * @param datos
+     * @param event
+     */
+    cargarCategoria(datos, event) {
 
-        this.categoria='-Seleccione fecha-'
-        this.precio='-Seleccione fecha-'
+        this.categoria = '-Seleccione fecha-';
+        this.precio = '-Seleccione fecha-';
 
         // console.log(datos.data)
         // console.log(this.fecha.value)
-        let fechaIntroducida = new Date( this.fecha.value )
-        let anio=fechaIntroducida.getFullYear()
-        let anioActual= new Date().getFullYear();
+        let fechaIntroducida = new Date(event.target.value);
+        let anio = fechaIntroducida.getFullYear();
+        let anioActual = new Date().getFullYear();
 
         for(let dato of datos.data){
             // console.log(dato.edad)
@@ -72,12 +80,15 @@ export class VistaInscripcion{
             }
         }
         console.log(this.categoria)
-        let categoria=document.getElementById('categoria')
-        categoria.placeholder=this.categoria
-        let precio=document.getElementById('precio')
-        precio.placeholder=this.precio
+        let categoria = event.target.parentNode.parentNode.querySelector('#categoria');
+        categoria.value = this.categoria;
+        let precio = event.target.parentNode.parentNode.querySelector('#precio');
+        precio.value = this.precio;
     }
 
+    /**
+     * Añade una inscripción más al componente
+     */
     anadirInscripcion(){
         this.inscripcionCounter ++;
         let id = `inscripcion-${this.inscripcionCounter}`;
@@ -101,45 +112,16 @@ export class VistaInscripcion{
         newDiv.querySelector('h1').textContent = `INSCRIPCIÓN ${this.inscripcionCounter}`;
 
         newDiv.querySelector('#collapseInscripcion-' + id).classList.add('show');
+        this.fecha1=newDiv.querySelector('input[type="date"]');
+        this.fecha1.onchange = this.cargarCategoria.bind(this, this.datos);
     }
 
-    /*guardarDatosInscripciones(){
-        console.log('Añadiendo inscripción...');
-        console.log(document.getElementsByTagName('input')[1].value);
-
-        //Valor radiobutton
-        var generoRadios = document.getElementsByName('genero');
-        var generoSeleccionado;
-        for (var i = 0; i < generoRadios.length; i++) {
-            if (generoRadios[i].checked) {
-                generoSeleccionado = generoRadios[i].value;
-                break;
-            }
-        }
-        //Valor Select
-        var camisetaSelect = document.getElementById('camiseta');
-        var tallaCamisetaSeleccionada = camisetaSelect.options[camisetaSelect.selectedIndex].value;
-
-        this.inscripciones.push(new InscripcionModel(
-            document.getElementsByTagName('input')[0].value,//nombre
-            document.getElementsByTagName('input')[1].value,//apellidos
-            generoSeleccionado,//genero
-            document.getElementsByTagName('input')[4].value,//fecha
-            document.getElementsByTagName('input')[5].value,//categoria
-            document.getElementsByTagName('input')[6].value,//precio
-            tallaCamisetaSeleccionada,//camiseta
-            document.getElementsByTagName('input')[7].value,//dni
-            document.getElementsByTagName('input')[8].value,//email
-            document.getElementsByTagName('input')[9].value,//telefono
-            document.getElementsByTagName('textarea')[0].value,//info
-        ))
-
-        console.log(this.inscripciones)
-    }*/
-
+    /**
+     * Guarda los datos de las incripciones en un array de objetos y los manda a la la vista de mostrar confirmación.
+     */
     guardarDatosInscripciones() {
         console.log('Guardando datos de inscripciones...');
-
+        this.controlador.mostrarConfirmacion();
         this.inscripciones = [];
 
         // Seleccionar todos los div de inscripción
