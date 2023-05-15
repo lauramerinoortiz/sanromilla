@@ -158,7 +158,6 @@ export class VistaInscripcion{
 
             this.inscripciones.push(nuevaInscripcion);
         }
-
-        console.log(this.inscripciones);
+        this.controlador.mostrarConfirmacion(this.inscripciones)
     }
 }

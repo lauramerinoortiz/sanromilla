@@ -3,6 +3,7 @@ import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
 import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
 import {VistaPago} from '../vistas/pago/vistapago.js'
+import {Confirmacion} from '../vistas/confirmacion/confirmacion.js'
 
 export class Controlador{
 
@@ -78,6 +79,12 @@ export class Controlador{
     mostrarFotos(){
         this.ocultarMenu()
         this.router.cargar("fotos")
+    }
+
+    mostrarConfirmacion(){
+        this.ocultarMenu()
+        this.router.cargar("confirmacion")
+        this.vistaConfirmacion = new Confirmacion(this)
     }
     
 
