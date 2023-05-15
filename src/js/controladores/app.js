@@ -81,10 +81,10 @@ export class Controlador{
         this.router.cargar("fotos")
     }
 
-    mostrarConfirmacion(){
+    mostrarConfirmacion(datos){
         this.ocultarMenu()
         this.router.cargar("confirmacion")
-        this.vistaConfirmacion = new Confirmacion(this)
+        this.vistaConfirmacion = new Confirmacion(this, datos)
     }
     
 

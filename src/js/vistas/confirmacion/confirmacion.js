@@ -1,16 +1,15 @@
 "use strict" //activo modo estricto
 export class Confirmacion{
 
-    datos = [
-        { nombre: 'Laura Merino Ortiz', precio: 4, precio_camiseta: 6, talla: 'M' },
-        { nombre: 'Antonio Moruno', precio: 4, precio_camiseta: 0, talla: '' },
-        { nombre: 'Javier Florencio', precio: 4, precio_camiseta: 6, talla: 'M' }
-    ];
+    inscripciones = null;
       
 
-    constructor(controlador){
+    constructor(controlador, datos){
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
+        this.inscripciones = datos;
+        console.log('datos antonio: ', this.inscripciones);
+
     }
 
     async iniciar(controlador){
@@ -28,7 +27,7 @@ export class Confirmacion{
 
         var contador = 1;
 
-        this.datos.forEach(function(dato) {
+        this.inscripciones.forEach(function(dato) {
             // elemento div contenedor 
             var div = document.createElement('div');
             div.setAttribute('class', 'rounded bg-warning col-sm-3 m-1 p-3');
@@ -40,23 +39,23 @@ export class Confirmacion{
 
             // párrafos
             var p1 = document.createElement('p');
-            p1.textContent = dato.nombre;
+            p1.textContent = dato.nombre +' '+ dato.apellidos;
             div.appendChild(p1);
 
             // precio
             var p2 = document.createElement('p');
             p2.textContent = 'Inscripción: ';
             var b1 = document.createElement('b');
-            b1.textContent = dato.precio + '€';
+            b1.textContent = dato.precioDorsal + '€';
             p2.appendChild(b1);
             div.appendChild(p2);
 
             //camiseta y precio
-            if(dato.talla != ''){
+            if(dato.camiseta != 'null'){
                 var p3 = document.createElement('p');
-                p3.textContent = 'Precio camiseta (' + dato.talla + '): ';
+                p3.textContent = 'Precio camiseta (' + dato.camiseta + '): ';
                 var b2 = document.createElement('b');
-                b2.textContent = dato.precio_camiseta + '€';
+                b2.textContent = '6€';
                 p3.appendChild(b2);
                 div.appendChild(p3);
             }
@@ -73,8 +72,14 @@ export class Confirmacion{
         console.log('total...')
         var precioTotal = document.getElementById('precioTotal');
         var total = 0;
-        for (let dato of this.datos){
-            total += dato.precio + dato.precio_camiseta;
+        for (let dato of this.inscripciones){
+            let dorsal = parseInt(dato.precioDorsal);
+            console.log()
+            let camiseta = 0
+            if(dato.camiseta != 'null'){
+                camiseta = 6;
+            }
+            total += dorsal + camiseta;
         }
         precioTotal.textContent = total + '€';
     }

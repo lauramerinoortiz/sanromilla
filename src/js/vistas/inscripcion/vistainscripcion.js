@@ -121,7 +121,6 @@ export class VistaInscripcion{
      */
     guardarDatosInscripciones() {
         console.log('Guardando datos de inscripciones...');
-        this.controlador.mostrarConfirmacion();
         this.inscripciones = [];
 
         // Seleccionar todos los div de inscripción
@@ -148,7 +147,7 @@ export class VistaInscripcion{
                 generoSeleccionado, // genero
                 inputs[4].value, // fecha
                 inputs[5].value, // categoria
-                inputs[6].value, // precio
+                inputs[6].value.slice(0, -1),
                 camisetaSelect.options[camisetaSelect.selectedIndex].value, // camiseta
                 inputs[7].value, // dni
                 inputs[8].value, // email
