@@ -3,7 +3,6 @@ export class Confirmacion{
 
     inscripciones = null;
       
-
     constructor(controlador, datos){
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
@@ -28,6 +27,7 @@ export class Confirmacion{
         var contador = 1;
 
         this.inscripciones.forEach(function(dato) {
+
             // elemento div contenedor 
             var div = document.createElement('div');
             div.setAttribute('class', 'rounded bg-warning col-sm-3 m-1 p-3');
@@ -60,12 +60,14 @@ export class Confirmacion{
                 div.appendChild(p3);
             }
             
-
             // Agrega el div al contenedor
-            grupoInscripciones.appendChild(div);
-            contador++
+            if(dato.nombre != '' && dato.precioDorsal != ''){
+                grupoInscripciones.appendChild(div);
+                contador++
+            }
         });
         this.precioTotal()
+        return true;
     }
 
     precioTotal(){
@@ -73,13 +75,16 @@ export class Confirmacion{
         var precioTotal = document.getElementById('precioTotal');
         var total = 0;
         for (let dato of this.inscripciones){
-            let dorsal = parseInt(dato.precioDorsal);
-            console.log()
-            let camiseta = 0
-            if(dato.camiseta != 'null'){
-                camiseta = 6;
+            if(dato.nombre != '' && dato.precioDorsal != ''){
+                let dorsal = parseInt(dato.precioDorsal);
+                console.log()
+                let camiseta = 0
+                if(dato.camiseta != 'null'){
+                    camiseta = 6;
+                }
+                total += dorsal + camiseta;
             }
-            total += dorsal + camiseta;
+            
         }
         precioTotal.textContent = total + '€';
     }
