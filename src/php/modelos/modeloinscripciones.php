@@ -24,7 +24,7 @@ class ModeloInscripciones{
     }
 
     /**
-     * Método que llama a la base de datos y saca todas las categorias
+     * Método que llama a la base de datos y saca todas los códigos
      */
     function getCodigos(){
         $this->conectar();
@@ -35,6 +35,10 @@ class ModeloInscripciones{
 
     }
 
+    /**
+     * PRUEBA!!!
+     * Método que inserta el código de inscripción en un registro
+     */
     function insertarCodigo($id, $codigo){
         $this->conectar();
         $consulta=' UPDATE inscripciones SET codigo_inscripcion="'.$codigo.'" WHERE id_inscripcion='.$id.'; ';

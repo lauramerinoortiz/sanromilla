@@ -8,18 +8,27 @@ export class Confirmacion{
         window.setTimeout(this.iniciar.bind(this), 500)
         this.inscripciones = datos;
         console.log('datos antonio: ', this.inscripciones);
-
+        //this.btnpagar.addEventListener('click', console.log('holi'))
     }
 
+    /**
+     * Método que inicia la vista
+     * @param {*} controlador 
+     */
     async iniciar(controlador){
         this.div=document.getElementById('confirmacion')
         console.log(this.div)
         console.log(this.controlador)
-
+        this.btnpagar=document.getElementById('btnpagar')
+        this.btnpagar.onclick=this.irPago.bind(this)
         
         this.cargarDatos()
     }
 
+    /**
+     * Méotodo que carga los datos de las inscripciones
+     * @returns 
+     */
     cargarDatos(){
 
         var grupoInscripciones = document.getElementById('grupoInscripciones')
@@ -70,6 +79,9 @@ export class Confirmacion{
         return true;
     }
 
+    /**
+     * Método que saca el precio total
+     */
     precioTotal(){
         console.log('total...')
         var precioTotal = document.getElementById('precioTotal');
@@ -87,5 +99,12 @@ export class Confirmacion{
             
         }
         precioTotal.textContent = total + '€';
+    }
+
+    /**
+     * Método que llama al controlador para mostrar la vista pago
+     */
+    irPago(){
+        this.controlador.mostrarPago()
     }
 }

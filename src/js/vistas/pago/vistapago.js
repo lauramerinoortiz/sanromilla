@@ -6,6 +6,10 @@ export class VistaPago{
         window.setTimeout(this.iniciar.bind(this), 500)
     }
 
+    /**
+     * Método que inicia la vista y genera el código de inscripción
+     * Lo manda al controlador para que lo inserte
+     */
     async iniciar(){
         
         this.codigo=document.getElementById('codigo')

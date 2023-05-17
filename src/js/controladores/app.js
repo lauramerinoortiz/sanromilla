@@ -64,11 +64,10 @@ export class Controlador{
     }
 
     /**
-     * Método que muestra la vista Clasificación
+     * Método que muestra la vista pago
      */
-    mostrarClasificacion(){
+    mostrarPago(){
         this.ocultarMenu()
-        
         this.router.cargar("pago")
         this.vistaPago=new VistaPago(this,'1')
     }
@@ -81,23 +80,48 @@ export class Controlador{
         this.router.cargar("fotos")
     }
 
+    /**
+     * Método que muestra la vista clasificacion
+     */
+    mostrarClasificacion(){
+        this.ocultarMenu()
+        this.router.cargar('clasificacion')
+    }
+
+    /**
+     * Método que muestra la vista confirmación
+     * @param {array} datos 
+     */
     mostrarConfirmacion(datos){
         this.ocultarMenu()
         this.router.cargar("confirmacion")
         this.vistaConfirmacion = new Confirmacion(this, datos)
     }
     
-
+    /**
+     * Método que llama al modelo y recibe las categorias de la bbdd
+     * @returns array de categorias
+     */
     async sacarCategorias(){
         let datos = await this.modelo.getCategorias()
         return datos;
     }
 
+    /**
+     * Método que llama al modelo y recibe todos los códigos de la bbdd
+     * @returns array
+     */
     async sacarCodigos(){
         let datos =await this.modelo.getCodigos()
         return datos.data
     }
 
+    /**
+     * PRUEBA!!
+     * Método que inserta el código de inscripción en la bbdd
+     * @param {int} id 
+     * @param {string} codigo 
+     */
     async insertarCodigo(id, codigo){
         let respuesta =await this.modelo.insertarCodigo(id, codigo)
         if(respuesta.data!=1){

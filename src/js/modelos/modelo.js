@@ -5,6 +5,10 @@ export class Modelo{
         this.base_url='./php/index.php/'
     }
 
+    /**
+     * Método que pide las categorías de la bbdd
+     * @returns array
+     */
     async getCategorias(){
         return new Promise(resolve => {
             $.get(this.base_url + 'categorias/'+'getCategorias', {
@@ -17,6 +21,10 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método que pide los códigos de la bbdd
+     * @returns array
+     */
     async getCodigos(){
         return new Promise(resolve => {
             $.get(this.base_url + 'inscripciones/'+'getCodigos', {
@@ -28,6 +36,14 @@ export class Modelo{
             });
         });
     }
+
+    /**
+     * PRUEBA!!
+     * método que guarda el codigo en la bbdd
+     * @param {int} id 
+     * @param {string} codigo 
+     * @returns 
+     */
     async insertarCodigo(id,codigo){
         return new Promise(resolve => {
             $.get(this.base_url + 'inscripciones/'+'insertarCodigo', {
