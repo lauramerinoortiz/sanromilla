@@ -2,8 +2,12 @@
 import {InscripcionModel} from '../../modelos/inscripcionModel.js'
 export class VistaInscripcion{
 
-    constructor(controlador){
+    constructor(controlador, datos){
         this.controlador=controlador
+
+        /* Lista de inscripciones que vienen de vuelta */
+        this.inscripcionesVolver = datos;
+
         window.setTimeout(this.iniciar.bind(this), 500)
     }
 
