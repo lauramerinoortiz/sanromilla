@@ -56,11 +56,11 @@ export class Controlador{
     /**
      * Método que muestra la vista Inscripciones
      */
-    mostrarInscripciones(){
+    mostrarInscripciones(datos){
         this.ocultarMenu()
         this.router.cargar("inscripcion")
         //Vista Inscripción
-        this.vistaInscripcion=new VistaInscripcion(this)
+        this.vistaInscripcion=new VistaInscripcion(this, datos)
     }
 
     /**

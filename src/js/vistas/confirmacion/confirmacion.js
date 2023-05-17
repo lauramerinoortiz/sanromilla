@@ -17,10 +17,11 @@ export class Confirmacion{
      */
     async iniciar(controlador){
         this.div=document.getElementById('confirmacion')
-        console.log(this.div)
-        console.log(this.controlador)
-        this.btnpagar=document.getElementById('btnpagar')
+        this.btnpagar=document.getElementById('btnPagar')
         this.btnpagar.onclick=this.irPago.bind(this)
+
+        this.btnVolver=document.getElementById('btnVolver')
+        this.btnVolver.onclick=this.volverInscripcion.bind(this)
         
         this.cargarDatos()
     }
@@ -106,5 +107,14 @@ export class Confirmacion{
      */
     irPago(){
         this.controlador.mostrarPago()
+    }
+
+    /**
+     * Método que llama al controlador para mostrar la vista inscripciones
+     */
+    volverInscripcion(){
+        console.log('volveeeeer...')
+        console.log('this...', this.inscripciones)
+        this.controlador.mostrarInscripciones(this.inscripciones)
     }
 }
