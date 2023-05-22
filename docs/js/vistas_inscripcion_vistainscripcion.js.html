@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vistas/inscripcion/vistainscripcion.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: vistas/inscripcion/vistainscripcion.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict" //activo modo estricto
+import {InscripcionModel} from '../../modelos/inscripcionModel.js'
+export class VistaInscripcion{
+
+    constructor(controlador, datos){
+        this.controlador=controlador
+
+        /* Lista de inscripciones que vienen de vuelta */
+        this.inscripcionesVolver = datos;
+
+        window.setTimeout(this.iniciar.bind(this), 500)
+    }
+
+    async iniciar(controlador){
+        this.div=document.getElementById('inscripcion')
+        console.log(this.div)
+        console.log(this.controlador)
+        this.datos=await this.controlador.sacarCategorias()
+        console.log(this.datos)
+        this.aceptarInscripciones = document.getElementById('aceptarInscripciones')
+        this.aceptarInscripciones.onclick = this.guardarDatosInscripciones.bind(this)
+        this.fecha=document.getElementById('fecha')
+        this.fecha.onchange=this.cargarCategoria.bind(this,this.datos)
+
+        this.inscripciones = [];
+        this.inscripcionCounter = 1;
+
+        this.btnAnadirInscripcion = document.getElementById('btnAnadirInscripcion')
+        this.btnAnadirInscripcion.onclick = this.anadirInscripcion.bind(this)
+
+        let h1 = document.createElement('h1');
+        h1.classList.add('d-flex', 'flex-column', 'text-center');
+        h1.textContent = `INSCRIPCIÓN ${this.inscripcionCounter}`;
+
+        let divInscripcion = document.getElementById('divInscripcion-inscripcion-1');
+        divInscripcion.children[0].appendChild(h1);
+    }
+
+    /**
+     * Carga la categoría dependiendo del valor introducido en la feha de nacimiento
+     * @param datos
+     * @param event
+     */
+    cargarCategoria(datos, event) {
+
+        this.categoria = '-Seleccione fecha-';
+        this.precio = '-Seleccione fecha-';
+
+        // console.log(datos.data)
+        // console.log(this.fecha.value)
+        let fechaIntroducida = new Date(event.target.value);
+        let anio = fechaIntroducida.getFullYear();
+        let anioActual = new Date().getFullYear();
+
+        for(let dato of datos.data){
+            // console.log(dato.edad)
+            let edadPersona=anioActual-anio
+            // console.log('edadPersona= '+edadPersona)
+
+            if(dato.nombre=='BABYRUNNER' &amp;&amp; edadPersona&lt;=dato.edad){
+                // console.log('entro en baby')
+                this.categoria=dato.nombre
+                this.precio=dato.precio+'€'
+                break
+            }
+            else if(dato.nombre=='ABSOLUTA' &amp;&amp; edadPersona>=dato.edad){
+                // console.log('Entro en abs')
+                this.categoria=dato.nombre
+                this.precio=dato.precio+'€'
+                break
+            }
+            else if(dato.nombre=='JUVENIL' &amp;&amp; edadPersona==dato.edad){
+                // console.log('entro en juvenil')
+                this.categoria=dato.nombre
+                this.precio=dato.precio+'€'
+                break
+            }
+            else {
+                if(dato.edad==edadPersona || edadPersona==dato.edad-1){
+                    // console.log('entro en resto ')
+                    this.categoria=dato.nombre
+                    this.precio=dato.precio+'€'
+                }
+            }
+        }
+        console.log(this.categoria)
+        let categoria = event.target.parentNode.parentNode.querySelector('#categoria');
+        categoria.value = this.categoria;
+        let precio = event.target.parentNode.parentNode.querySelector('#precio');
+        precio.value = this.precio;
+    }
+
+    /**
+     * Añade una inscripción más al componente
+     */
+    anadirInscripcion(){
+        this.inscripcionCounter ++;
+        let id = `inscripcion-${this.inscripcionCounter}`;
+
+        for(let i=1; i&lt;this.inscripcionCounter; i++){
+            if (document.getElementById(`collapseInscripcion-inscripcion-${i}`).classList.contains('show')) {
+                document.getElementById(`collapseInscripcion-inscripcion-${i}`).classList.remove('show');
+            }
+        }
+
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('card','card-responsive','mt-5');
+        newDiv.id = `divInscripcion-inscripcion-${this.inscripcionCounter}`;
+
+        let divInscripcion = document.getElementById(`divInscripcion-inscripcion-${this.inscripcionCounter-1}`);
+        newDiv.innerHTML = divInscripcion.innerHTML;
+        divInscripcion.after(newDiv);
+        newDiv.children[0].querySelector('i').setAttribute('href',`#collapseInscripcion-${id}`);
+        newDiv.children[1].id =`collapseInscripcion-${id}`;
+
+        newDiv.querySelector('h1').textContent = `INSCRIPCIÓN ${this.inscripcionCounter}`;
+
+        newDiv.querySelector('#collapseInscripcion-' + id).classList.add('show');
+        this.fecha1=newDiv.querySelector('input[type="date"]');
+        this.fecha1.onchange = this.cargarCategoria.bind(this, this.datos);
+    }
+
+    /**
+     * Guarda los datos de las incripciones en un array de objetos y los manda a la la vista de mostrar confirmación.
+     */
+    guardarDatosInscripciones() {
+        console.log('Guardando datos de inscripciones...');
+        this.inscripciones = [];
+
+        // Seleccionar todos los div de inscripción
+        const divsInscripcion = document.querySelectorAll('.card-responsive');
+
+        // Iterar sobre cada div de inscripción y extraer la información de los campos de entrada
+        for (let i = 0; i &lt; divsInscripcion.length; i++) {
+            const inputs = divsInscripcion[i].querySelectorAll('input');
+            const textarea = divsInscripcion[i].querySelector('textarea');
+            const generoRadios = divsInscripcion[i].querySelectorAll('input[type="radio"][name="genero"]');
+            const camisetaSelect = divsInscripcion[i].querySelector('#camiseta');
+
+            let generoSeleccionado = '';
+            for (let j = 0; j &lt; generoRadios.length; j++) {
+                if (generoRadios[j].checked) {
+                    generoSeleccionado = generoRadios[j].value;
+                    break;
+                }
+            }
+
+            const nuevaInscripcion = new InscripcionModel(
+                inputs[0].value, // nombre
+                inputs[1].value, // apellidos
+                generoSeleccionado, // genero
+                inputs[4].value, // fecha
+                inputs[5].value, // categoria
+                inputs[6].value.slice(0, -1),
+                camisetaSelect.options[camisetaSelect.selectedIndex].value, // camiseta
+                inputs[7].value, // dni
+                inputs[8].value, // email
+                inputs[9].value, // telefono
+                textarea.value // info
+            );
+
+            this.inscripciones.push(nuevaInscripcion);
+        }
+        this.controlador.mostrarConfirmacion(this.inscripciones)
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Router.html">Router</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 22 2023 13:42:46 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
