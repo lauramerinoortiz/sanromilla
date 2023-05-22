@@ -1,17 +1,18 @@
 <div class="container">
-    <div class="card card-responsive mt-5" id="divInscripcion-inscripcion-1">
+    <div class="card card-responsive mt-3" id="divInscripcion-inscripcion-1">
         <div class="card-header record" >
             <div class="form-row">
                 <div class="">
+                    <h1 class="d-flex flex-column text-center">INSCRIPCIÓN 1</h1>
                 </div>
                 <div class="float-end">
-                    <i id="iconoPlegar" title="Expandir formulario de inscripción" class="fa-solid fa-angle-down float-end" data-bs-toggle="collapse" href="#collapseInscripcion-inscripcion-1" role="button" aria-expanded="true" style="cursor:pointer;"></i>
+                    <i id="iconoPlegar" title="Expandir formulario de inscripción" class="fa-solid fa-angle-down float-end i-collapse-inscripciones display-6" data-bs-toggle="collapse" href="#collapseInscripcion-inscripcion-1" role="button" aria-expanded="true" style="cursor:pointer;"></i>
                 </div>
             </div>
         </div>
         <div class="card-body collapse show" id="collapseInscripcion-inscripcion-1">
             <div class="row fila-buscador">
-                <form id="formInscripcion">
+                <form id="formInscripcion-1">
                     <label class="form-label mt-4" for="nombre">Nombre</label><input class="form-control" type="text" name="nombre">
 
                     <label class="form-label mt-4" for="apellidos">Apellidos</label><input class="form-control" type="text" name="apellidos">
@@ -24,10 +25,10 @@
 
                     <label class="form-label mt-4" for="fecha">Fecha de nacimiento</label><input class="form-control" type="date" name="fecha" id="fecha">
 
-                    <label class="form-label mt-4" for="categoria">Categoría</label><input class="form-control" type="text" placeholder="-categoría-" id="categoria" disabled>
+                    <label class="form-label mt-4" for="categoria">Categoría</label><input name="categoria" class="form-control" type="text" placeholder="-categoría-" id="categoria" disabled>
 
 
-                    <label class="form-label mt-4" for="precio">Precio del dorsal </label><input class="form-control" type="text" placeholder="-precio-"  id="precio" disabled>
+                    <label class="form-label mt-4" for="precio">Precio del dorsal </label><input name="precioDorsal" class="form-control" type="text" placeholder="-precio-"  id="precio" disabled>
 
                     <label class="form-label mt-4" for="camiseta">Talla de camiseta</label><select class="form-select mt-4 text-center" id="camiseta">
                     <option value="null">No, gracias</option>
@@ -41,21 +42,20 @@
 
                 <label class="form-label mt-4" for="dni">DNI</label><input class="form-control" type="text" name="dni">
 
-                <label class="form-label mt-4" for="correo">Correo electrónico</label><input class="form-control" type="email" name="correo">
+                <label class="form-label mt-4" for="correo">Correo electrónico</label><input class="form-control" type="email" name="email">
 
                 <label class="form-label mt-4" for="telefono">Número de teléfono</label><input class="form-control" type="text" name="telefono">
 
-                <label class="form-label mt-4" for="info" id="textarea">Información adicional</label><textarea class="form-control mt-4" rows="4" name="info"></textarea>
-
+                <label class="form-label mt-4" for="info" id="textarea">Información adicional</label><textarea class="form-control mt-4" rows="4" name="infoAdicional"></textarea>
 
                 </form>
-
             </div>
         </div>
     </div>
     <div class="container text-center mt-5" id="botones">
         <a href="index.html"><button class="btn btn-danger me-5">Cancelar</button></a>
+        <button class="btn btn-success ms-5 me-5" id="borrarUltimaInscripcion">Eliminar última inscripción</button>
         <a><button class="btn btn-warning ms-5 me-5" id="btnAnadirInscripcion">Añadir otra inscripción</button></a>
         <button class="btn btn-success ms-5 me-5" id="aceptarInscripciones">Continuar</button>
-    </div> 
-  </div>
+    </div>
+</div>
