@@ -165,6 +165,10 @@ export class VistaInscripcion{
                 return false;
             }
 
+            if (!this.validarTelefono(inputs[9].value, i+1)) {
+                return false;
+            }
+
             const nuevaInscripcion = new InscripcionModel(
                 inputs[0].value, // nombre
                 inputs[1].value, // apellidos
@@ -259,7 +263,7 @@ export class VistaInscripcion{
      * @param correo
      * @returns {boolean}
      */
-   validarCorreoElectronico(correo, numeroInscripcion) {
+    validarCorreoElectronico(correo, numeroInscripcion) {
         // Expresión regular para validar el formato de correo electrónico
         const regexCorreo = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
@@ -270,7 +274,7 @@ export class VistaInscripcion{
         }
 
         return true;
-   }
+    }
 
     /**
      * Valida si el dni introducido es correcto
@@ -319,7 +323,23 @@ export class VistaInscripcion{
 
         // Verificar si la fecha ingresada está dentro del rango permitido
         if (fechaIngresada < hace100Anios || fechaIngresada > hoy) {
-            alert(`Por favor, ingrese una fecha de nacimiento válida en la inscripcion ${numeroInscripcion}`);
+            alert(`Por favor, ingrese una fecha de nacimiento válida en la inscripcion ${numeroInscripcion}.`);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Valida el número de teléfono introducido
+     */
+    validarTelefono(telefono, numeroInscripcion) {
+        // Expresión regular para validar el formato de un número de teléfono en España
+        const patronTelefono = /^[679]{1}[0-9]{8}$/;
+
+        // Verificar si el número de teléfono coincide con el patrón
+        if (!patronTelefono.test(telefono)) {
+            alert(`Por favor, ingrese un número de teléfono válido en la inscripción ${numeroInscripcion}.`);
             return false;
         }
 
