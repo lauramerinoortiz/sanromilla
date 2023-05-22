@@ -1,5 +1,5 @@
 "use strict" //activo modo estricto
-export class Confirmacion{
+export class VistaConfirmacion{
 
     inscripciones = null;
       
@@ -97,7 +97,6 @@ export class Confirmacion{
                 }
                 total += dorsal + camiseta;
             }
-            
         }
         precioTotal.textContent = total + '€';
     }
@@ -106,7 +105,7 @@ export class Confirmacion{
      * Método que llama al controlador para mostrar la vista pago
      */
     irPago(){
-        this.controlador.mostrarPago()
+        this.controlador.mostrarPago(this.inscripciones)
     }
 
     /**

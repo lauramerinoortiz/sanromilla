@@ -44,10 +44,10 @@ export class Modelo{
      * @param {string} codigo 
      * @returns array
      */
-    async insertarCodigo(id,codigo){
+    async insertarInscripciones(inscripciones,codigo){
         return new Promise(resolve => {
-            $.get(this.base_url + 'inscripciones/'+'insertarCodigo', {
-                id:id,
+            $.get(this.base_url + 'inscripciones/'+'insertarInscripciones', {
+                inscripciones:inscripciones,
                 codigo:codigo,
             }, (data) => {
                 resolve({
