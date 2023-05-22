@@ -132,12 +132,12 @@ a:hover{
 }
 
 .form-control, .form-select{
-    width: 70% !important;
+    width: 82% !important;
     display: inline-block !important;
 }
 
 .form-label{
-    width: 30% !important;
+    width: 18% !important;
 }
 
 #textarea{
@@ -160,7 +160,7 @@ a:hover{
     background-size: cover;
 }
 
- #col3{
+#col3{
     height: 200px;
     background-image: url(../assets/images/col3.jpg);
     background-repeat: no-repeat;
@@ -168,7 +168,19 @@ a:hover{
     background-size: cover;
 }
 
+.i-collapse-inscripciones{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
 
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor:pointer;
+}
+
+select:hover{
+    cursor:pointer;
+}
 
 @media (max-width: 1000px) {
     #col1 , #col2 , #col3{

@@ -29,6 +29,9 @@ export class VistaInscripcion{
         this.btnAnadirInscripcion = document.getElementById('btnAnadirInscripcion')
         this.btnAnadirInscripcion.onclick = this.anadirInscripcion.bind(this)
 
+        this.borrarUltimaInscripcionBtn = document.getElementById('borrarUltimaInscripcion');
+        this.borrarUltimaInscripcionBtn.addEventListener('click', this.borrarUltimaInscripcion.bind(this));
+
         await this.cargarInscripciones();
     }
 
@@ -98,7 +101,7 @@ export class VistaInscripcion{
         }
 
         let newDiv = document.createElement('div');
-        newDiv.classList.add('card','card-responsive','mt-5');
+        newDiv.classList.add('card','card-responsive','mt-3');
         newDiv.id = `divInscripcion-inscripcion-${this.inscripcionCounter + 1}`;
         let divInscripcion = document.getElementById(`divInscripcion-inscripcion-${this.inscripcionCounter}`);
         newDiv.innerHTML = divInscripcion.innerHTML;
@@ -134,6 +137,34 @@ export class VistaInscripcion{
                 }
             }
 
+            //Aquí se hacen las validaciones necesarias de formulario en cliente.
+            if (inputs[0].value.trim() === '') {
+                alert('Por favor, ingrese el nombre en la inscripción ' + [i+1]);
+                return false;
+            }
+
+            if (inputs[1].value.trim() === '') {
+                alert('Por favor, ingrese el nombre en la inscripción ' + [i+1]);
+                return false;
+            }
+
+            if (inputs[4].value.trim() === '') {
+                alert('Por favor, ingrese la fecha de nacimiento en la inscripción ' + [i+1]);
+                return false;
+            }
+
+            if (!this.validarFecha(inputs[4].value, i+1)) {
+                return false;
+            }
+
+            if (!this.validarDNI(inputs[7].value, i+1)) {
+                return false;
+            }
+
+            if (!this.validarCorreoElectronico(inputs[8].value, i+1)) {
+                return false;
+            }
+
             const nuevaInscripcion = new InscripcionModel(
                 inputs[0].value, // nombre
                 inputs[1].value, // apellidos
@@ -152,6 +183,17 @@ export class VistaInscripcion{
         this.controlador.mostrarConfirmacion(this.inscripciones)
     }
 
+    borrarUltimaInscripcion() {
+        if (this.inscripcionCounter > 1) {
+            const lastInscripcionId = `divInscripcion-inscripcion-${this.inscripcionCounter}`;
+            const lastInscripcion = document.getElementById(lastInscripcionId);
+            if (lastInscripcion) {
+                lastInscripcion.remove();
+                this.inscripcionCounter--;
+            }
+        }
+    }
+
     /**
      * Carga las incripciones que han sido rellenas con anterioridad, cuando un usuario vuelve desde la vista
      * confirmación.
@@ -165,7 +207,7 @@ export class VistaInscripcion{
                     this.divInscripcion = document.getElementById('divInscripcion-inscripcion-1');
                 }else{
                     this.divInscripcion = document.createElement('div');
-                    this.divInscripcion.classList.add('card','card-responsive','mt-5');
+                    this.divInscripcion.classList.add('card','card-responsive','mt-3');
                     this.divInscripcion.id = `divInscripcion-inscripcion-${index + 1}`;
                     let divInscripcionAnterior = document.getElementById(`divInscripcion-inscripcion-${index}`);
                     this.divInscripcion.innerHTML = divInscripcionAnterior.innerHTML;
@@ -210,5 +252,77 @@ export class VistaInscripcion{
                 }
             });
         }
+    }
+
+    /**
+     * Valida si el correo introducido es válido
+     * @param correo
+     * @returns {boolean}
+     */
+   validarCorreoElectronico(correo, numeroInscripcion) {
+        // Expresión regular para validar el formato de correo electrónico
+        const regexCorreo = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+
+        // Verificar si el correo cumple con el formato válido
+        if (!regexCorreo.test(correo)) {
+            alert(`Por favor, ingrese un correo electrónico válido en la inscripción ${numeroInscripcion}.`);
+            return false;
+        }
+
+        return true;
+   }
+
+    /**
+     * Valida si el dni introducido es correcto
+     */
+    validarDNI(dni, numeroInscripcion) {
+        const letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        const dniRegex = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
+
+        // Verificar si el formato del DNI es válido
+        if (!dniRegex.test(dni.toUpperCase())) {
+            alert(`Por favor, ingresa un DNI válido en la inscripción ${numeroInscripcion}.`);
+            return false;
+        }
+
+        // Extraer los dígitos y la letra del DNI
+        const numero = dni.substr(0, 8);
+        const letra = dni.substr(8).toUpperCase();
+
+        // Calcular la letra correspondiente al número del DNI
+        const letraCalculada = letras[numero % 23];
+
+        // Verificar si la letra es correcta
+        if (letra !== letraCalculada.toUpperCase()) {
+            alert(`La letra del DNI de la inscripción ${numeroInscripcion} no es válida.`);
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Valida la fecha de nacimiento introducida (entre hoy y hace 100 años)
+     * @param fecha
+     * @returns {boolean}
+     */
+    validarFecha(fecha, numeroInscripcion) {
+        // Obtener la fecha actual
+        const hoy = new Date();
+
+        // Obtener la fecha hace 100 años
+        const hace100Anios = new Date();
+        hace100Anios.setFullYear(hace100Anios.getFullYear() - 100);
+
+        // Convertir la fecha ingresada en un objeto Date
+        const fechaIngresada = new Date(fecha);
+
+        // Verificar si la fecha ingresada está dentro del rango permitido
+        if (fechaIngresada < hace100Anios || fechaIngresada > hoy) {
+            alert(`Por favor, ingrese una fecha de nacimiento válida en la inscripcion ${numeroInscripcion}`);
+            return false;
+        }
+
+        return true;
     }
 }
