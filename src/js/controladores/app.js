@@ -123,7 +123,8 @@ export class Controlador{
      * @param {string} codigo 
      */
     async insertarInscripciones(inscripciones, codigo){
-        let respuesta =await this.modelo.insertarInscripciones(inscripciones, codigo)
+        let respuesta = await this.modelo.insertarInscripciones(inscripciones, codigo)
+        console.log(respuesta.data);
         if(respuesta.data!=1){
             console.log('Ha ocurrido un error')
         }
