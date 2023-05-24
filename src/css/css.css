@@ -281,6 +281,11 @@ nav li a{
     #col1:hover , #col2:hover , #col3:hover{
         height: 170px;
     }
+
+    #botones button{
+        margin-top: 9px !important;
+        width: 70%;
+    }
 }
 
 @media (max-width: 880px) {
@@ -327,10 +332,7 @@ nav li a{
 
 @media (max-width: 776px) {
 
-    #botones button{
-        margin-top: 9px !important;
-        width: 70%;
-    }
+    
 
     #app-container {
         min-height: 70vh;
@@ -339,10 +341,6 @@ nav li a{
 
 @media (max-width: 480px) {
 
-    #botones{
-        display: flex;
-        flex-direction: column-reverse;
-    }
 
     #divFotoNada{
         margin-top: 0;
