@@ -1,6 +1,8 @@
-
+/* TIPOGRAFIAS */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+
+
 
 /* ------GENERALES------- */
 *{
@@ -46,6 +48,10 @@ select:hover{
     min-height: 100vh;
 }
 
+
+
+
+
 /* ---------NAV------------ */
 
 #nav{
@@ -85,6 +91,9 @@ nav li a{
     color: darkslategray !important;
 }
 
+#fotos{
+    padding-bottom: 10px;
+}
 
 
 /* --------CARRUSEL--------- */
@@ -101,13 +110,14 @@ nav li a{
 
 
 
+
 /* ---------INICIO----------- */
+
 .fotos{
     transition: 0.6s;
 }
 
 .fotos:hover{
-    cursor: pointer;
     height: 215px !important;
 }
 
@@ -138,7 +148,9 @@ nav li a{
 
 
 
+
 /* --------INSCRIPCIONES--------- */
+
 .tallas{
     margin: 0 auto;
 }
@@ -173,6 +185,17 @@ nav li a{
 
 
 
+/* ---------CLASIFICACION---------- */
+
+
+
+
+
+
+
+
+
+
 /* ----------FOTOS--------- */
 
 #fotosNada{
@@ -199,7 +222,7 @@ nav li a{
 
 .titulosFotos{
     text-align: center;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 
@@ -241,7 +264,13 @@ nav li a{
     right: 15px;
 }
 
+/* .card-header{
+    background-color: #ffc720 !important;
+} */
 
+.card{
+    --bs-card-border-color: #1fa2bf !important; 
+}
 
 /* --------MEDIASQUERY----------- */
 
@@ -266,23 +295,45 @@ nav li a{
         width: 80%;
     }
     #col1 , #col2 , #col3{
-        height: 100px;
+        margin: 20px;
+        height: 150px;
     }
 
     #col1:hover , #col2:hover , #col3:hover{
         height: 120px;
     }
+
+    .row>* {
+        flex-shrink: 0;
+        width: 100% !important;
+    }
+
+    .fotosCarrera{
+        height: 300px;
+    }
+
+    .form-label{
+        width: 30% !important;
+        font-size: 0.9em !important;
+    }
+    .form-control, .form-select{
+        width: 70% !important;
+    }
+
+    .form-check-label{
+        font-size: 0.9em !important;
+    }
 }
 
 @media (max-width: 776px) {
 
-    #col1 , #col2 , #col3{
-        margin: 20px;
-        height: 150px;
+    #botones button{
+        margin-top: 9px !important;
+        width: 70%;
     }
 
-    #botones button{
-        margin: 9px !important;
+    #app-container {
+        min-height: 70vh;
     }
 }
 
@@ -292,6 +343,11 @@ nav li a{
         display: flex;
         flex-direction: column-reverse;
     }
+
+    #divFotoNada{
+        margin-top: 0;
+    }
+ 
 }
 
  

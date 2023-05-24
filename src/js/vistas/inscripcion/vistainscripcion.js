@@ -32,6 +32,9 @@ export class VistaInscripcion{
         this.borrarUltimaInscripcionBtn = document.getElementById('borrarUltimaInscripcion');
         this.borrarUltimaInscripcionBtn.addEventListener('click', this.borrarUltimaInscripcion.bind(this));
 
+        this.btnCancelar = document.getElementById('btnCancelar');
+        this.btnCancelar.addEventListener('click', this.controlador.mostrarInicio.bind(this.controlador));
+
         await this.cargarInscripciones();
     }
 

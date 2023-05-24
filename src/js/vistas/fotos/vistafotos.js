@@ -2,7 +2,7 @@
 export class VistaFotos{
     constructor(controlador){
         this.controlador=controlador
-        window.setTimeout(this.iniciar.bind(this), 500)
+        window.setTimeout(this.iniciar.bind(this), 250)
     }
 
     /**
@@ -124,7 +124,7 @@ export class VistaFotos{
             let h6=document.createElement('h4')
             h6.classList.add('mt-4')
             h6.id='fotosNada'
-            h6.textContent='Ops... aún no hay imágenes. Pero ¡no te preocupes! El dia de la carrera podrás ver todas las fotos que se hagan.'
+            h6.textContent='Ups... aún no hay imágenes. Pero ¡no te preocupes! El dia de la carrera podrás ver todas las fotos que se hagan.'
             div.appendChild(h6)
             let divFoto=document.createElement('div')
             divFoto.id='divFotoNada'

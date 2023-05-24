@@ -5,6 +5,7 @@ import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
 import {VistaPago} from '../vistas/pago/vistapago.js'
 import {VistaConfirmacion} from '../vistas/confirmacion/vistaconfirmacion.js'
 import { VistaFotos } from '../vistas/fotos/vistafotos.js'
+import { VistaClasificacion } from '../vistas/clasificacion/vistaclasificacion.js'
 
 export class Controlador{
 
@@ -93,6 +94,7 @@ export class Controlador{
         window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar('clasificacion')
+        this.vistaClasificacion= new VistaClasificacion(this)
     }
 
     /**
@@ -125,6 +127,14 @@ export class Controlador{
     }
 
     /**
+     * Método que llama al modelo y recibe todos los datos de la clasificacion
+     * @returns array
+     */
+    async getClasificacion(){
+        return []
+    }
+
+    /**
      * Método que llama al modelo y recibe todos las fotos de la bbdd
      * @returns array
      */
@@ -134,7 +144,6 @@ export class Controlador{
     }
 
     /**
-     * PRUEBA!!
      * Método que inserta el código de inscripción en la bbdd
      * @param {int} id 
      * @param {string} codigo 
