@@ -21,12 +21,11 @@ class inscripcionesController{
         // print_r($array) ;
         header('Content-type: application/json; charset=uft-8');
         // // print_r ($datos);
-         $cosas= json_encode($array);
-         echo $cosas;
+        $cosas= json_encode($array);
+        echo $cosas;
     }
 
     /**
-     * PRUEBA!!!
      * Método que inserta el codigo en la bbdd
      */
     public function insertarCodigo(){
@@ -37,6 +36,25 @@ class inscripcionesController{
             echo $datos;
         }
         else{
+            echo 0;
+        }
+    }
+
+    /**
+     * Método que asigna un dorsal a una participación
+     * Si la modificación va bien devuelve 1
+     * Si la modificación va mal devuelve -1
+     * Si no se envían todos los datos devuelve 0
+     */
+    public function asignarDorsal(){
+        $datos= $this->modelo->asignarDorsal();
+        if($datos>=1){
+            echo $datos;
+        }
+        else if($datos== -1){  //error
+            echo $datos;
+        }
+        else{       //falta algún dato
             echo 0;
         }
     }
