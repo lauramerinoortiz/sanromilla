@@ -56,4 +56,20 @@ export class Modelo{
             });
         });
     }
+
+    /**
+     * Método que pide las fotos a la bbdd
+     * @returns array
+     */
+    async getFotos(){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'imagenes/'+'getFotos', {
+                
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
 }

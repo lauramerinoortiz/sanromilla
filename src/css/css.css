@@ -42,7 +42,9 @@ select:hover{
     cursor:pointer;
 }
 
-
+#app-container{
+    min-height: 100vh;
+}
 
 /* ---------NAV------------ */
 
@@ -168,6 +170,37 @@ nav li a{
     vertical-align: top;
 }
 
+
+
+
+/* ----------FOTOS--------- */
+
+#fotosNada{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#divFotoNada{
+    background-image: url('../assets/images/iconoCorrer.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 500px;
+    margin-top: 50px;
+}
+
+.fotosCarrera{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+}
+
+.titulosFotos{
+    text-align: center;
+    margin-top: 50px;
+}
 
 
 /* ----------FOOTER------------ */
