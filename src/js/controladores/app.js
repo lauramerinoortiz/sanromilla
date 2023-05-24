@@ -3,6 +3,7 @@ import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
 import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
 import {VistaPago} from '../vistas/pago/vistapago.js'
+import {VistaConfirmacion} from '../vistas/confirmacion/vistaconfirmacion.js'
 
 export class Controlador{
 
@@ -55,21 +56,20 @@ export class Controlador{
     /**
      * Método que muestra la vista Inscripciones
      */
-    mostrarInscripciones(){
+    mostrarInscripciones(datos){
         this.ocultarMenu()
         this.router.cargar("inscripcion")
         //Vista Inscripción
-        this.vistaInscripcion=new VistaInscripcion(this)
+        this.vistaInscripcion=new VistaInscripcion(this, datos)
     }
 
     /**
-     * Método que muestra la vista Clasificación
+     * Método que muestra la vista pago
      */
-    mostrarClasificacion(){
+    mostrarPago(inscripciones){
         this.ocultarMenu()
-        
         this.router.cargar("pago")
-        this.vistaPago=new VistaPago(this,'1')
+        this.vistaPago=new VistaPago(this,inscripciones)
     }
 
     /**
@@ -79,20 +79,51 @@ export class Controlador{
         this.ocultarMenu()
         this.router.cargar("fotos")
     }
-    
 
+    /**
+     * Método que muestra la vista clasificacion
+     */
+    mostrarClasificacion(){
+        this.ocultarMenu()
+        this.router.cargar('clasificacion')
+    }
+
+    /**
+     * Método que muestra la vista confirmación
+     * @param {array} datos 
+     */
+    mostrarConfirmacion(datos){
+        this.ocultarMenu()
+        this.router.cargar("confirmacion")
+        this.vistaConfirmacion = new VistaConfirmacion(this, datos)
+    }
+    
+    /**
+     * Método que llama al modelo y recibe las categorias de la bbdd
+     * @returns array de categorias
+     */
     async sacarCategorias(){
         let datos = await this.modelo.getCategorias()
         return datos;
     }
 
+    /**
+     * Método que llama al modelo y recibe todos los códigos de la bbdd
+     * @returns array
+     */
     async sacarCodigos(){
         let datos =await this.modelo.getCodigos()
         return datos.data
     }
 
-    async insertarCodigo(id, codigo){
-        let respuesta =await this.modelo.insertarCodigo(id, codigo)
+    /**
+     * PRUEBA!!
+     * Método que inserta el código de inscripción en la bbdd
+     * @param {int} id 
+     * @param {string} codigo 
+     */
+    async insertarInscripciones(inscripciones, codigo){
+        let respuesta =await this.modelo.insertarInscripciones(inscripciones, codigo)
         if(respuesta.data!=1){
             console.log('Ha ocurrido un error')
         }

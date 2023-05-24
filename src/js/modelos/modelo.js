@@ -5,6 +5,10 @@ export class Modelo{
         this.base_url='./php/index.php/'
     }
 
+    /**
+     * Método que pide las categorías de la bbdd
+     * @returns array
+     */
     async getCategorias(){
         return new Promise(resolve => {
             $.get(this.base_url + 'categorias/'+'getCategorias', {
@@ -17,6 +21,10 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método que pide los códigos de la bbdd
+     * @returns array
+     */
     async getCodigos(){
         return new Promise(resolve => {
             $.get(this.base_url + 'inscripciones/'+'getCodigos', {
@@ -28,10 +36,18 @@ export class Modelo{
             });
         });
     }
-    async insertarCodigo(id,codigo){
+
+    /**
+     * PRUEBA!!
+     * método que guarda el codigo en la bbdd
+     * @param {int} id 
+     * @param {string} codigo 
+     * @returns array
+     */
+    async insertarInscripciones(inscripciones,codigo){
         return new Promise(resolve => {
-            $.get(this.base_url + 'inscripciones/'+'insertarCodigo', {
-                id:id,
+            $.get(this.base_url + 'inscripciones/'+'insertarInscripciones', {
+                inscripciones:inscripciones,
                 codigo:codigo,
             }, (data) => {
                 resolve({

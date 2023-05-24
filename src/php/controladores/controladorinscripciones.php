@@ -7,8 +7,8 @@ class inscripcionesController{
     }
 
     /**
-     *Método para el envío de preguntas recibidas al modelo para su posterior insercción
-        */
+     * Método que pide al modelo los códigos ya guardados en la bbdd
+     */
     public function getCodigos(){
         $datos= $this->modelo->getCodigos();
         $datos=$datos->fetch_all($resulttype = MYSQLI_ASSOC);
@@ -25,10 +25,14 @@ class inscripcionesController{
          echo $cosas;
     }
 
-    public function insertarCodigo(){
-        $id=$_GET['id'];
+    /**
+     * PRUEBA!!!
+     * Método que inserta el codigo en la bbdd
+     */
+    public function insertarInscripciones(){
+        $inscripciones=$_GET['inscripciones'];
         $codigo=$_GET['codigo'];
-        $datos= $this->modelo->insertarCodigo($id, $codigo);
+        $datos= $this->modelo->insertarInscripciones($inscripciones, $codigo);
         if($datos==1){
             echo $datos;
         }

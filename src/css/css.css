@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
 
+/* ------GENERALES------- */
 *{
     font-family: 'Montserrat';
     margin: 0;
@@ -12,6 +13,39 @@ hr{
     width: 80%;
     margin: 0 auto !important;
 }
+
+.container-fluid{
+    --bs-gutter-x: 0 !important;
+}
+
+a{
+    text-decoration: none !important;
+    color: black !important;
+    transition: 0.7s;
+}
+
+a:hover{
+    color:#1FA2BF !important;
+}
+
+.strong{
+    font-weight: 900 !important;
+    font-size: 4em;
+    margin: 100px 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    cursor:pointer;
+}
+
+select:hover{
+    cursor:pointer;
+}
+
+
+
+/* ---------NAV------------ */
+
 #nav{
     height: 90px;
     background-color: #1FA2BF !important;
@@ -20,19 +54,6 @@ hr{
 #collapsibleNavbar{
     background-color: #1FA2BF !important;
     padding: 10px 0 0 10px;
-}
-
-.container-fluid{
-    --bs-gutter-x: 0 !important;
-}
-
-#carousel{
-    height: 30rem;
-    overflow: hidden;
-}
-
-#carousel img{
-    min-height: 80%;
 }
 
 nav li a{
@@ -53,16 +74,6 @@ nav li a{
     height: 50px;
 }
 
-a{
-    text-decoration: none !important;
-    color: black !important;
-    transition: 0.7s;
-}
-
-a:hover{
-    color:#1FA2BF !important;
-}
-
 #sanromilla{
     font-weight: 900;
     margin-left: 20px;
@@ -73,22 +84,22 @@ a:hover{
 }
 
 
-.tallas{
-    margin: 0 auto;
+
+/* --------CARRUSEL--------- */
+
+#carousel{
+    height: 30rem;
+    overflow: hidden;
 }
 
-#contacto, #contacto a{
-    color: white !important;
-    
-}
-#contacto a{
-    display: inline-block !important;
+#carousel img{
+    min-height: 80%;
 }
 
-#contacto a:hover{
-    color: #1FA2BF !important;
-}
 
+
+
+/* ---------INICIO----------- */
 .fotos{
     transition: 0.6s;
 }
@@ -96,52 +107,6 @@ a:hover{
 .fotos:hover{
     cursor: pointer;
     height: 215px !important;
-}
-
-#footer{
-    height: auto;
-    background-color: #1FA2BF;
-}
-
-#footer h4{
-    font-weight: 900;
-}
-
-#organizadores img{
-    height: 50px;
-}
-
-#inscripcion .form-check-input, #inscripcion .form-check-label{
-    margin-top: 15px;
-}
-
-#femenino, #femenino_l, #masculino, #masculino_l{
-    margin-top:0 !important;
-    vertical-align: middle !important;
-}
-
-.strong{
-    font-weight: 900 !important;
-    font-size: 4em;
-    margin: 100px 0;
-}
-
-/* Para quitar un ancho extra que añade la clase row de bootstrap */
-.row {
-    --bs-gutter-x: 0 !important;        
-}
-
-.form-control, .form-select{
-    width: 70% !important;
-    display: inline-block !important;
-}
-
-.form-label{
-    width: 30% !important;
-}
-
-#textarea{
-    vertical-align: top;
 }
 
 #col1 {
@@ -160,7 +125,7 @@ a:hover{
     background-size: cover;
 }
 
- #col3{
+#col3{
     height: 200px;
     background-image: url(../assets/images/col3.jpg);
     background-repeat: no-repeat;
@@ -169,6 +134,83 @@ a:hover{
 }
 
 
+
+
+/* --------INSCRIPCIONES--------- */
+.tallas{
+    margin: 0 auto;
+}
+
+#contacto, #contacto a{
+    color: white !important;
+    
+}
+
+#contacto a{
+    display: inline-block !important;
+}
+
+#contacto a:hover{
+    color: #1FA2BF !important;
+}
+
+
+#inscripcion .form-check-input, #inscripcion .form-check-label{
+    margin-top: 15px;
+}
+
+#femenino, #femenino_l, #masculino, #masculino_l{
+    margin-top:0 !important;
+    vertical-align: middle !important;
+}
+
+#textarea{
+    vertical-align: top;
+}
+
+
+
+/* ----------FOOTER------------ */
+#footer{
+    height: auto;
+    background-color: #1FA2BF;
+}
+
+#footer h4{
+    font-weight: 900;
+}
+
+#organizadores img{
+    height: 50px;
+}
+
+
+
+/* ------------OVERRIDE BOOTSTRAP---------- */
+
+/* Para quitar un ancho extra que añade la clase row de bootstrap */
+.row {
+    --bs-gutter-x: 0 !important;        
+}
+
+.form-control, .form-select{
+    width: 82% !important;
+    display: inline-block !important;
+}
+
+.form-label{
+    width: 18% !important;
+}
+
+.i-collapse-inscripciones{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+
+
+/* --------MEDIASQUERY----------- */
 
 @media (max-width: 1000px) {
     #col1 , #col2 , #col3{

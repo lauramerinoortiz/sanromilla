@@ -7,8 +7,8 @@ class categoriasController{
     }
 
     /**
-     *Método para el envío de preguntas recibidas al modelo para su posterior insercción
-        */
+    *Método que pide todas las categorías de la bbdd al modelo
+    */
     public function getCategorias(){
         $datos= $this->modelo->getCategorias();
         $datos=$datos->fetch_all( $resulttype = MYSQLI_ASSOC);
