@@ -43,71 +43,68 @@ class ModeloInscripciones{
      * Método que inserta el código de inscripción en un registro
      */
     function insertarInscripciones($inscripciones, $codigo){
-        $this->conectar();
-
-        if(!empty($inscripciones)){
-
-            try{
-                foreach($inscripciones as $item){
-                    //Miramos de qué genero es
-                    $genero='M';
-                    if($item['genero']==1){
-                        $genero='F';
-                    }
-
-                    //Buscamos el precio de cada camiseta
-                    $consulta="SELECT precio_camiseta FROM informacion";
-                    $result=$this->conexion->query($consulta);
-                    $precio=$result->fetch_all( $resulttype = MYSQLI_ASSOC);
-                    $precioCamiseta=$precio[0]['precio_camiseta'];
-
-                    //Calculamos el total a pagar
-                    $importe=intval($item['precioDorsal']);
-                    if($item['camiseta']!='NO'){
-                        $importe += intval($precioCamiseta);
-                        $camiseta = $item['camiseta'];
-                    }else{
-                        $camiseta = NULL;
-                    }
-
-                    if($item['infoAdicional']==''){
-                        $adicional = NULL;
-                    }
-                    else{
-                        $adicional = $item['infoAdicional'];
-                    }
-
-                    //buscamos la categoria
-                    $consulta = $this->mysqli->prepare("SELECT id_categoria FROM categorias WHERE nombre = ? ");
-                    $consulta->bind_param("s", $item['categoria']);
-                    $consulta->execute();
-
-                    $resultado = $consulta->get_result();
-                    $id = $resultado->fetch_all(MYSQLI_ASSOC);
-                    $idCategoria = $id[0]['id_categoria'];
-
-                    $consulta = $this->mysqli->prepare("INSERT INTO `inscripciones`( `nombre`, `apellidos`, `genero`,
-                                                                     `fecha_nacimiento`, `dni`, `email`, `telefono`, `info_adicional`,
-                                                                     `codigo_inscripcion`, `talla_camiseta`, `importe`, estado_pago,
-                                                                     `id_categoria`)
-                                                                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
-                    $consulta->bind_param("ssssssssisiii", $item["nombre"], $item["apellidos"], $genero, $item["fechaNac"], $item["dni"],
-                    $item["email"], $item["telefono"], $adicional, $codigo, $camiseta, $importe,
-                    $item["estadoPago"], $idCategoria);
-                    $consulta->execute();
-
-                   $this->mysqli->close();
-
-                   return true;
-                }
-            }catch(Exception $e){
-                return $e;
-            }
-        }else{
+        if(empty($inscripciones)){
             return false;
         }
-    }
 
+        $this->conectar();
+
+        try{
+            $consultaGetIdCategoria = $this->mysqli->prepare("SELECT id_categoria FROM categorias WHERE nombre = ? ");
+
+            $consultaInsertInscripcion = $this->mysqli->prepare("INSERT INTO `inscripciones`( `nombre`, `apellidos`, `genero`,
+                                                                             `fecha_nacimiento`, `dni`, `email`, `telefono`, `info_adicional`,
+                                                                             `codigo_inscripcion`, `talla_camiseta`, `importe`, estado_pago,
+                                                                             `id_categoria`)
+                                                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            foreach($inscripciones as $item){
+                //Miramos de qué genero es
+                $genero='M';
+                if($item['genero']==1){
+                    $genero='F';
+                }
+
+                //Buscamos el precio de cada camiseta
+                $consulta="SELECT precio_camiseta FROM informacion";
+                $result=$this->conexion->query($consulta);
+                $precio=$result->fetch_all( $resulttype = MYSQLI_ASSOC);
+                $precioCamiseta=$precio[0]['precio_camiseta'];
+
+                //Calculamos el total a pagar
+                $importe=intval($item['precioDorsal']);
+                if($item['camiseta']!='null'){
+                    $importe += intval($precioCamiseta);
+                    $camiseta = $item['camiseta'];
+                }else{
+                    $camiseta = NULL;
+                }
+
+                $adicional = !empty($item['infoAdicional']) ? $item['infoAdicional'] : NULL;
+
+                //buscamos la categoria
+                $consultaGetIdCategoria->bind_param("s", $item['categoria']);
+                $consultaGetIdCategoria->execute();
+
+                $resultado = $consultaGetIdCategoria->get_result();
+                $id = $resultado->fetch_all(MYSQLI_ASSOC);
+                $idCategoria = $id[0]['id_categoria'];
+
+                $consultaInsertInscripcion->bind_param("ssssssssisiii", $item["nombre"], $item["apellidos"], $genero,
+                    $item["fechaNac"], $item["dni"], $item["email"], $item["telefono"], $adicional,
+                    $codigo, $camiseta, $importe, $item["estadoPago"], $idCategoria);
+                $consultaInsertInscripcion->execute();
+
+                $consultaInsertInscripcion->close();
+                $consultaGetIdCategoria->close();
+
+            }
+
+            $this->mysqli->close();
+            return true;
+        }catch(Exception $e){
+            return $e;
+        }
+    }
 }
 
 ?>
