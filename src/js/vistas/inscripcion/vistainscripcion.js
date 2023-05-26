@@ -180,7 +180,8 @@ export class VistaInscripcion{
                 inputs[7].value, // dni
                 inputs[8].value, // email
                 inputs[9].value, // telefono
-                textarea.value // info
+                textarea.value, // info
+                0
             );
             this.inscripciones.push(nuevaInscripcion);
         }
