@@ -54,9 +54,9 @@ class ModeloInscripciones{
 
             $consultaInsertInscripcion = $this->mysqli->prepare("INSERT INTO `inscripciones`( `nombre`, `apellidos`, `genero`,
                                                                              `fecha_nacimiento`, `dni`, `email`, `telefono`, `info_adicional`,
-                                                                             `codigo_inscripcion`, `talla_camiseta`, `importe`, estado_pago,
+                                                                             `codigo_inscripcion`, `talla_camiseta`, `importe`, 
                                                                              `id_categoria`)
-                                                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                                                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
             foreach($inscripciones as $item){
                 //Miramos de qué genero es
                 $genero='M';
@@ -89,20 +89,20 @@ class ModeloInscripciones{
                 $id = $resultado->fetch_all(MYSQLI_ASSOC);
                 $idCategoria = $id[0]['id_categoria'];
 
-                $consultaInsertInscripcion->bind_param("ssssssssisiii", $item["nombre"], $item["apellidos"], $genero,
+                $consultaInsertInscripcion->bind_param("ssssssssisii", $item["nombre"], $item["apellidos"], $genero,
                     $item["fechaNac"], $item["dni"], $item["email"], $item["telefono"], $adicional,
-                    $codigo, $camiseta, $importe, $item["estadoPago"], $idCategoria);
+                    $codigo, $camiseta, $importe, $idCategoria);
                 $consultaInsertInscripcion->execute();
 
-                $consultaInsertInscripcion->close();
-                $consultaGetIdCategoria->close();
+                $consultaInsertInscripcion->reset();
+                $consultaGetIdCategoria->reset();
 
             }
 
             $this->mysqli->close();
             return true;
         }catch(Exception $e){
-            return $e;
+            print_r($e);
         }
     }
 }
