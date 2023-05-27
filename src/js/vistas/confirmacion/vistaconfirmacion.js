@@ -84,7 +84,6 @@ export class VistaConfirmacion{
      * Método que saca el precio total
      */
     precioTotal(){
-        console.log('total...')
         var precioTotal = document.getElementById('precioTotal');
         var total = 0;
         for (let dato of this.inscripciones){
