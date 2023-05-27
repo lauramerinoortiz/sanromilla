@@ -1,9 +1,8 @@
 "use strict" //activo modo estricto
 import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
-import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
-import {VistaPago} from '../vistas/pago/vistapago.js'
-import {Confirmacion} from '../vistas/confirmacion/confirmacion.js'
+import { Home } from '../vistas/home/home.js'
+import { Pago } from '../vistas/pago/pago.js'
 
 export class Controlador{
 
@@ -46,28 +45,16 @@ export class Controlador{
     /**
      * Método que muestra la vista Home
      */
-    mostrarHome(datos){
+    mostrarHome(){
         this.ocultarMenu()
         this.router.cargar("home")
-        this.vistaHome=new VistaHome(this)
-    }
-    
-    /**
-     * Método que llama al modelo y recibe las categorias de la bbdd
-     * @returns array de categorias
-     */
-    async sacarCategorias(){
-        let datos = await this.modelo.getCategorias()
-        return datos;
+        this.vistaHome = new Home(this)
     }
 
-    /**
-     * Método que llama al modelo y recibe todos los códigos de la bbdd
-     * @returns array
-     */
-    async sacarCodigos(){
-        let datos =await this.modelo.getCodigos()
-        return datos.data
+    mostrarPagos(){
+        this.ocultarMenu()
+        this.router.cargar("pago")
+        this.vistaPago = new Pago(this)
     }
 
 }

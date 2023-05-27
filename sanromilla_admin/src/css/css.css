@@ -13,6 +13,14 @@ body{
     height: 100vh;
 }
 
+#nav{
+    height: 10vh;
+}
+
+#app-container{
+    max-height: 80vh;
+}
+
 footer{
     position: absolute;
     height: 10vh;
@@ -38,15 +46,6 @@ hr{
     --bs-gutter-x: 0 !important;
 }
 
-#carousel{
-    height: 30rem;
-    overflow: hidden;
-}
-
-#carousel img{
-    min-height: 80%;
-}
-
 nav li a{
     margin-right:30px;
 }
@@ -59,10 +58,6 @@ nav li a{
 .nav-link:hover{
     color: #D9C45B !important;
     cursor: pointer;
-}
-
-#logo{
-    height: 50px;
 }
 
 a{
@@ -178,6 +173,43 @@ a:hover{
     background-position: center;
     background-size: cover;
 }
+
+
+
+
+/** Cartas administración **/
+
+.carta-home{
+    background-color: #D9C45B!important;
+    height: 200px!important;
+}
+
+
+
+
+
+/** vista Pagos **/
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  th, td {
+    border-bottom: 1px solid black;
+  }
+  
+  thead th {
+    border-bottom-width: 2px;
+  }
+  
+
+
+
+
+
+
+
+
 
 
 

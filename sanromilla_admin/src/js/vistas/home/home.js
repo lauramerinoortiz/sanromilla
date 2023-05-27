@@ -11,9 +11,16 @@ export class Home{
      * @param {*} controlador 
      */
     async iniciar(controlador){
-        this.div=document.getElementById('admin')
-        // this.btnpagar=document.getElementById('btnPagar')
-        // this.btnpagar.onclick=this.irPago.bind(this)
+        this.div=document.getElementById('home')
+
+        this.pagos=document.getElementById('pagos')
+        console.log('btn: ', this.pagos)
+        this.pagos.onclick=this.goToPagos.bind(this)
+    }
+
+    goToPagos(){
+        console.log('hola')
+        this.controlador.mostrarPagos();
     }
 
 }
