@@ -1,7 +1,7 @@
 "use strict" //activo modo estricto
 export class VistaPago{
-    constructor(controlador,id){
-        this.id_inscripcion=id
+    constructor(controlador,inscripciones){
+        this.inscripciones=inscripciones
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
     }
@@ -26,9 +26,8 @@ export class VistaPago{
 
         // Lo insertamos en la vista
         this.codigo.textContent=this.codigo_inscripcion
-        console.log(this.id_inscripcion)
         // Introducimos el codigo en el registro de la inscripción
-        await this.controlador.insertarCodigo(this.id_inscripcion, this.codigo_inscripcion)
+        await this.controlador.insertarInscripciones(this.inscripciones, this.codigo_inscripcion)
         
     }
 }

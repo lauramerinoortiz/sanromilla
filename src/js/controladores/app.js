@@ -3,7 +3,9 @@ import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
 import { VistaInscripcion } from '../vistas/inscripcion/vistainscripcion.js'
 import {VistaPago} from '../vistas/pago/vistapago.js'
-import {Confirmacion} from '../vistas/confirmacion/confirmacion.js'
+import {VistaConfirmacion} from '../vistas/confirmacion/vistaconfirmacion.js'
+import { VistaFotos } from '../vistas/fotos/vistafotos.js'
+import { VistaClasificacion } from '../vistas/clasificacion/vistaclasificacion.js'
 
 export class Controlador{
 
@@ -49,6 +51,7 @@ export class Controlador{
      * Método que muestra la vista Inicio
      */
     async mostrarInicio(){
+        window.scrollTo(0, 0);
         this.router.cargar("inicio")
         this.ocultarMenu()
     }
@@ -57,6 +60,7 @@ export class Controlador{
      * Método que muestra la vista Inscripciones
      */
     mostrarInscripciones(datos){
+        window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("inscripcion")
         //Vista Inscripción
@@ -66,26 +70,31 @@ export class Controlador{
     /**
      * Método que muestra la vista pago
      */
-    mostrarPago(){
+    mostrarPago(inscripciones){
+        window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("pago")
-        this.vistaPago=new VistaPago(this,'1')
+        this.vistaPago=new VistaPago(this,inscripciones)
     }
 
     /**
      * Método que muestra la vista fotos
      */
     mostrarFotos(){
+        window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("fotos")
+        this.vistaFotos= new VistaFotos (this)
     }
 
     /**
      * Método que muestra la vista clasificacion
      */
     mostrarClasificacion(){
+        window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar('clasificacion')
+        this.vistaClasificacion= new VistaClasificacion(this)
     }
 
     /**
@@ -93,9 +102,10 @@ export class Controlador{
      * @param {array} datos 
      */
     mostrarConfirmacion(datos){
+        window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("confirmacion")
-        this.vistaConfirmacion = new Confirmacion(this, datos)
+        this.vistaConfirmacion = new VistaConfirmacion(this, datos)
     }
     
     /**
@@ -117,13 +127,30 @@ export class Controlador{
     }
 
     /**
-     * PRUEBA!!
+     * Método que llama al modelo y recibe todos los datos de la clasificacion
+     * @returns array
+     */
+    async getClasificacion(){
+        return []
+    }
+
+    /**
+     * Método que llama al modelo y recibe todos las fotos de la bbdd
+     * @returns array
+     */
+    async getFotos(){
+        let datos =await this.modelo.getFotos()
+        return datos.data
+    }
+
+    /**
      * Método que inserta el código de inscripción en la bbdd
      * @param {int} id 
      * @param {string} codigo 
      */
-    async insertarCodigo(id, codigo){
-        let respuesta =await this.modelo.insertarCodigo(id, codigo)
+    async insertarInscripciones(inscripciones, codigo){
+        let respuesta = await this.modelo.insertarInscripciones(inscripciones, codigo)
+        console.log(respuesta.data);
         if(respuesta.data!=1){
             console.log('Ha ocurrido un error')
         }

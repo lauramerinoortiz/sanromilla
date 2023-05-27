@@ -28,10 +28,10 @@ class inscripcionesController{
     /**
      * Método que inserta el codigo en la bbdd
      */
-    public function insertarCodigo(){
-        $id=$_GET['id'];
+    public function insertarInscripciones(){
+        $inscripciones=$_GET['inscripciones'];
         $codigo=$_GET['codigo'];
-        $datos= $this->modelo->insertarCodigo($id, $codigo);
+        $datos= $this->modelo->insertarInscripciones($inscripciones, $codigo);
         if($datos==1){
             echo $datos;
         }

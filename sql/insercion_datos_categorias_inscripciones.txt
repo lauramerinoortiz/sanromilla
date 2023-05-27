@@ -43,3 +43,27 @@ VALUES
 -- Inscripciones para la categoría ABSOLUTA
 ('Daniel', 'García', 'm', 8, '2005-11-27', '23456789G', 'daniel.garcia@gmail.com', '777888999', 4001, '00014', 'S', 25, true),
 ('Lucía', 'Sánchez', 'f', 8, '2000-10-20', '89012345H',  'lucia.sanchez@gmail.com', '111222333', 4002, '00015', 'M', 25, true);
+
+
+
+--Imagenes de ejemplo
+
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (9, 'https://www.fundacionlealtad.org/wp-content/uploads/elementor/thumbs/Carrera-Solidaria-Menudos-Corazones-paojwi51hdilrblm0mgxt87opgwkfwnvfu4jtxlxl8.jpg', '2023-05-24 11:48:17', 1);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (8, 'https://fundaciondelcorazon.com/images/stories/notas-de-prensa/previa_carrera.jpg', '2023-05-24 11:47:37', 8);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (7, 'https://efesalud.com/wp-content/uploads/2021/10/carreracorazon2-1.jpg', '2023-05-24 11:47:26', 8);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (6, 'https://www.carrerapopulardelcorazon.com/assets/img/proyecto/presencial_gente.jpg', '2023-05-24 11:47:16', 8);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (10, 'https://www.unicef.es/sites/unicef.es/files/comunicacion/unicef-educa-blog-gotas-carrera-escolar-solidaria-agua-ods.png', '2023-05-24 11:48:26', 1);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (11, 'https://imagenes.heraldo.es/files/og_thumbnail/uploads/imagenes/2019/10/23/participantes-en-la-carrera-de-la-mujer-del-domingo-pasado.jpeg', '2023-05-24 11:48:37', 7);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (12, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7a1GT-aM2aT2RmTIQUo9MZZdAk4biRp4TS7rZCoG-srsSncK__oWFPY-LGzfD538ekoo&usqp=CAU', '2023-05-24 11:48:58', 7);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (13, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFgMAl6jLRuO__gUx2tTNfcTf3fQPCgE-kqmwhjJgIpm3AVSTxkXjzcTjxLWd1CWwdh3I&usqp=CAU', '2023-05-24 11:49:06', 7);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (14, 'https://granadaimedia.com/wp-content/uploads/2014/06/carrera-contra-cancer.jpg', '2023-05-24 11:49:17', 7);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (15, 'https://www.gndiario.com/sites/default/files/noticias/profuturo-carrera-solidaria.jpg', '2023-05-24 11:49:47', 2);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (16, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ0MNaZ4myzRhLRZYz1I54DgStXFpUGjxx9aMASKAQitxAoiOzmLuBLEk9VnNhI3qS6lU&usqp=CAU', '2023-05-24 11:49:55', 2);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (17, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSgMAyJTdrbXGaFLeYUciVPidOwCh9L3Fv-w6LNOvnqHUWHnCGY3XJok_xz24ec2yQujE&usqp=CAU', '2023-05-24 11:50:04', 2);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (18, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-RyrwhdjWfXqshtSBmUYumScA2IKeoh1yexYU2c1BxEgkL1ZhFQMHg7T-pCR-Xa7HMZ0&usqp=CAU', '2023-05-24 11:50:12', 3);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (19, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCSoerE37FueUDVw6R_I3JIb2Brz5GwhOAz2ntaYgmoSIkYUyi4tZaiPCSpMTrWONBVDM&usqp=CAU', '2023-05-24 11:50:21', 3);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (20, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw48dXAgF1HfepZQ0YVft2-Zw4_BWoUjoTmpICQ2gppqxeW5T2euoCKjZdrRaXsUh6Bi4&usqp=CAU', '2023-05-24 11:50:28', 4);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (21, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQacxMI51cxLn79KgiDxq3EbRUpYwbg5fJ7ubk2Bk0-04TufyDPBL-_vwsb5mjx-RugPd0&usqp=CAU', '2023-05-24 11:50:37', 4);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (22, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjyhgHlbMNu18Vn8kbHHC1v3iN2OKlTTaNtmQb_-E65XmXPra8Yn3byEEh1vYILjj0UGU&usqp=CAU', '2023-05-24 11:50:50', 5);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (23, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8PGHPA2mz7qX6SBt5O_ORG8RTID67F_--0Y-Sp-fTJ76rssKTPVyIY5o8dHLE3KPJpdg&usqp=CAU', '2023-05-24 11:50:59', 6);
+INSERT INTO `imagenes` (`id_imagenes`, `url`, `fecha_subida`, `id_categoria`) VALUES (24, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BrCMQuGb95xZYNpRa5Tpm6H5_3JThpvc0re5cLJ8GH5dF-qpv5ifCTsL4f5p-9X6Tog&usqp=CAU', '2023-05-24 11:51:07', 6);
