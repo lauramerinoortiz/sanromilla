@@ -67,6 +67,7 @@ class ModeloInscripciones{
                 $upd= $this->conexion->prepare("UPDATE inscripciones SET dorsal=?, estado_pago=1 WHERE id_inscripcion=? ;");
                 $upd->bind_param('ii', $dorsal, $id_inscripcion);
                 $upd->execute();
+                $upd->close();
                 return 1;
             }
             catch(Exception $e){

@@ -40,6 +40,17 @@ class inscripcionesController{
             echo 0;
         }
     }
+
+    public function getInscripciones(){
+        $datos= $this->modelo->getInscripciones();
+
+        header('Content-type: application/json; charset=uft-8');
+        // // print_r ($datos);
+         $cosas= json_encode($datos);
+         echo $cosas;
+    }
+
+
 }
 
 ?>

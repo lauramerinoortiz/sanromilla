@@ -52,6 +52,19 @@ class ModeloInscripciones{
         }
     }
 
+
+    function getInscripciones(){
+        $codigo=$_GET['codigo'];
+        $this->conectar();
+        $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ?;");
+        $resultado->bind_param('s', $codigo);
+        $resultado->execute();
+        $datos = $resultado->get_result();
+        $array=$datos->fetch_all(MYSQLI_ASSOC);
+        $resultado->close();
+        return $array;
+    }
+
 }
 
 ?>

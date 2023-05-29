@@ -1,21 +1,28 @@
-<div class="container" id="pago">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="input-group">
-                <select class="form-select" id="filtro">
-                <option value="nombre">DNI</option>
-                <option value="codigo">Código</option>
-                </select>
-                <input type="text" class="form-control" id="busqueda" placeholder="Buscar...">
-                <button class="btn btn-primary" onclick="filtrar()">Buscar</button>
-            </div>
+<div class="container my-3" id="pago">
+  <div class="row">
+    <div class="col-7">
+      <form class="d-flex flex-row px-3 py-2 my-3 formStyle rounded">
+        <div class="col">
+          <label class="input-group">Tipo de búsqueda</label>
+          <select class="form-select" id="filtro">
+            <option value="nombre">Código</option>
+            <option value="codigo">DNI</option>
+          </select>
         </div>
-    </div>
-   <div class="container">
-    <table class=" w-75 text-center">
+        <div class="col-6">
+          <label class="input-group">&nbsp;</label>
+          <input type="text" class="form-control" id="codigoBuscar" placeholder="Introduzca el número">
+        </div>
+        <div class="col-auto">
+          <label class="input-group">&nbsp;</label>
+          <button type="submit" class="btn btn-primary mb-3" id="buscar">Buscar</button>
+        </div>
+      </form>
+      <table class="text-center w-100 mt-4" id="tabla-datos">
         <thead>
           <tr>
             <th>Inscripción</th>
+            <th>Dorsal</th>
             <th>Nombre</th>
             <th>Camiseta</th>
             <th>Euros</th>
@@ -23,25 +30,38 @@
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>Laura Merino Ortiz</td>
-            <td>M</td>
-            <td>4€</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Juan Pérez</td>
-            <td>L</td>
-            <td>6€</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>María Sánchez</td>
-            <td>S</td>
-            <td>3€</td>
+            <td>-</td>
+            <td>
+              <input class="text-center" type="text" placeholder="nº dorsal">
+            </td>
+            <td>---</td>
+            <td>-</td>
+            <td>-</td>
           </tr>
         </tbody>
       </table>
-      
-   </div>
+    </div>
+    <div class="col my-3 ms-5">
+      <div class="card">
+        <div class="card-header text-center carta-fondo">
+          CONFIRMACIÓN DE PAGO
+        </div>
+        <div class="card-body my-3">
+          <p class="card-text">Total a pagar:</p>
+          <h1 class="card-title text-center" style="font-size: 3.5rem;">10€</h1>
+          <div class="mt-3">
+            <input type="checkbox" name="" id="">
+            <label class="card-text mt-3">Introducir número de dorsal </label><br>
+            <input type="checkbox" name="" id="">
+            <label class="card-text mt-3">Dar camisetas</label>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+          <a href="#" class="btn btn-danger text-white">CANCELAR</a>
+          <a href="#" class="btn btn-success text-white">CONFIRMAR</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
