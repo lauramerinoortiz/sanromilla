@@ -113,6 +113,7 @@ export class Controlador{
      * @returns array de categorias
      */
     async sacarCategorias(){
+        console.log('estoy en aaap')
         let datos = await this.modelo.getCategorias()
         return datos;
     }

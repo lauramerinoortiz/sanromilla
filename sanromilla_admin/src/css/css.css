@@ -192,22 +192,23 @@ a:hover{
 table {
     border-collapse: separate;
     border-spacing: 0;
-  }
+}
   
-  th, td {
+th, td {
     border-bottom: 1px solid black;
-  }
+}
   
-  thead th {
+thead th {
     border-bottom-width: 2px;
-  }
-  
+}
 
+.formStyle{
+    background-color: #d9c45b7c!important;
+}
 
-
-
-
-
+.carta-fondo{
+    background-color: #d9c45b!important;
+}
 
 
 

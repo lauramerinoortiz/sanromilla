@@ -57,5 +57,11 @@ export class Controlador{
         this.vistaPago = new Pago(this)
     }
 
+    async getInscripciones(codigo){
+        console.log('Estoy en app cogiendo inscripciones')
+        let datos = await this.modelo.getInscripciones(codigo)
+        return datos;
+    }
+
 }
 const app= new Controlador()

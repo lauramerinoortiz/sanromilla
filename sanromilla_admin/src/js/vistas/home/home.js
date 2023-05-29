@@ -13,13 +13,13 @@ export class Home{
     async iniciar(controlador){
         this.div=document.getElementById('home')
 
-        this.pagos=document.getElementById('pagos')
-        console.log('btn: ', this.pagos)
-        this.pagos.onclick=this.goToPagos.bind(this)
+        let pagos=document.getElementById('pagos')
+        console.log('btn: ', pagos)
+        pagos.onclick=this.goToPagos.bind(this);
     }
 
     goToPagos(){
-        console.log('hola')
+        console.log('vamos a pagos')
         this.controlador.mostrarPagos();
     }
 

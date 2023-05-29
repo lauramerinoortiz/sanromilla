@@ -56,4 +56,17 @@ export class Modelo{
             });
         });
     }
+
+
+    async getInscripciones(codigo){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'inscripciones/'+'getInscripciones', {
+                codigo:codigo,
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
 }
