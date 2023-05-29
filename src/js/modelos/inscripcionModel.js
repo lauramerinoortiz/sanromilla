@@ -1,7 +1,7 @@
 "use strict" //activo modo estricto
 
 export class InscripcionModel {
-    constructor(nombre, apellidos, genero, fechaNac, categoria, precioDorsal, camiseta, dni, email, telefono, infoAdicional) {
+    constructor(nombre, apellidos, genero, fechaNac, categoria, precioDorsal, camiseta, dni, email, telefono, infoAdicional, estadoPago) {
         this.nombre = nombre
         this.apellidos = apellidos
         this.genero = genero
@@ -13,5 +13,6 @@ export class InscripcionModel {
         this.email = email
         this.telefono = telefono
         this.infoAdicional = infoAdicional
+        this.estadoPago = estadoPago
     }
 }
