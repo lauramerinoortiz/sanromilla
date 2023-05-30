@@ -1,23 +1,28 @@
+
 <div class="container my-3" id="pago">
+
   <div class="row">
-    <div class="col-7">
-      <form class="d-flex flex-row px-3 py-2 my-3 formStyle rounded">
-        <div class="col">
+
+
+      <div class="d-flex flex-row px-3 py-2 my-3 formStyle rounded">
+
+        <div class="col-5">
+
           <label class="input-group">Tipo de búsqueda</label>
           <select class="form-select" id="filtro">
             <option value="nombre">Código</option>
             <option value="codigo">DNI</option>
           </select>
         </div>
-        <div class="col-6">
+        <div class="col-5">
           <label class="input-group">&nbsp;</label>
           <input type="text" class="form-control" id="codigoBuscar" placeholder="Introduzca el número">
         </div>
-        <div class="col-auto">
+        <div class="col-2">
           <label class="input-group">&nbsp;</label>
-          <button type="submit" class="btn btn-primary mb-3" id="buscar">Buscar</button>
+          <button class="btn btn-primary mb-3" id="buscar">Buscar</button>
         </div>
-      </form>
+      </div>
       <table class="text-center w-100 mt-4" id="tabla-datos">
         <thead>
           <tr>
@@ -41,20 +46,18 @@
         </tbody>
       </table>
     </div>
-    <div class="col my-3 ms-5">
-      <div class="card">
-        <div class="card-header text-center carta-fondo">
-          CONFIRMACIÓN DE PAGO
-        </div>
+    </div>
+
+    <div class="row">
+      <div class="col my-3 ms-5">
+        <div class="card hide" >
+          <div class="card-header text-center carta-fondo">
+            CONFIRMACIÓN DE PAGO
+          </div>
         <div class="card-body my-3">
           <p class="card-text">Total a pagar:</p>
-          <h1 class="card-title text-center" style="font-size: 3.5rem;">10€</h1>
-          <div class="mt-3">
-            <input type="checkbox" name="" id="">
-            <label class="card-text mt-3">Introducir número de dorsal </label><br>
-            <input type="checkbox" name="" id="">
-            <label class="card-text mt-3">Dar camisetas</label>
-          </div>
+          <h1 class="card-title text-center" style="font-size: 3.5rem;" id="total">10€</h1>
+        
         </div>
         <div class="card-footer d-flex justify-content-around">
           <a href="#" class="btn btn-danger text-white">CANCELAR</a>
@@ -63,5 +66,6 @@
       </div>
       </div>
     </div>
+
   </div>
 </div>

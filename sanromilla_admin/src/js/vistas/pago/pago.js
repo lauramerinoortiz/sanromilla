@@ -4,6 +4,7 @@ export class Pago{
     constructor(controlador){
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
+        
     }
 
     /**
@@ -11,25 +12,40 @@ export class Pago{
      * @param {*} controlador 
      */
     async iniciar(controlador){
+        console.log('inicio')
         this.div=document.getElementById('pago')
 
         this.btnBuscar = document.getElementById('buscar');
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
+        
 
     }
 
     async buscarInscripciones(){
-
+        console.log('Holaaaaa')
         var inputBuscar = $('#codigoBuscar').val();
         console.log(inputBuscar)
 
         this.datos=await this.controlador.getInscripciones(inputBuscar)
-        console.log(this.datos)
+        console.log(this.datos.data)
         
-        if(this.datos.data){
+        if(this.datos.data.length!=0){
+            console.log('hay')
             this.introDatos(this.datos.data)
         }else{
-            console.log('no tenemos nada!')
+            console.log('no hay')
+            $('#tabla-datos > tbody').empty();
+            var fila = document.createElement("tr")
+            var inscripcion = document.createElement("td")
+            inscripcion.colSpan =5
+            inscripcion.textContent = 'No hay datos con esa búsqueda.'
+            fila.appendChild(inscripcion)
+            console.log(fila)
+            var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
+            tbody.appendChild(fila)
+            console.log(tbody)
+            document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
+            
         }
     }
 
@@ -38,7 +54,7 @@ export class Pago{
      * @param datos = array de datos
      */
     introDatos(datos){
-
+        let importe=0
         console.log('voy a introducir los datos...')
 
         var tbody = document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
@@ -47,6 +63,7 @@ export class Pago{
 
         // Recorre el array de datos y agrega las filas a la tabla
         datos.forEach(function(dato) {
+            importe+=dato.importe
             // Crea una nueva fila <tr>
             var fila = document.createElement("tr")
 
@@ -81,7 +98,9 @@ export class Pago{
             // Agrega la fila a la tabla
             tbody.appendChild(fila)
         })   
-            
+        document.getElementsByClassName('card')[0].setAttribute('style', 'display:block !important');
+        
+        $('#total').text(importe+'€')
     }
 
     
