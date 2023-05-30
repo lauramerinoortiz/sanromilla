@@ -28,6 +28,13 @@ footer{
     bottom: 0px;
 }
 
+.hide{
+    display:none !important;
+}
+
+#tabla-datos >tbody{
+    margin-top: 20px;
+}
 
 hr{
     width: 80%;
@@ -48,6 +55,7 @@ hr{
 
 nav li a{
     margin-right:30px;
+    cursor: pointer;
 }
 
 .nav-link{
@@ -180,8 +188,8 @@ a:hover{
 /** Cartas administración **/
 
 .carta-home{
-    background-color: #D9C45B!important;
     height: 200px!important;
+    cursor: pointer;
 }
 
 
@@ -203,11 +211,11 @@ thead th {
 }
 
 .formStyle{
-    background-color: #d9c45b7c!important;
+    border: 1px solid #1fa2bf ;
 }
 
-.carta-fondo{
-    background-color: #d9c45b!important;
+.card{
+    border: 1px solid #1fa2bf !important;
 }
 
 

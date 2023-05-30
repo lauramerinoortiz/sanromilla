@@ -300,7 +300,7 @@ nav li a{
         width: 80%;
     }
     #col1 , #col2 , #col3{
-        margin: 20px;
+        margin: 20px 0px;
         height: 150px;
     }
 

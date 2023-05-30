@@ -51,12 +51,20 @@ export class Controlador{
         this.vistaHome = new Home(this)
     }
 
+    /**
+     * Método que carga la vista de pagos
+     */
     mostrarPagos(){
         this.ocultarMenu()
         this.router.cargar("pago")
         this.vistaPago = new Pago(this)
     }
 
+    /**
+     * Método que llama al modelo para obtener las inscripciones
+     * @param {int} codigo 
+     * @returns 
+     */
     async getInscripciones(codigo){
         console.log('Estoy en app cogiendo inscripciones')
         let datos = await this.modelo.getInscripciones(codigo)
