@@ -48,7 +48,9 @@ select:hover{
     min-height: 100vh;
 }
 
-
+.swal2-confirm{
+    background-color: #1FA2BF !important;
+}
 
 
 

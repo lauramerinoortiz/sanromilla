@@ -164,11 +164,7 @@ export class VistaInscripcion{
                 return false;
             }
 
-            if (!this.validarCorreoElectronico(inputs[8].value, i+1)) {
-                return false;
-            }
-
-            if (!this.validarTelefono(inputs[9].value, i+1)) {
+            if (!this.validarTelefono(inputs[8].value, i+1)) {
                 return false;
             }
 
@@ -181,8 +177,7 @@ export class VistaInscripcion{
                 inputs[6].value.slice(0, -1),
                 camisetaSelect.options[camisetaSelect.selectedIndex].value, // camiseta
                 inputs[7].value, // dni
-                inputs[8].value, // email
-                inputs[9].value, // telefono
+                inputs[8].value, // telefono
                 textarea.value, // info
                 0
             );
@@ -262,23 +257,7 @@ export class VistaInscripcion{
         }
     }
 
-    /**
-     * Valida si el correo introducido es válido
-     * @param correo
-     * @returns {boolean}
-     */
-    validarCorreoElectronico(correo, numeroInscripcion) {
-        // Expresión regular para validar el formato de correo electrónico
-        const regexCorreo = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-
-        // Verificar si el correo cumple con el formato válido
-        if (!regexCorreo.test(correo)) {
-            alert(`Por favor, ingrese un correo electrónico válido en la inscripción ${numeroInscripcion}.`);
-            return false;
-        }
-
-        return true;
-    }
+    
 
     /**
      * Valida si el dni introducido es correcto

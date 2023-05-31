@@ -70,11 +70,11 @@ export class Controlador{
     /**
      * Método que muestra la vista pago
      */
-    mostrarPago(inscripciones){
+    mostrarPago(inscripciones, correo){
         window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("pago")
-        this.vistaPago=new VistaPago(this,inscripciones)
+        this.vistaPago=new VistaPago(this,inscripciones,correo)
     }
 
     /**
@@ -149,8 +149,9 @@ export class Controlador{
      * @param {int} id 
      * @param {string} codigo 
      */
-    async insertarInscripciones(inscripciones, codigo){
-        let respuesta = await this.modelo.insertarInscripciones(inscripciones, codigo)
+    async insertarInscripciones(inscripciones, codigo, correo){
+        console.log('CORREO'+ correo)
+        let respuesta = await this.modelo.insertarInscripciones(inscripciones, codigo, correo)
         console.log(respuesta.data);
         if(respuesta.data!=1){
             console.log('Ha ocurrido un error')

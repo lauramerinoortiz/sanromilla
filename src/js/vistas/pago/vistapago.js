@@ -1,8 +1,9 @@
 "use strict" //activo modo estricto
 export class VistaPago{
-    constructor(controlador,inscripciones){
+    constructor(controlador,inscripciones, correo){
         this.inscripciones=inscripciones
         this.controlador=controlador
+        this.correo=correo
         window.setTimeout(this.iniciar.bind(this), 500)
     }
 
@@ -11,7 +12,7 @@ export class VistaPago{
      * Lo manda al controlador para que lo inserte
      */
     async iniciar(){
-        
+        console.log(this.correo)
         this.codigo=document.getElementById('codigo')
         this.codigo.textContent='espere...'
         this.codigo_inscripcion=Math.floor(Math.random() * 99999);
@@ -27,7 +28,7 @@ export class VistaPago{
         // Lo insertamos en la vista
         this.codigo.textContent=this.codigo_inscripcion
         // Introducimos el codigo en el registro de la inscripción
-        await this.controlador.insertarInscripciones(this.inscripciones, this.codigo_inscripcion)
+        await this.controlador.insertarInscripciones(this.inscripciones, this.codigo_inscripcion, this.correo)
         
     }
 }

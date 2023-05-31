@@ -89,7 +89,7 @@ class ModeloInscripciones{
                 $idCategoria = $id[0]['id_categoria'];
 
                 $consultaInsertInscripcion->bind_param("ssssssssisii", $item["nombre"], $item["apellidos"], $genero,
-                    $item["fechaNac"], $item["dni"], $item["email"], $item["telefono"], $adicional,
+                    $item["fechaNac"], $item["dni"], $correo, $item["telefono"], $adicional,
                     $codigo, $camiseta, $importe, $idCategoria);
                 $consultaInsertInscripcion->execute();
 

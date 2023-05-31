@@ -41,10 +41,10 @@ export class Modelo{
      * método que guarda las inscripciones en la bbdd
      * @param {int} id 
      * @param {string} codigo 
+     * @param {string} correo 
      * @returns array
      */
-    async insertarInscripciones(inscripciones,codigo){
-        let correo='lmerinoo02@gmail.com'
+    async insertarInscripciones(inscripciones,codigo, correo){
         return new Promise(resolve => {
             $.get(this.base_url + 'inscripciones/'+'insertarInscripciones', {
                 inscripciones:inscripciones,

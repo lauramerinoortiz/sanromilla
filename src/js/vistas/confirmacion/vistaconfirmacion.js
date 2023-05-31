@@ -104,8 +104,60 @@ export class VistaConfirmacion{
      * Método que llama al controlador para mostrar la vista pago
      */
     irPago(){
-        this.controlador.mostrarPago(this.inscripciones)
+        let check=$('#checkLegal')
+        let correo=$('#correo').val()
+        if(check.is(':checked')){       //si lo legal esta check
+            if(correo!=''){     //si esta el correo
+                if(this.validarCorreoElectronico(correo)){
+                    console.log('valido:'+correo)
+                    this.controlador.mostrarPago(this.inscripciones, correo)
+                }
+                else{
+                    Swal.fire({
+                        title: 'Correo no válido',
+                        text: 'Compruebe y vuelva a enviar.',
+                        icon: 'error',
+                        confirmButtonText: 'Vale!'
+                      })
+                }
+            }
+            else{
+                Swal.fire({
+                    title: 'Correo vacío',
+                    text: 'Recuerde rellenar el correo.',
+                    icon: 'warning',
+                    confirmButtonText: 'Vale!'
+                  })
+            }
+        }
+        else{
+            Swal.fire({
+                title: 'Avisos Legales',
+                text: 'Debe aceptar los avisos legales antes de continuar.',
+                icon: 'error',
+                confirmButtonText: 'Vale!'
+              })
+        }
+        
     }
+
+    /**
+     * Valida si el correo introducido es válido
+     * @param correo
+     * @returns {boolean}
+     */
+    validarCorreoElectronico(correo) {
+        // Expresión regular para validar el formato de correo electrónico
+        const regexCorreo = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+
+        // Verificar si el correo cumple con el formato válido
+        if (!regexCorreo.test(correo)) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
      * Método que llama al controlador para mostrar la vista inscripciones
