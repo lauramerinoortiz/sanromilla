@@ -31,7 +31,8 @@ class inscripcionesController{
     public function insertarInscripciones(){
         $inscripciones=$_GET['inscripciones'];
         $codigo=$_GET['codigo'];
-        $datos= $this->modelo->insertarInscripciones($inscripciones, $codigo);
+        $correo=$_GET['correo'];
+        $datos= $this->modelo->insertarInscripciones($inscripciones, $codigo, $correo);
         if($datos==1){
             echo $datos;
         }
