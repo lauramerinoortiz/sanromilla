@@ -12,40 +12,67 @@ export class Pago{
      * @param {*} controlador 
      */
     async iniciar(controlador){
-        console.log('inicio')
         this.div=document.getElementById('pago')
 
         this.btnBuscar = document.getElementById('buscar');
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
-        
 
+        this.btnConfirmar = document.getElementById('confirmar');
+        this.btnConfirmar.onclick = this.setDorsal.bind(this);
+
+        var codigoBuscar = document.getElementById('codigoBuscar');
+        codigoBuscar.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter'){
+                this.buscarInscripciones();
+            }
+        }.bind(this));
     }
 
     async buscarInscripciones(){
-        console.log('Holaaaaa')
+        var tipoBusqueda = $('#tipoBusqueda').val();
         var inputBuscar = $('#codigoBuscar').val();
+        console.log(tipoBusqueda)
         console.log(inputBuscar)
 
-        this.datos=await this.controlador.getInscripciones(inputBuscar)
+        this.datos=await this.controlador.getInscripciones(tipoBusqueda, inputBuscar)
         console.log(this.datos.data)
         
         if(this.datos.data.length!=0){
-            console.log('hay')
             this.introDatos(this.datos.data)
         }else{
-            console.log('no hay')
             $('#tabla-datos > tbody').empty();
             var fila = document.createElement("tr")
             var inscripcion = document.createElement("td")
             inscripcion.colSpan =5
-            inscripcion.textContent = 'No hay datos con esa búsqueda.'
+            inscripcion.textContent = 'No hay ninguna inscripción con ese código o dni.'
             fila.appendChild(inscripcion)
-            console.log(fila)
             var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
             tbody.appendChild(fila)
-            console.log(tbody)
             document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
             
+        }
+    }
+
+    /**
+     * Método que setea los dorsales introducidos
+     */
+    async setDorsal(){
+
+        var tabla = document.getElementById("tabla-datos");
+        var inputs = tabla.getElementsByTagName("input");
+        var datos = [];
+
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            var dorsal = input.value;
+            var id = input.getAttribute("id");
+
+            datos.push({ dorsal: dorsal, idInscripcion: id });
+        }
+        var seteado = await this.controlador.setDorsal(datos);
+
+        if (seteado.data >= 1){
+            this.buscarInscripciones();
         }
     }
 
@@ -55,54 +82,66 @@ export class Pago{
      */
     introDatos(datos){
         let importe=0
-        console.log('voy a introducir los datos...')
 
         var tbody = document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
 
         $('#tabla-datos > tbody').empty();
 
-        // Recorre el array de datos y agrega las filas a la tabla
+        // Recorre el array de inscripciones y agrega las filas a la tabla
         datos.forEach(function(dato) {
-            importe+=dato.importe
+
             // Crea una nueva fila <tr>
             var fila = document.createElement("tr")
 
             // Agrega las celdas <td> con los datos correspondientes
+
+            // td nºinscripción
             var inscripcion = document.createElement("td")
             inscripcion.textContent = dato.codigo_inscripcion
             fila.appendChild(inscripcion)
 
-            var dorsal = document.createElement("td")
-            var inputDorsal = document.createElement("input")
-            inputDorsal.setAttribute("type", "text")
-            inputDorsal.setAttribute("placeholder", "nº dorsal")
-            inputDorsal.classList.add("text-center")
-            dorsal.appendChild(inputDorsal)
-            fila.appendChild(dorsal)
-
+            // td nombre
             var nombre = document.createElement("td")
             nombre.textContent = dato.nombre + ' ' + dato.apellidos
             fila.appendChild(nombre)
 
+            // td dorsal
+            var dorsal = document.createElement("td")
+            if(dato.dorsal === null){
+                var inputDorsal = document.createElement("input")
+                inputDorsal.setAttribute("type", "text")
+                var id = dato.id_inscripcion
+                inputDorsal.setAttribute("id", id)
+                inputDorsal.setAttribute("placeholder", "nº dorsal")
+                inputDorsal.classList.add("text-center")
+                dorsal.appendChild(inputDorsal)
+                fila.appendChild(dorsal)
+            }else{
+                dorsal.textContent = dato.dorsal
+                fila.appendChild(dorsal)
+            }
+
+            // td camiseta
             var camiseta = document.createElement("td")
-
             camiseta.textContent = (dato.talla_camiseta == null) ? '-' : dato.talla_camiseta
-
-            // camiseta.textContent = dato.talla_camiseta
             fila.appendChild(camiseta)
 
+            // td euros
             var euros = document.createElement("td")
-            euros.textContent = dato.importe
+            euros.textContent = dato.importe + '€'
             fila.appendChild(euros)
 
-            // Agrega la fila a la tabla
+            //funcion para calcular el importe total
+            if(dato.estado_pago === 0){
+                importe+=dato.importe
+            }else{
+                fila.style.backgroundColor = 'lightgreen';
+            }
             tbody.appendChild(fila)
-        })   
+        })
         document.getElementsByClassName('card')[0].setAttribute('style', 'display:block !important');
         
         $('#total').text(importe+'€')
     }
-
-    
 
 }

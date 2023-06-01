@@ -65,10 +65,14 @@ export class Controlador{
      * @param {int} codigo 
      * @returns 
      */
-    async getInscripciones(codigo){
-        console.log('Estoy en app cogiendo inscripciones')
-        let datos = await this.modelo.getInscripciones(codigo)
+    async getInscripciones(tipoBusqueda, codigo){
+        let datos = await this.modelo.getInscripciones(tipoBusqueda, codigo)
         return datos;
+    }
+
+    async setDorsal(datos){
+        let seteado = await this.modelo.setDorsal(datos)
+        return seteado;
     }
 
 }

@@ -14,12 +14,10 @@ export class Home{
         this.div=document.getElementById('home')
 
         let pagos=document.getElementById('pagos')
-        console.log('btn: ', pagos)
         pagos.onclick=this.goToPagos.bind(this);
     }
 
     goToPagos(){
-        console.log('vamos a pagos')
         this.controlador.mostrarPagos();
     }
 

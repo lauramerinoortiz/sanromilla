@@ -7,7 +7,6 @@ export class VistaConfirmacion{
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
         this.inscripciones = datos;
-        console.log('datos antonio: ', this.inscripciones);
         //this.btnpagar.addEventListener('click', console.log('holi'))
     }
 
@@ -163,8 +162,6 @@ export class VistaConfirmacion{
      * Método que llama al controlador para mostrar la vista inscripciones
      */
     volverInscripcion(){
-        console.log('volveeeeer...')
-        console.log('this...', this.inscripciones)
         this.controlador.mostrarInscripciones(this.inscripciones)
     }
 }

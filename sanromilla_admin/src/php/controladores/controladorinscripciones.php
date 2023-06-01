@@ -14,15 +14,20 @@ class inscripcionesController{
      * Si no se envían todos los datos devuelve 0
      */
     public function asignarDorsal(){
-        $datos= $this->modelo->asignarDorsal();
-        if($datos>=1){
+
+        $datos = json_decode($_POST['datos']);
+
+        $datos= $this->modelo->asignarDorsal($datos);
+        if($datos >= 1){
             echo $datos;
+            return $datos;
         }
-        else if($datos== -1){  //error
+        else if($datos == -1){  //error
             echo $datos;
         }
         else{       //falta algún dato
             echo 0;
+            return 0;
         }
     }
 
