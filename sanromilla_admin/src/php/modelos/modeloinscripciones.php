@@ -30,16 +30,19 @@ class ModeloInscripciones{
      * Si la modificación va mal devuelve -1
      * Si no se envían todos los datos devuelve 0
      */
-    public function asignarDorsal(){
-        $this->conectar();
-        if(isset($_GET['dorsal']) && isset($_GET['id_inscripcion'])){
-            $dorsal=$_GET['dorsal'];
-            $id_inscripcion=$_GET['id_inscripcion'];
-            
+    public function asignarDorsal($datos){
+
+        if($datos){
+            $this->conectar();
+
             try{
-                $upd= $this->conexion->prepare("UPDATE inscripciones SET dorsal=?, estado_pago=1 WHERE id_inscripcion=? ;");
-                $upd->bind_param('ii', $dorsal, $id_inscripcion);
-                $upd->execute();
+                foreach ($datos as $dato) {
+                    $dorsal = $dato->dorsal;
+                    $id_inscripcion = $dato->idInscripcion;
+                    $upd = $this->conexion->prepare("UPDATE inscripciones SET dorsal = ?, estado_pago=1 WHERE id_inscripcion = ?");
+                    $upd->bind_param('ii', $dorsal, $id_inscripcion);
+                    $upd->execute();
+                }
                 $upd->close();
                 return 1;
             }
@@ -65,15 +68,34 @@ class ModeloInscripciones{
 
 
     function getInscripciones(){
-        $codigo=$_GET['codigo'];
-        $this->conectar();
-        $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ?;");
-        $resultado->bind_param('s', $codigo);
-        $resultado->execute();
-        $datos = $resultado->get_result();
-        $array=$datos->fetch_all(MYSQLI_ASSOC);
-        $resultado->close();
-        return $array;
+        if (isset($_GET['codigo']) && isset($_GET['tipoBusqueda'])){
+            $argumento=$_GET['codigo'];
+            $tipoBusqueda=$_GET['tipoBusqueda'];
+            $this->conectar();
+
+            if($tipoBusqueda == 'codigo'){
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ?;");
+                $resultado->bind_param('s', $argumento);
+                $resultado->execute();
+                $datos = $resultado->get_result();
+                $array=$datos->fetch_all(MYSQLI_ASSOC);
+                return $array;
+            }
+
+            if($tipoBusqueda == 'dni'){
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones WHERE codigo_inscripcion IN (SELECT codigo_inscripcion FROM inscripciones WHERE dni = ?);");
+                $resultado->bind_param('s', $argumento);
+                $resultado->execute();
+                $datos = $resultado->get_result();
+                $array=$datos->fetch_all(MYSQLI_ASSOC);
+                return $array;
+                        }
+
+            $resultado->close();
+        }else{
+            return -1;
+        }
+
     }
 
 }

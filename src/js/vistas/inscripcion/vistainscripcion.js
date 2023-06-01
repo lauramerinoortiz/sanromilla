@@ -7,17 +7,13 @@ export class VistaInscripcion{
 
         /* Lista de inscripciones que vienen de vuelta */
         this.inscripcionesVolver = datos;
-        console.log('datos que vienen de vuelta: ', this.inscripcionesVolver);
 
         window.setTimeout(this.iniciar.bind(this), 500)
     }
 
     async iniciar(controlador){
         this.div=document.getElementById('inscripcion')
-        console.log(this.div)
-        console.log(this.controlador)
         this.datos=await this.controlador.sacarCategorias()
-        console.log(this.datos)
         this.aceptarInscripciones = document.getElementById('aceptarInscripciones')
         this.aceptarInscripciones.onclick = this.guardarDatosInscripciones.bind(this)
         this.fecha=document.getElementById('fecha')

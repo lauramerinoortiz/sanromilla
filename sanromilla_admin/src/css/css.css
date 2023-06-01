@@ -18,14 +18,11 @@ body{
 }
 
 #app-container{
-    max-height: 80vh;
+    min-height: 80vh;
 }
 
 footer{
-    position: absolute;
     height: 10vh;
-    width: 100%;
-    bottom: 0px;
 }
 
 .hide{
