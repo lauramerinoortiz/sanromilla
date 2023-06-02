@@ -13,10 +13,17 @@ export class Home{
     async iniciar(controlador){
         this.div=document.getElementById('home')
 
-        let pagos=document.getElementById('pagos')
-        pagos.onclick=this.goToPagos.bind(this);
+        // links pagos
+        let pagos=document.getElementById('pagos');
+        pagos.onclick = this.goToPagos.bind(this);
+        var linkPagos = document.getElementById('linkPagos');
+        linkPagos.onclick = this.goToPagos.bind(this);
+
     }
 
+    /**
+     * Método para ir a la vista pagos.
+     */
     goToPagos(){
         this.controlador.mostrarPagos();
     }

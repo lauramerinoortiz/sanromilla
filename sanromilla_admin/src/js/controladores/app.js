@@ -18,10 +18,14 @@ export class Controlador{
      * Método que inicia la web y añede los métodos a los botones 
      */
     iniciar(){
+        let titulo= document.getElementById('sanromillaTitulo')
+        titulo.onclick=this.mostrarInicio.bind(this)
 
-        //Nav
-        let home= document.getElementById('admin')
+        // captura botones nav
+        let home= document.getElementById('home')
         home.onclick=this.mostrarHome.bind(this)
+        let pagos= document.getElementById('linkPagos')
+        pagos.onclick=this.mostrarPagos.bind(this)
     }
 
     /**

@@ -108,7 +108,6 @@ export class VistaConfirmacion{
         if(check.is(':checked')){       //si lo legal esta check
             if(correo!=''){     //si esta el correo
                 if(this.validarCorreoElectronico(correo)){
-                    console.log('valido:'+correo)
                     this.controlador.mostrarPago(this.inscripciones, correo)
                 }
                 else{

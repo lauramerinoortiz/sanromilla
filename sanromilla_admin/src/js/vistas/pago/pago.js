@@ -17,22 +17,24 @@ export class Pago{
         this.btnBuscar = document.getElementById('buscar');
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
 
+        this.btnCancelar = document.getElementById('confirmar');
+        this.btnCancelar.onclick = function() {
+            console.log('reeeeload')
+            location.reload();
+        };
+
         this.btnConfirmar = document.getElementById('confirmar');
         this.btnConfirmar.onclick = this.setDorsal.bind(this);
 
         var codigoBuscar = document.getElementById('codigoBuscar');
         codigoBuscar.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter'){
-                this.buscarInscripciones();
-            }
+            if (event.key === 'Enter'){this.buscarInscripciones();}
         }.bind(this));
     }
 
     async buscarInscripciones(){
         var tipoBusqueda = $('#tipoBusqueda').val();
         var inputBuscar = $('#codigoBuscar').val();
-        console.log(tipoBusqueda)
-        console.log(inputBuscar)
 
         this.datos=await this.controlador.getInscripciones(tipoBusqueda, inputBuscar)
         console.log(this.datos.data)
@@ -49,7 +51,6 @@ export class Pago{
             var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
             tbody.appendChild(fila)
             document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
-            
         }
     }
 
@@ -67,12 +68,37 @@ export class Pago{
             var dorsal = input.value;
             var id = input.getAttribute("id");
 
-            datos.push({ dorsal: dorsal, idInscripcion: id });
+            if (dorsal != ''){
+                datos.push({ dorsal: dorsal, idInscripcion: id });
+            }else{
+                Swal.fire({
+                    title: 'Dorsales vacíos',
+                    text: 'Recuerde rellenar TODOS los dorsales.',
+                    icon: 'warning',
+                    confirmButtonText: 'Vale!'
+                })
+                return 0;
+            }
         }
+
         var seteado = await this.controlador.setDorsal(datos);
 
         if (seteado.data >= 1){
+            Swal.fire({
+                title: '¡Dorsales asignados!',
+                text: 'Se han registrado correctamente los dorsales.',
+                icon: 'success',
+                confirmButtonText: 'Vale!'
+            })
             this.buscarInscripciones();
+        }else{
+            console.log('Error')
+            Swal.fire({
+                title: 'Error en la petición',
+                text: 'Algo no ha ido bien.',
+                icon: 'error',
+                confirmButtonText: 'Vale!'
+            })
         }
     }
 
@@ -140,8 +166,16 @@ export class Pago{
             tbody.appendChild(fila)
         })
         document.getElementsByClassName('card')[0].setAttribute('style', 'display:block !important');
-        
+
+        this.activeBtnConfirmar(importe);
+
         $('#total').text(importe+'€')
     }
 
+
+    activeBtnConfirmar(importe) {
+        console.log('quiero')
+        console.log(this.btnConfirmar);
+        (importe <= 0) ? this.btnConfirmar.classList.add('disabled') : this.btnConfirmar.classList.remove('disabled')
+    }
 }
