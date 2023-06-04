@@ -3,6 +3,7 @@ import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
 import { Home } from '../vistas/home/home.js'
 import { Pago } from '../vistas/pago/pago.js'
+import { Carrera } from '../vistas/carrera/carrera.js'
 import {Inicio} from "../vistas/inicio/inicio.js"
 
 export class Controlador{
@@ -27,6 +28,8 @@ export class Controlador{
         home.onclick=this.mostrarHome.bind(this)
         let pagos= document.getElementById('linkPagos')
         pagos.onclick=this.mostrarPagos.bind(this)
+        let carrera= document.getElementById('linkCarrera')
+        carrera.onclick=this.mostrarCarrera.bind(this)
     }
 
     /**
@@ -66,6 +69,12 @@ export class Controlador{
         this.vistaPago = new Pago(this)
     }
 
+    mostrarCarrera(){
+        this.ocultarMenu()
+        this.router.cargar("carrera")
+        this.vistaCarrera = new Carrera(this)
+    }
+
     /**
      * Método que llama al modelo para obtener las inscripciones
      * @param {int} codigo 
@@ -73,6 +82,15 @@ export class Controlador{
      */
     async getInscripciones(tipoBusqueda, codigo){
         let datos = await this.modelo.getInscripciones(tipoBusqueda, codigo)
+        return datos;
+    }
+
+    /**
+     * Método para obtener la información de la carrera.
+     * @returns {Promise<unknown>}
+     */
+    async getInformacion(){
+        let datos = await this.modelo.getInformacion()
         return datos;
     }
 

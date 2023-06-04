@@ -21,13 +21,34 @@ export class Modelo{
         });
     }
 
-
+    /**
+     * Método par aretornar las inscripciones según el código.
+     * @param tipoBusqueda
+     * @param codigo
+     * @returns {Promise<unknown>}
+     */
     async getInscripciones(tipoBusqueda, codigo){
         return new Promise(resolve => {
             $.get(this.base_url + 'inscripciones/'+'getInscripciones', {
                 tipoBusqueda: tipoBusqueda,
                 codigo:codigo,
             }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
+    /**
+     * Método para obtener la información de la carrera
+     * @param tipoBusqueda
+     * @param codigo
+     * @returns {Promise<unknown>}
+     */
+    async getInformacion(){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'informacion/'+'getInformacion', (data) => {
                 resolve({
                     data
                 });
