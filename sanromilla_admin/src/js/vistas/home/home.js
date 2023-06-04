@@ -37,6 +37,7 @@ export class Home{
 
         for (let rol of datosToken.roles){
             if (rol.id_rol === 1) {
+                document.getElementById('div-principal-home').classList.remove('d-none');
                 document.getElementById('item-nav-home').classList.remove('d-none');
                 document.getElementById('div-fotos').classList.remove('d-none');
                 document.getElementById('item-nav-fotos').classList.remove('d-none');
@@ -48,18 +49,21 @@ export class Home{
                 document.getElementById('item-nav-categorias').classList.remove('d-none');
                 document.getElementById('div-inscripciones').classList.remove('d-none');
                 document.getElementById('item-nav-inscripciones').classList.remove('d-none');
+
                 break;
             }
 
             if(rol.id_rol === 2){
                 document.getElementById('div-fotos').classList.remove('d-none');
-                document.getElementById('linkPagos').classList.remove('d-none');
+                document.getElementById('item-nav-fotos').classList.remove('d-none');
             }
 
             if(rol.id_rol === 3){
-                document.getElementById('div-inscripciones').classList.remove('d-none');
+                document.getElementById('pagos').classList.remove('d-none');
+                document.getElementById('linkPagos').classList.remove('d-none');
             }
         }
+        document.getElementById('div-principal-home').classList.remove('d-none');
     }
 
 }

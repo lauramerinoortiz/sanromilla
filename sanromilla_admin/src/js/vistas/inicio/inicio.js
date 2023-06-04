@@ -4,7 +4,7 @@ export class Inicio{
 
     constructor (controlador) {
         this.controlador=controlador
-        window.setTimeout(this.iniciar.bind(this), 800)
+        window.setTimeout(this.iniciar.bind(this), 200)
         window.onerror = function (error) { console.log('Error capturado. ' + error) }
     }
 
