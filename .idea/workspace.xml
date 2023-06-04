@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11a31533-95a7-4586-97de-d5963935bf72" name="Changes" comment="">
+    <list default="true" id="11a31533-95a7-4586-97de-d5963935bf72" name="Changes" comment="UPDATED - modales intro-dorsal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/css/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/css/css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/controladores/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/controladores/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/inicio/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/inicio/inicio.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/pago/pago.html" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/pago/pago.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/pago/pago.js" beforeDir="false" afterPath="$PROJECT_DIR$/sanromilla_admin/src/js/vistas/pago/pago.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/vistas/confirmacion/vistaconfirmacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/vistas/confirmacion/vistaconfirmacion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685386647802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="UPDATED - modales intro-dorsal">
+      <created>1685712521186</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685712521186</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +98,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="UPDATED - modales intro-dorsal" />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDATED - modales intro-dorsal" />
   </component>
 </project>
