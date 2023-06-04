@@ -33,6 +33,12 @@ footer{
     display:none !important;
 }
 
+.swal2-confirm{
+    background-color: #1FA2BF !important;
+}
+
+
+
 #tabla-datos >tbody{
     margin-top: 20px;
 }
