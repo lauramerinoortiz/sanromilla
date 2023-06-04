@@ -120,6 +120,7 @@ export class VistaInscripcion{
     guardarDatosInscripciones() {
         // Seleccionar todos los div de inscripción
         const divsInscripcion = document.querySelectorAll('.card-responsive');
+        this.inscripciones = [];
 
         // Iterar sobre cada div de inscripción y extraer la información de los campos de entrada
         for (let i = 0; i < divsInscripcion.length; i++) {
@@ -240,7 +241,6 @@ export class VistaInscripcion{
                 this.divInscripcion.querySelector('input[name="categoria"]').value = inscripcion.categoria;
                 this.divInscripcion.querySelector('input[name="precioDorsal"]').value = inscripcion.precioDorsal +'€';
                 this.divInscripcion.querySelector('input[name="dni"]').value = inscripcion.dni;
-                this.divInscripcion.querySelector('input[name="email"]').value = inscripcion.email;
                 this.divInscripcion.querySelector('input[name="telefono"]').value = inscripcion.telefono;
                 this.divInscripcion.querySelector('textarea[name="infoAdicional"]').value = inscripcion.infoAdicional;
                 this.divInscripcion.querySelectorAll('input[type="radio"][name="genero"]').values();
