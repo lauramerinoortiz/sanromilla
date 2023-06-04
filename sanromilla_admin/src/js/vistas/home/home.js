@@ -14,12 +14,6 @@ export class Home{
         document.getElementById('navTop').classList.remove('d-none');
         this.div=document.getElementById('home')
 
-        // links pagos
-        let pagos=document.getElementById('pagos');
-        pagos.onclick = this.goToPagos.bind(this);
-        var linkPagos = document.getElementById('linkPagos');
-        linkPagos.onclick = this.goToPagos.bind(this);
-
         this.comprobarRoles();
 
     }
@@ -39,29 +33,15 @@ export class Home{
             if (rol.id_rol === 1) {
                 document.getElementById('div-principal-home').classList.remove('d-none');
                 document.getElementById('item-nav-home').classList.remove('d-none');
-                document.getElementById('div-fotos').classList.remove('d-none');
                 document.getElementById('item-nav-fotos').classList.remove('d-none');
-                document.getElementById('pagos').classList.remove('d-none');
                 document.getElementById('linkPagos').classList.remove('d-none');
-                document.getElementById('div-datos-carrera').classList.remove('d-none');
                 document.getElementById('item-nav-datos').classList.remove('d-none');
-                document.getElementById('div-categorias').classList.remove('d-none');
                 document.getElementById('item-nav-categorias').classList.remove('d-none');
-                document.getElementById('div-inscripciones').classList.remove('d-none');
                 document.getElementById('item-nav-inscripciones').classList.remove('d-none');
 
                 break;
             }
 
-            if(rol.id_rol === 2){
-                document.getElementById('div-fotos').classList.remove('d-none');
-                document.getElementById('item-nav-fotos').classList.remove('d-none');
-            }
-
-            if(rol.id_rol === 3){
-                document.getElementById('pagos').classList.remove('d-none');
-                document.getElementById('linkPagos').classList.remove('d-none');
-            }
         }
         document.getElementById('div-principal-home').classList.remove('d-none');
     }
