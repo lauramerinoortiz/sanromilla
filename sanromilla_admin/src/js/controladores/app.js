@@ -3,6 +3,7 @@ import {Router}  from './router.js'
 import {Modelo}  from '../modelos/modelo.js'
 import { Home } from '../vistas/home/home.js'
 import { Pago } from '../vistas/pago/pago.js'
+import {Inicio} from "../vistas/inicio/inicio.js"
 
 export class Controlador{
 
@@ -43,6 +44,7 @@ export class Controlador{
      */
     async mostrarInicio(){
         this.router.cargar("inicio")
+        this.vistaInicio = new Inicio(this)
         this.ocultarMenu()
     }
 
@@ -77,6 +79,15 @@ export class Controlador{
     async setDorsal(datos){
         let seteado = await this.modelo.setDorsal(datos)
         return seteado;
+    }
+
+    /**
+     * Método para realizar el login comprobando usuario en la bbdd
+     * @param token
+     * @returns {Promise<void>}
+     */
+    async loginGoogle(credenciales){
+        return await this.modelo.doLogin(credenciales)
     }
 
 }
