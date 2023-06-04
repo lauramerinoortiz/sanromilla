@@ -120,6 +120,7 @@ export class VistaInscripcion{
     guardarDatosInscripciones() {
         // Seleccionar todos los div de inscripción
         const divsInscripcion = document.querySelectorAll('.card-responsive');
+        this.inscripciones = [];
 
         // Iterar sobre cada div de inscripción y extraer la información de los campos de entrada
         for (let i = 0; i < divsInscripcion.length; i++) {
@@ -138,17 +139,32 @@ export class VistaInscripcion{
 
             //Aquí se hacen las validaciones necesarias de formulario en cliente.
             if (inputs[0].value.trim() === '') {
-                alert('Por favor, ingrese el nombre en la inscripción ' + [i+1]);
+                Swal.fire({
+                    title: 'Nombre vacío',
+                    text: 'Por favor, añada el nombre en la inscripción ' + [i+1],
+                    icon: 'warning',
+                    confirmButtonText: 'Vale!'
+                  })
                 return false;
             }
 
             if (inputs[1].value.trim() === '') {
-                alert('Por favor, ingrese el nombre en la inscripción ' + [i+1]);
+                Swal.fire({
+                    title: 'Apellidos vacío',
+                    text: 'Por favor, añada los apellidos en la inscripción ' + [i+1],
+                    icon: 'warning',
+                    confirmButtonText: 'Vale!'
+                  })
                 return false;
             }
 
             if (inputs[4].value.trim() === '') {
-                alert('Por favor, ingrese la fecha de nacimiento en la inscripción ' + [i+1]);
+                Swal.fire({
+                    title: 'Fecha de nacimiento vacía',
+                    text: 'Por favor, añada la fecha de nacimiento en la inscripción ' + [i+1],
+                    icon: 'warning',
+                    confirmButtonText: 'Vale!'
+                  })
                 return false;
             }
 
@@ -225,7 +241,6 @@ export class VistaInscripcion{
                 this.divInscripcion.querySelector('input[name="categoria"]').value = inscripcion.categoria;
                 this.divInscripcion.querySelector('input[name="precioDorsal"]').value = inscripcion.precioDorsal +'€';
                 this.divInscripcion.querySelector('input[name="dni"]').value = inscripcion.dni;
-                this.divInscripcion.querySelector('input[name="email"]').value = inscripcion.email;
                 this.divInscripcion.querySelector('input[name="telefono"]').value = inscripcion.telefono;
                 this.divInscripcion.querySelector('textarea[name="infoAdicional"]').value = inscripcion.infoAdicional;
                 this.divInscripcion.querySelectorAll('input[type="radio"][name="genero"]').values();
@@ -264,7 +279,12 @@ export class VistaInscripcion{
 
         // Verificar si el formato del DNI es válido
         if (!dniRegex.test(dni.toUpperCase())) {
-            alert(`Por favor, ingresa un DNI válido en la inscripción ${numeroInscripcion}.`);
+            Swal.fire({
+                title: 'DNI no válido',
+                text: `Por favor, ingresa un DNI válido en la inscripción ${numeroInscripcion}.`,
+                icon: 'warning',
+                confirmButtonText: 'Vale!'
+              })
             return false;
         }
 
@@ -277,7 +297,12 @@ export class VistaInscripcion{
 
         // Verificar si la letra es correcta
         if (letra !== letraCalculada.toUpperCase()) {
-            alert(`La letra del DNI de la inscripción ${numeroInscripcion} no es válida.`);
+            Swal.fire({
+                title: 'Letra del DNI no válida',
+                text: `La letra del DNI de la inscripción ${numeroInscripcion} no es válida.`,
+                icon: 'warning',
+                confirmButtonText: 'Vale!'
+              })
             return false;
         }
 
@@ -302,7 +327,12 @@ export class VistaInscripcion{
 
         // Verificar si la fecha ingresada está dentro del rango permitido
         if (fechaIngresada < hace100Anios || fechaIngresada > hoy) {
-            alert(`Por favor, ingrese una fecha de nacimiento válida en la inscripcion ${numeroInscripcion}.`);
+            Swal.fire({
+                title: 'Fecha de nacimiento no válida',
+                text: `Por favor, ingrese una fecha de nacimiento válida en la inscripcion ${numeroInscripcion}.`,
+                icon: 'warning',
+                confirmButtonText: 'Vale!'
+              })
             return false;
         }
 
@@ -318,7 +348,12 @@ export class VistaInscripcion{
 
         // Verificar si el número de teléfono coincide con el patrón
         if (!patronTelefono.test(telefono)) {
-            alert(`Por favor, ingrese un número de teléfono válido en la inscripción ${numeroInscripcion}.`);
+            Swal.fire({
+                title: 'Formato de teléfono no válido',
+                text: `Por favor, ingrese un número de teléfono válido en la inscripción ${numeroInscripcion}.`,
+                icon: 'warning',
+                confirmButtonText: 'Vale!'
+              })
             return false;
         }
 

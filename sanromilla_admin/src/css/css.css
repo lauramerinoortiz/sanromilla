@@ -6,7 +6,6 @@
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
-    font-size: 18px;
 }
 
 
@@ -33,6 +32,12 @@ footer{
 .hide{
     display:none !important;
 }
+
+.swal2-confirm{
+    background-color: #1FA2BF !important;
+}
+
+
 
 #tabla-datos >tbody{
     margin-top: 20px;

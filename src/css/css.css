@@ -238,10 +238,12 @@ nav li a{
     font-weight: 900;
 }
 
-#organizadores img{
-    height: 50px;
+#footerLegales{
+    text-decoration: underline !important;
 }
-
+#footerLegales:hover{
+    color: #D9C45B !important;
+}
 
 
 /* ------------OVERRIDE BOOTSTRAP---------- */
@@ -288,6 +290,12 @@ nav li a{
         margin-top: 9px !important;
         width: 70%;
     }
+    .col-sm-7 {
+        flex: 0 0 auto;
+        width: 58.33333333% !important;
+    }
+    
+    
 }
 
 @media (max-width: 880px) {
@@ -315,6 +323,15 @@ nav li a{
         width: 100% !important;
     }
 
+    .form-check-input {
+        width: 1em !important;
+    }
+
+    .col-sm-9 {
+        flex: 0 0 auto;
+        width: 75% !important;
+    }
+
     .fotosCarrera{
         height: 300px;
     }
@@ -333,11 +350,18 @@ nav li a{
 }
 
 @media (max-width: 776px) {
-
     
-
     #app-container {
         min-height: 70vh;
+    }
+
+    #correo{
+        width: 100% !important;
+    }
+
+    #confirmacion #btnVolver, #confirmacion #btnPagar{
+        margin:0 !important;
+        margin-top: 10px !important;
     }
 }
 
