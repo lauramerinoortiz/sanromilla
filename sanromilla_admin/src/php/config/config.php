@@ -6,10 +6,13 @@
     */
     return array(
         'debug' => true,
+        'test' => true,
 		'path_controladores' => './controladores/',
 		'path_vistas' => './vistas/',
 		'path_modelos' => './modelos/',
-		'path_html' => './vistas/'
+		'path_html' => './vistas/',
+        'algoritmo_encriptacion' => 'aes-256-ctr',
+        'clave_encriptacion' => 'Clave de encriptación',
     );
 
 ?>

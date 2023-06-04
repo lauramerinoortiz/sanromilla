@@ -47,4 +47,21 @@ export class Modelo{
             });
         });
     }
+
+    async doLogin(token) {
+        return new Promise(resolve => {
+            $.post({
+                url: `${this.base_url}login/comprobarUsuario`,
+                data: {token: token},
+                success: (data) => {
+                    resolve(data);
+                    console.log(data)
+                },
+                error: (error) => {
+                    console.log('Error en la solicitud:', error.responseText);
+                    resolve(error);
+                }
+            });
+        });
+    }
 }
