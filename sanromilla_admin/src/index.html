@@ -22,32 +22,35 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
           <ul class="navbar-nav float-right">
-            <li class="nav-item" id="admin">
-              <a class="nav-link" >Cerrar sesión</a>
+            <li class="nav-item" id="sesion-nombre-li">
+              <a class="nav-link d-none" id="sesion-nombre"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-none" id="logout-nav">Cerrar sesión</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="row mx-5 px-5 d-none" id="navTop">
-      <ul class="nav nav-tabs " >
+      <ul class="nav nav-tabs">
         <li class="nav-item" id="item-nav-home">
-          <a class="nav-link active" id="home">Home</a>
+          <a class="nav-link active" id="linkHome">Home</a>
         </li>
-        <li class="nav-item d-none" id="item-nav-fotos">
-          <a class="nav-link">Fotos</a>
+        <li class="nav-item">
+          <a class="nav-link d-none" id="linkFotos">Fotos</a>
         </li>
-        <li class="nav-item d-none" id="item-nav-categorias">
-          <a class="nav-link">Categorías</a>
+        <li class="nav-item">
+          <a class="nav-link d-none" id="linkCategorias">Categorías</a>
         </li>
-        <li class="nav-item" id="item-nav-inscripciones">
-          <a class="nav-link">Inscripciones</a>
+        <li class="nav-item">
+          <a class="nav-link" id="linkInscripciones">Inscripciones</a>
         </li>
-        <li class="nav-item d-none" id="item-nav-datos">
-          <a class="nav-link" id="linkCarrera">Datos carrera</a>
+        <li class="nav-item">
+          <a class="nav-link d-none" id="linkCarrera">Datos carrera</a>
         </li>
-        <li class="nav-item d-none" id="linkPagos">
-          <a class="nav-link">Pagos</a>
+        <li class="nav-item">
+          <a class="nav-link d-none" id="linkPagos">Pagos</a>
         </li>
       </ul>
     </div>
@@ -57,10 +60,11 @@
     <footer class="row text-center" id="footer">
       <h4 class="m-auto">San Romilla</h4>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script type=module src="./js/controladores/app.js"></script>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script type=module src="./js/controladores/app.js"></script>
+
 </html>

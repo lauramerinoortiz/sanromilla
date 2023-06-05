@@ -20,6 +20,17 @@ export class Carrera {
         this.btnModificar.addEventListener('keypress', function(event) {
             if (event.key === 'Enter'){this.modificarInfo();}
         }.bind(this));
+
+        document.getElementById('navTop').classList.remove('d-none');
+        document.getElementById('linkHome').classList.remove('active');
+        document.getElementById('linkFotos').classList.remove('active');
+        document.getElementById('linkPagos').classList.remove('active');
+        document.getElementById('linkCarrera').classList.add('active');
+        document.getElementById('linkCategorias').classList.remove('active');
+        document.getElementById('linkInscripciones').classList.remove('active');
+
+        //Guardar página para recargar
+        this.saveViewState();
     }
 
     async getInformacion(){
@@ -109,5 +120,10 @@ export class Carrera {
         precioCamisetaInput.value = datos.precio_camiseta;
         beneficioCamisetaInput.value = datos.beneficio_camiseta;
 
+    }
+
+    saveViewState() {
+        var bodyHTML = document.body.innerHTML;
+        localStorage.setItem('lastView', bodyHTML);
     }
 }

@@ -30,6 +30,17 @@ export class Pago{
         codigoBuscar.addEventListener('keypress', function(event) {
             if (event.key === 'Enter'){this.buscarInscripciones();}
         }.bind(this));
+
+        document.getElementById('navTop').classList.remove('d-none');
+        document.getElementById('linkHome').classList.remove('active');
+        document.getElementById('linkFotos').classList.remove('active');
+        document.getElementById('linkPagos').classList.add('active');
+        document.getElementById('linkCarrera').classList.remove('active');
+        document.getElementById('linkCategorias').classList.remove('active');
+        document.getElementById('linkInscripciones').classList.remove('active');
+
+        //Guardar página para recargar
+        this.saveViewState();
     }
 
     async buscarInscripciones(){
@@ -177,5 +188,10 @@ export class Pago{
         console.log('quiero')
         console.log(this.btnConfirmar);
         (importe <= 0) ? this.btnConfirmar.classList.add('disabled') : this.btnConfirmar.classList.remove('disabled')
+    }
+
+    saveViewState() {
+        var bodyHTML = document.body.innerHTML;
+        localStorage.setItem('lastView', bodyHTML);
     }
 }
