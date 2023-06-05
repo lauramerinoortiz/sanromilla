@@ -22,6 +22,7 @@ export class Inicio{
             document.getElementById('divGoogleLogin'),
             { theme: 'outline', size: 'large' } // customization attributes
         )
+
     }
 
     /**

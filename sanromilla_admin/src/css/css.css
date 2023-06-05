@@ -37,7 +37,13 @@ footer{
     background-color: #1FA2BF !important;
 }
 
+#sesion-nombre{
+    cursor: auto;
+}
 
+#sesion-nombre:hover{
+    color: black !important;
+}
 
 #tabla-datos >tbody{
     margin-top: 20px;

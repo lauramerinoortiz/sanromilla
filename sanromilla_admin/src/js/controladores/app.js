@@ -12,6 +12,7 @@ export class Controlador{
 		$(document).ready(this.iniciar.bind(this))
         this.router=new Router;
         this.modelo=new Modelo;
+        window.addEventListener('load', this.restoreLastView);
         //Ejecutamos el mostrarInicio para que muestre la vista del inicio
         this.mostrarInicio()
 	}
@@ -24,12 +25,14 @@ export class Controlador{
         titulo.onclick=this.mostrarInicio.bind(this)
 
         // captura botones nav
-        let home= document.getElementById('home')
+        let home= document.getElementById('linkHome')
         home.onclick=this.mostrarHome.bind(this)
         let pagos= document.getElementById('linkPagos')
         pagos.onclick=this.mostrarPagos.bind(this)
         let carrera= document.getElementById('linkCarrera')
         carrera.onclick=this.mostrarCarrera.bind(this)
+        let cerrarSesion = document.getElementById('logout-nav')
+        cerrarSesion.onclick = this.doLogout.bind(this)
     }
 
     /**
@@ -76,6 +79,16 @@ export class Controlador{
     }
 
     /**
+     * Cierra la sesión
+     */
+    doLogout(){
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.reload();
+        this.mostrarInicio();
+    }
+
+    /**
      * Método que llama al modelo para obtener las inscripciones
      * @param {int} codigo 
      * @returns 
@@ -106,6 +119,16 @@ export class Controlador{
      */
     async loginGoogle(credenciales){
         return await this.modelo.doLogin(credenciales)
+    }
+
+
+    //Recuperar y restaurar la última vista almacenada después de la recarga
+    restoreLastView = () => {
+        var lastViewHTML = localStorage.getItem('lastView');
+        if (lastViewHTML) {
+            document.body.innerHTML = lastViewHTML;
+            this.iniciar();
+        }
     }
 
 }
