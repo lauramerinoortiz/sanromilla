@@ -99,6 +99,15 @@ export class Controlador{
     }
 
     /**
+     * Método para obtener el precio de la camiseta.
+     * @returns {Promise<*>}
+     */
+    async getPrecioCamiseta(){
+        let precio = await this.modelo.getPrecioCamiseta()
+        return precio.data[0]['precio_camiseta'];
+    }
+
+    /**
      * Método para obtener la información de la carrera.
      * @returns {Promise<unknown>}
      */

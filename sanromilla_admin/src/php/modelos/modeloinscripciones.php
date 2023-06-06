@@ -76,7 +76,7 @@ class ModeloInscripciones{
             $this->conectar();
 
             if($tipoBusqueda == 'codigo'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ?;");
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ? AND i.estado_pago = 0;");
                 $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();
@@ -85,7 +85,7 @@ class ModeloInscripciones{
             }
 
             if($tipoBusqueda == 'dni'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones WHERE codigo_inscripcion IN (SELECT codigo_inscripcion FROM inscripciones WHERE dni = ?);");
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion IN (SELECT codigo_inscripcion FROM inscripciones WHERE dni = ?) and i.estado_pago = 0;");
                 $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();

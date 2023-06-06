@@ -98,6 +98,20 @@ class ModeloInformacion{
         return $array;
     }
 
+    /**
+    * Método para obtener el precio de la camiseta
+    */
+    function getPrecioCamiseta(){
+        $this->conectar();
+
+        $resultado= $this->conexion->prepare("SELECT precio_camiseta FROM informacion");
+        $resultado->execute();
+        $datos = $resultado->get_result();
+        $array=$datos->fetch_all(MYSQLI_ASSOC);
+        $resultado->close();
+        return $array;
+    }
+
 }
 
 ?>

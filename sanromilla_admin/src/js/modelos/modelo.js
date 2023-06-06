@@ -56,6 +56,16 @@ export class Modelo{
         });
     }
 
+    async getPrecioCamiseta(){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'informacion/'+'getPrecioCamiseta', (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
     async setDorsal(datos) {
         return new Promise(resolve => {
             $.ajax({

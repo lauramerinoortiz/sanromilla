@@ -40,24 +40,26 @@
             <td>-</td>
           </tr>
         </tbody>
+        <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th><input class="" type="button" id="actualizarPrecio" value="Actualizar total"></th>
+          <th>Total</th>
+          <th style="font-size: 1.75rem;" id="total"></th>
+        </tr>
+        </tfoot>
       </table>
     </div>
     </div>
     <div class="row my-2 justify-content-center">
-      <div class="col-4">
+      <div class="col-auto">
         <div class="card hide" >
-          <div class="card-header text-center carta-fondo">
-            CONFIRMACIÓN DE PAGO
+          <div class="card-footer d-flex justify-content-around">
+  <!--          <a href="#" class="btn btn-danger text-white">CANCELAR</a>-->
+            <a href="#" id="confirmar" class="btn btn-success text-white">CONFIRMAR PAGO</a>
           </div>
-          <div class="card-body row">
-            <p class="col-5">Total a pagar:</p>
-            <span class="col-7" style="font-size: 3.5rem;" id="total"></span>
-          </div>
-        <div class="card-footer d-flex justify-content-around">
-<!--          <a href="#" class="btn btn-danger text-white">CANCELAR</a>-->
-          <a href="#" id="confirmar" class="btn btn-success text-white">CONFIRMAR</a>
         </div>
-      </div>
       </div>
     </div>
 
