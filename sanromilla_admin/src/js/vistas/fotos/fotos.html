@@ -1,0 +1,22 @@
+<div class="container" id="fotos">
+        <h1>Subir imágenes</h1>
+        <form id="uploadForm">
+            <div class="form-group pb-1">
+                <select class="form-select mt-4 text-center" id="camiseta">
+                    <option value="1">Babyrunner</option>
+                    <option value="2">Prebenjamín</option>
+                    <option value="3">Benjamín</option>
+                    <option value="4">Infantil</option>
+                    <option value="5">Juvenil</option>
+                    <option value="6">Cadete</option>
+                    <option value="7">Absoluta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="photoInput">Seleccionar Fotos:</label>
+                <input type="file" accept="image/png, image/jpg" id="photoInput" class="form-control-file mb-3" multiple>
+            </div>
+            <div id="previewContainer"></div>
+            <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+</div>
