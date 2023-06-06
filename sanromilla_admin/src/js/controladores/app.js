@@ -4,7 +4,8 @@ import {Modelo}  from '../modelos/modelo.js'
 import { Home } from '../vistas/home/home.js'
 import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
-import {Inicio} from "../vistas/inicio/inicio.js"
+import { Inicio } from "../vistas/inicio/inicio.js"
+import { Fotos } from "../vistas/fotos/fotos.js"
 
 export class Controlador{
 
@@ -33,6 +34,8 @@ export class Controlador{
         carrera.onclick=this.mostrarCarrera.bind(this)
         let cerrarSesion = document.getElementById('logout-nav')
         cerrarSesion.onclick = this.doLogout.bind(this)
+        let fotos = document.getElementById('linkFotos')
+        fotos.onclick = this.mostrarFotos.bind(this)
     }
 
     /**
@@ -77,6 +80,16 @@ export class Controlador{
         this.router.cargar("carrera")
         this.vistaCarrera = new Carrera(this)
     }
+
+    /**
+     * Método que carga la vista de fotos
+     */
+    mostrarFotos(){
+        this.ocultarMenu()
+        this.router.cargar("fotos")
+        this.vistaFotos = new Fotos(this)
+    }
+
 
     /**
      * Cierra la sesión
