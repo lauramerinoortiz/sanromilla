@@ -69,6 +69,36 @@ export class Modelo{
         });
     }
 
+    async modificarInfo(datos) {
+        console.log('datos modelojs: ', datos)
+        return new Promise(resolve => {
+            $.ajax({
+                url: this.base_url + 'informacion/modificarInfo',
+                type: 'POST',
+                // data: { datos: JSON.stringify(datos) },
+                data: { datos: datos },
+                success: function(data) {
+                    resolve({ data });
+                }
+            });
+        });
+    }
+
+    async modCartel(datos) {
+        console.log('cartel modelojs: ', datos)
+        return new Promise(resolve => {
+            $.ajax({
+                url: this.base_url + 'informacion/modCartel',
+                type: 'POST',
+                // data: { datos: JSON.stringify(datos) },
+                body: datos,
+                success: function(data) {
+                    resolve({ data });
+                }
+            });
+        });
+    }
+
     async doLogin(token) {
         return new Promise(resolve => {
             $.post({

@@ -8,28 +8,53 @@ class informacionController{
 
 
     /**
-     * Método que asigna un dorsal a una participación
-     * Si la modificación va bien devuelve 1
-     * Si la modificación va mal devuelve -1
-     * Si no se envían todos los datos devuelve 0
+     * Método que modifica la información general de la carrera
      */
-    public function asignarDorsal(){
+    public function modificarInfo(){
 
-        $datos = json_decode($_POST['datos']);
-
-        $datos= $this->modelo->asignarDorsal($datos);
-        if($datos >= 1){
-            echo $datos;
-            return $datos;
+//        $datos = json_decode($_POST['datos']);
+        $datos = $_POST['datos'];
+        $result= $this->modelo->modificarInfo($datos);
+//        echo $result;
+        if($result >= 1){
+            echo 6;
         }
-        else if($datos == -1){  //error
-            echo $datos;
+        else if($result == -1){  //error
+            echo -1;
         }
         else{       //falta algún dato
-            echo 0;
-            return 0;
+            echo 8;
         }
     }
+
+
+
+
+
+
+
+
+    public function modCartel(){
+
+            $result= $this->modelo->modCartel();
+    //        echo $result;
+            if($result >= 1){
+                echo 6;
+            }
+            else if($result == -1){  //error
+                echo -1;
+            }
+            else{       //falta algún dato
+                echo 8;
+            }
+        }
+
+
+
+
+
+
+
 
     /**
     * Método para obtener la información general de la carrera.

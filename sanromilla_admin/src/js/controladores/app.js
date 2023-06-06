@@ -107,9 +107,30 @@ export class Controlador{
         return datos;
     }
 
+    /**
+     * Método que setea el dorsal.
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
     async setDorsal(datos){
         let seteado = await this.modelo.setDorsal(datos)
         return seteado;
+    }
+
+    /**
+     * Método que setea la información nueva
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
+    async modificarInfo(datos){
+        let modif = await this.modelo.modificarInfo(datos)
+        return modif;
+    }
+
+    async modCartel(datos){
+        console.log('datosen app: ', datos)
+        let modif = await this.modelo.modCartel(datos)
+        return modif;
     }
 
     /**

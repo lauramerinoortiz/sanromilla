@@ -43,6 +43,7 @@ export class Carrera {
         });
 
         var error = this.checkDatos(datos)
+
         if(error != ''){
             Swal.fire({
                 title: 'Algún campo mal',
@@ -50,13 +51,33 @@ export class Carrera {
                 icon: 'warning',
                 confirmButtonText: 'Vale!'
             })
-        }
-    }
+        }else{
+            var inputCartel = document.getElementById('cartel');
+            var archivo = inputCartel.files[0];
 
-    activeBtnConfirmar(importe) {
-        console.log('quiero')
-        console.log(this.btnConfirmar);
-        (importe <= 0) ? this.btnConfirmar.classList.add('disabled') : this.btnConfirmar.classList.remove('disabled')
+            var formData = new FormData();
+            formData.append('cartel', archivo);
+
+            var cartel = await this.controlador.modCartel(formData);
+
+            var modificar = await this.controlador.modificarInfo(datos);
+            console.log('modif: ', modificar )
+            if (modificar.data >= 1){
+                Swal.fire({
+                    title: '¡Cambios realizados!',
+                    text: 'Se han registrado correctamente los cambios en la base de datos.',
+                    icon: 'success',
+                    confirmButtonText: 'Vale!'
+                })
+            }else{
+                Swal.fire({
+                    title: 'Error en la petición',
+                    text: 'Algo no ha ido bien.',
+                    icon: 'error',
+                    confirmButtonText: 'Vale!'
+                })
+            }
+        }
     }
 
     /**
@@ -118,7 +139,7 @@ export class Carrera {
 
         var fechaCarrera = new Date(fecha);
 
-        if (fechaCarrera < fechaActual) { return 'La fecha de la carrera tiene que ser inferior a la actual. '}
+        if (fechaCarrera < fechaActual) { return 'La fecha de la carrera tiene que ser posterior a la actual. '}
         return '';
     }
 
@@ -139,7 +160,7 @@ export class Carrera {
         if (fechaInicio < fechaFin && fechaInicio > fechaCarrera) {
             return '';
         } else {
-            return 'Fecha inicio de inscripción que ser inferior a fecha de la carrera y a la fecha de fin de inscripción. ';
+            return 'Fecha inicio de inscripción que ser posterior a fecha de la carrera y a la fecha de fin de inscripción. ';
         }
     }
 

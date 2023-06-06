@@ -103,7 +103,6 @@ export class Pago{
             })
             this.buscarInscripciones();
         }else{
-            console.log('Error')
             Swal.fire({
                 title: 'Error en la petición',
                 text: 'Algo no ha ido bien.',

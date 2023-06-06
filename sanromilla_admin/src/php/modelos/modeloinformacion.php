@@ -25,35 +25,68 @@ class ModeloInformacion{
 
 
     /**
-     * Método que asigna un dorsal a una participación
-     * Si la modificación va bien devuelve 1
-     * Si la modificación va mal devuelve -1
-     * Si no se envían todos los datos devuelve 0
+     * Método que modifica la información general de la carrera.
      */
-    public function asignarDorsal($datos){
+    public function modificarInfo($datos){
+
 
         if($datos){
             $this->conectar();
-
             try{
-                foreach ($datos as $dato) {
-                    $dorsal = $dato->dorsal;
-                    $id_inscripcion = $dato->idInscripcion;
-                    $upd = $this->conexion->prepare("UPDATE inscripciones SET dorsal = ?, estado_pago=1 WHERE id_inscripcion = ?");
-                    $upd->bind_param('ii', $dorsal, $id_inscripcion);
-                    $upd->execute();
-                }
+                $fecha = $datos['fecha'];
+                $hora = $datos['hora'];
+                $fechaCarrera = date("Y-m-d H:i:s", strtotime("$fecha $hora"));
+//                $cartel = $datos['cartel'];
+//                echo $cartel;
+                $reglamento = $datos['reglamento'];
+                $inicio_inscripcion = $datos['inicio_inscripcion'];
+                $fin_inscripcion = $datos['fin_inscripcion'];
+                $precio_camiseta = $datos['precio_camiseta'];
+                $beneficio_camiseta = $datos['beneficio_camiseta'];
+
+//                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, cartel = ?, reglamento = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
+                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, reglamento = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
+//                $upd->bind_param("sssssii", $fechaCarrera, $cartel, $reglamento, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
+                $upd->bind_param("ssssii", $fechaCarrera, $reglamento, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
+                $upd->execute();
                 $upd->close();
-                return 1;
+                echo 1;
             }
             catch(Exception $e){
-                return -1;
+                echo -1;
             }  
         }else{
-                return 0;
+                echo 9;
         }
     }
 
+
+
+
+
+    public function modCartel(){
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+    * Método para obtener la información general de la carrera
+    */
     function getInformacion(){
         $this->conectar();
 
@@ -63,7 +96,6 @@ class ModeloInformacion{
         $array=$datos->fetch_all(MYSQLI_ASSOC);
         $resultado->close();
         return $array;
-
     }
 
 }

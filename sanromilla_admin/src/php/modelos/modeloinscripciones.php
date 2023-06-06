@@ -66,7 +66,9 @@ class ModeloInscripciones{
         }
     }
 
-
+    /**
+     * Método que obtiene las inscripciones según el tipo de búsqueda
+     */
     function getInscripciones(){
         if (isset($_GET['codigo']) && isset($_GET['tipoBusqueda'])){
             $argumento=$_GET['codigo'];
