@@ -5,7 +5,7 @@
           <label class="input-group ms-1 fs-6">Búsqueda por:</label>
           <select class="form-select" id="tipoBusqueda">
             <option value="codigo">Código</option>
-            <option value="dni">DNI</option>
+            <option value="dni">Teléfono</option>
           </select>
         </div>
         <div class="col-5">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <table class="text-center w-100 my-3" id="tabla-datos">
-        <thead>
+        <thead class="">
           <tr>
             <th style="width: 15%">Inscripción</th>
             <th style="width: 50%">Nombre</th>
@@ -27,19 +27,7 @@
             <th style="width: 10%">Importe</th>
           </tr>
         </thead>
-      </tr>
-      </thead>
-        <tbody>
-          <tr>
-            <td>-</td>
-            <td>---</td>
-            <td>
-              <input class="text-center" type="text" placeholder="nº dorsal">
-            </td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
         <tfoot>
         <tr>
           <th></th>
@@ -50,6 +38,7 @@
         </tr>
         </tfoot>
       </table>
+    <table class="text-center w-100 my-3 hide" id="tabla-telefonos"></table>
     </div>
     </div>
     <div class="row my-2 justify-content-center">

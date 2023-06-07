@@ -85,7 +85,7 @@ class ModeloInscripciones{
             }
 
             if($tipoBusqueda == 'dni'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion IN (SELECT codigo_inscripcion FROM inscripciones WHERE dni = ?) and i.estado_pago = 0;");
+                $resultado= $this->conexion->prepare("SELECT MIN(id_inscripcion) as id_inscripcion, codigo_inscripcion, MIN(fecha_inscripcion) as fecha_inscripcion FROM inscripciones WHERE telefono = ? AND estado_pago = 0 GROUP BY codigo_inscripcion;");
                 $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();
