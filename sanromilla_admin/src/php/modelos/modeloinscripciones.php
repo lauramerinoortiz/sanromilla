@@ -91,7 +91,16 @@ class ModeloInscripciones{
                 $datos = $resultado->get_result();
                 $array=$datos->fetch_all(MYSQLI_ASSOC);
                 return $array;
-                        }
+            }
+
+            if($tipoBusqueda == 'all'){
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones ORDER BY apellidos;");
+//                $resultado->bind_param('s', $argumento);
+                $resultado->execute();
+                $datos = $resultado->get_result();
+                $array=$datos->fetch_all(MYSQLI_ASSOC);
+                return $array;
+            }
 
             $resultado->close();
         }else{

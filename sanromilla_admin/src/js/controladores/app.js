@@ -5,6 +5,7 @@ import { Home } from '../vistas/home/home.js'
 import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
 import {Inicio} from "../vistas/inicio/inicio.js"
+import {Inscripciones} from "../vistas/inscripciones/inscripciones.js"
 
 export class Controlador{
 
@@ -27,6 +28,8 @@ export class Controlador{
         // captura botones nav
         let home= document.getElementById('linkHome')
         home.onclick=this.mostrarHome.bind(this)
+        let inscripciones= document.getElementById('linkInscripciones')
+        inscripciones.onclick=this.mostrarInscripciones.bind(this)
         let pagos= document.getElementById('linkPagos')
         pagos.onclick=this.mostrarPagos.bind(this)
         let carrera= document.getElementById('linkCarrera')
@@ -61,6 +64,15 @@ export class Controlador{
         this.ocultarMenu()
         this.router.cargar("home")
         this.vistaHome = new Home(this)
+    }
+
+    /**
+     * Método que carga la vista de Inscripciones
+     */
+    mostrarInscripciones(){
+        this.ocultarMenu()
+        this.router.cargar("inscripciones")
+        this.vistaPago = new Inscripciones(this)
     }
 
     /**
