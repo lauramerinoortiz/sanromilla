@@ -85,4 +85,23 @@ export class Modelo{
             });
         });
     }
+
+    async subirFotos(FD, categoria) {
+        console.log(FD, categoria);
+        try {
+            FD.append("categoria", categoria)
+            const response = await $.ajax({
+                url: `${this.base_url}fotos/subirFotos`,
+                type: 'POST',
+                data: FD,
+                processData: false,
+                contentType: false,
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
 }

@@ -239,7 +239,39 @@ thead th {
 
 
 /** Vista fotos admin **/
+#dropzone{
+    padding: 18px 40px;
+    background: #ccc;
+}
+#dropzone p{
+    margin-bottom: 0px;
+    padding: 20px 10px;
+    background: white;
+    text-align: center;
+    border: 2px dashed #333;
+}
 
+#dropzone label{
+    border-bottom: 1px solid blue;
+    color: blue;
+    cursor: pointer;
+}
+
+#dropzone input{
+    display: none;
+}
+
+#fotos{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#fotos img{
+    height: 100px;
+}
 
 
 
@@ -280,6 +312,7 @@ thead th {
     #previewContainer{
         grid-template-columns: repeat(5, 1fr) !important;
     }
+
 }
 
 @media (max-width: 776px) {

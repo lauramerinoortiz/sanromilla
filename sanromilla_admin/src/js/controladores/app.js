@@ -144,5 +144,10 @@ export class Controlador{
         }
     }
 
+    async subirFotos(FD, categoria){
+        console.log(FD, categoria)
+        return await this.modelo.subirFotos(FD, categoria)
+    }
+
 }
 const app= new Controlador()
