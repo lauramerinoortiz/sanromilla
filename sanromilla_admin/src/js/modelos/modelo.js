@@ -25,7 +25,7 @@ export class Modelo{
      * Método par aretornar las inscripciones según el código.
      * @param tipoBusqueda
      * @param codigo
-     * @returns {Promise<unknown>}
+     * @returns array
      */
     async getInscripciones(tipoBusqueda, codigo){
         return new Promise(resolve => {

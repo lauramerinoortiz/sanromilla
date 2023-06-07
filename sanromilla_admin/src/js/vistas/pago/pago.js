@@ -18,6 +18,7 @@ export class Pago{
 
         this.btnBuscar = document.getElementById('buscar');
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
+        console.log(this.btnBuscar)
 
         this.btnCancelar = document.getElementById('confirmar');
         this.btnCancelar.onclick = function() {
@@ -54,12 +55,37 @@ export class Pago{
      * Método que busca las inscripciones
      * @returns {Promise<void>}
      */
-    async buscarInscripciones(inputBuscar = $('#codigoBuscar').val()){
+    async buscarInscripciones(){
+        let inputBuscar = $('#codigoBuscar').val();
         var tipoBusqueda = $('#tipoBusqueda').val();
         // var inputBuscar = ;
 
         this.datos=await this.controlador.getInscripciones(tipoBusqueda, inputBuscar)
         // console.log(this.datos.data)
+        
+        if(this.datos.data.length!=0){
+            this.introDatos(this.datos.data)
+        }else{
+            $('#tabla-datos > tbody').empty();
+            var fila = document.createElement("tr")
+            var inscripcion = document.createElement("td")
+            inscripcion.colSpan =5
+            inscripcion.textContent = 'No hay ninguna inscripción con ese código o dni.'
+            fila.appendChild(inscripcion)
+            var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
+            tbody.appendChild(fila)
+            document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
+        }
+    }
+
+    /**
+     * Método que busca las inscripciones
+     * @returns {Promise<void>}
+     */
+    async buscarInscripciones2(codigo){
+
+        this.datos=await this.controlador.getInscripciones('codigo', codigo)
+        console.log(codigo)
         
         if(this.datos.data.length!=0){
             this.introDatos(this.datos.data)
@@ -142,12 +168,11 @@ export class Pago{
      */
     introDatos(datos){
         let importe=0
-
         var tbody = document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
         $('#tabla-datos > tbody').empty();
 
-
-        datos.forEach(function(dato) {
+        
+        for(let dato of datos) {
             // Recorre el array de inscripciones y agrega las filas a la tabla si es un teléfono la búsqueda
             if(dato.nombre == null){
                 var thead = document.getElementById("tabla-datos").getElementsByTagName("thead")[0]
@@ -214,24 +239,21 @@ export class Pago{
                 // Agregar fila al encabezado
                 thead.appendChild(fila);
 
-                return 0;
             }
-            return 0;
-        })
+        }
 
         // Recorre el array de inscripciones y agrega las filas a la tabla
-        datos.forEach(function(dato) {
-
+        for(let dato of datos)  {
             if(dato.nombre == null){
+                console.log('holaa')
+                console.log(this)
                 var fila = document.createElement('tr');
 
                 var inscripcion = document.createElement('td');
 
-                var enlace = document.createElement("a");
-                enlace.href = "#";
+                var enlace = document.createElement("p");
                 enlace.textContent = dato.codigo_inscripcion;
-                console.log('holaa')
-                enlace.addEventListener('click', this.buscarInscripciones(dato.codigo_inscripcion).bind(this));
+                enlace.onclick = this.buscarInscripciones2.bind(this, dato.codigo_inscripcion)
                 inscripcion.appendChild(enlace);
                 fila.appendChild(inscripcion);
 
@@ -240,7 +262,6 @@ export class Pago{
                 fila.appendChild(fechaInscripcion);
 
                 tbody.appendChild(fila);
-
             }else{
                 // Crea una nueva fila <tr>
                 var fila = document.createElement("tr")
@@ -249,7 +270,7 @@ export class Pago{
 
                 // td nºinscripción
                 var inscripcion = document.createElement("td")
-                inscripcion.textContent = dato.codigo_inscripcion
+                inscripcion.textContent = dato.codigo_inscripcion;
                 fila.appendChild(inscripcion)
 
                 // td nombre
@@ -299,7 +320,7 @@ export class Pago{
 
             }
 
-        })
+        }
         document.getElementsByClassName('card')[0].setAttribute('style', 'display:block !important');
 
         this.precioTotal = importe
