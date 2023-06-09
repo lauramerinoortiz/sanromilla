@@ -118,21 +118,9 @@ export class EliminarFotos {
 
         this.categoria = document.getElementById('selectCategoria').value;
 
-        const datos = await this.controlador.eliminarFotos(this.imagenesSeleccionadas, this.categoria)
-        this.traerFotos();
-        this.imagenesSeleccionadas = [];
-    }
-
-    /**
-     * Elimina todas las fotos de la categoría seleccionada
-     * @returns {Promise<void>}
-     */
-    async eliminarTodas(){
-        this.categoria = document.getElementById('selectCategoria').value;
-
         Swal.fire({
             title: '¿Está seguro?',
-            text: "Todas las imágenes de la categoría serán eliminadas y no podrán ser recuperadas",
+            text: "Las imágenes seleccionadas serán eliminadas y no podrán ser recuperadas",
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
@@ -145,7 +133,49 @@ export class EliminarFotos {
                     await this.controlador.eliminarAllFotos(this.categoria);
                     Swal.fire(
                         '¡Eliminadas!',
-                        'Todas las imágenes de la categoría han sido eliminadas',
+                        'Las imágenes seleccionadas han sido eliminadas',
+                        'success'
+                    );
+                    const datos = await this.controlador.eliminarFotos(this.imagenesSeleccionadas, this.categoria)
+                    this.traerFotos();
+                    this.imagenesSeleccionadas = [];
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudo eliminar las imágenes. Inténtelo de nuevo más tarde.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     * Elimina todas las fotos de la categoría seleccionada
+     * @returns {Promise<void>}
+     */
+    async eliminarTodas(){
+        this.categoria = document.getElementById('selectCategoria').value;
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Todas las imágenes de la categoría " + document.getElementById('encabezado-categoria').textContent
+                + " serán eliminadas y no podrán ser recuperadas",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, lo estoy'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await this.controlador.eliminarAllFotos(this.categoria);
+                    Swal.fire(
+                        '¡Eliminadas!',
+                        'Todas las imágenes de la categoría ' + document.getElementById('encabezado-categoria').textContent
+                        + ' han sido eliminadas',
                         'success'
                     );
                     this.traerFotos();
