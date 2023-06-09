@@ -12,7 +12,7 @@ export class Carrera {
      */
     async iniciar(controlador){
         this.div=document.getElementById('carrera')
-
+        this.activeNavbar();
         this.getInformacion();
 
         this.btnModificar = document.getElementById('modificar');
@@ -20,6 +20,7 @@ export class Carrera {
         this.btnModificar.addEventListener('keypress', function(event) {
             if (event.key === 'Enter'){this.modificarInfo();}
         }.bind(this));
+
     }
 
     async getInformacion(){
@@ -54,11 +55,18 @@ export class Carrera {
         }else{
             var inputCartel = document.getElementById('cartel');
             var archivo = inputCartel.files[0];
+            var inputReglamento = document.getElementById('reglamento');
+            var reglamento = inputReglamento.files[0];
 
             var formData = new FormData();
             formData.append('cartel', archivo);
 
-            var cartel = await this.controlador.modCartel(formData);
+            var formData2 = new FormData();
+            formData2.append('reglamento', reglamento);
+
+            var cartell = await this.controlador.modCartel(formData);
+
+            var reglamentoo = await this.controlador.modReglamento(formData2);
 
             var modificar = await this.controlador.modificarInfo(datos);
             console.log('modif: ', modificar )
@@ -180,6 +188,13 @@ export class Carrera {
             return validExtensions.includes(fileExtension);
         }
 
+        function isPdf(file) {
+            var validExtensions = ['pdf'];
+            var fileExtension = file.name.split('.').pop().toLowerCase();
+
+            return validExtensions.includes(fileExtension);
+        }
+
         for (var i = 0; i < cartelInput.files.length; i++) {
             if (!isImageFile(cartelInput.files[i])) {
                 return 'El archivo del campo cartel no es una imagen válida';
@@ -187,10 +202,27 @@ export class Carrera {
         }
 
         for (var j = 0; j < reglamentoInput.files.length; j++) {
-            if (!isImageFile(reglamentoInput.files[j])) {
+            if (!isPdf(reglamentoInput.files[j])) {
                 return 'El archivo del campo reglamento no es una imagen válida';
             }
         }
         return "";
     }
+
+
+    /**
+     * Para mostrar el item del navbar activo
+     */
+    activeNavbar() {
+        document.getElementById('navTop').classList.remove('d-none');
+        document.getElementById('linkHome').classList.remove('active');
+        document.getElementById('linkFotos').classList.remove('active');
+        document.getElementById('linkPagos').classList.remove('active');
+        document.getElementById('linkCarrera').classList.add('active');
+        document.getElementById('linkCategorias').classList.remove('active');
+        document.getElementById('linkInscripciones').classList.remove('active');
+    }
+
+
+
 }

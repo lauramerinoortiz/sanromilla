@@ -84,6 +84,9 @@ export class Controlador{
         this.vistaPago = new Pago(this)
     }
 
+    /**
+     * Método que carga la vista de información de la carrera
+     */
     mostrarCarrera(){
         this.ocultarMenu()
         this.router.cargar("carrera")
@@ -171,6 +174,28 @@ export class Controlador{
             document.body.innerHTML = lastViewHTML;
             this.iniciar();
         }
+    }
+
+    /**
+     * Método para guardar el cartel de la carrera.
+     * @param FD
+     * @param categoria
+     * @returns {Promise<*>}
+     */
+    // async subirCartel(dato){
+    //     console.log('fotos en app: ', dato)
+    //     return await this.modelo.modCartel(dato)
+    // }
+
+    /**
+     * Método para guardar el reglamento de la carrera.
+     * @param datos
+     * @returns {Promise<*>}
+     */
+    async modReglamento(datos){
+        console.log('datosen app: ', datos)
+        let modif = await this.modelo.modReglamento(datos)
+        return modif;
     }
 
 }

@@ -56,6 +56,10 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para obtener el precio de la camiseta
+     * @returns {Promise<unknown>}
+     */
     async getPrecioCamiseta(){
         return new Promise(resolve => {
             $.get(this.base_url + 'informacion/'+'getPrecioCamiseta', (data) => {
@@ -66,6 +70,11 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para setear el dorsal
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
     async setDorsal(datos) {
         return new Promise(resolve => {
             $.ajax({
@@ -79,6 +88,11 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para modificar la información de la carrera.
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
     async modificarInfo(datos) {
         console.log('datos modelojs: ', datos)
         return new Promise(resolve => {
@@ -94,19 +108,45 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para modificar el cartel.
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
     async modCartel(datos) {
-        console.log('cartel modelojs: ', datos)
-        return new Promise(resolve => {
-            $.ajax({
-                url: this.base_url + 'informacion/modCartel',
+        console.log('cartel modelojsasdf: ', datos)
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}informacion/subirCartel`,
                 type: 'POST',
-                // data: { datos: JSON.stringify(datos) },
-                body: datos,
-                success: function(data) {
-                    resolve({ data });
-                }
+                data: datos,
+                processData: false,
+                contentType: false,
             });
-        });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
+
+    async modReglamento(datos) {
+        console.log('reglamento modelojsasdf: ', datos)
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}informacion/subirReglamento`,
+                type: 'POST',
+                data: datos,
+                processData: false,
+                contentType: false,
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
     }
 
     async doLogin(token) {

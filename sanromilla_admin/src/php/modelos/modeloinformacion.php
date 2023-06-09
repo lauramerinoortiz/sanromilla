@@ -64,22 +64,75 @@ class ModeloInformacion{
 
 
 
-    public function modCartel(){
+    public function subirCartel($arch){
+
+            $this->conectar();
+//            var_dump($arch);
+
+            $archivos = $arch['cartel'];
+            var_dump ($archivos);
+
+            $consulta = $this->conexion->prepare("UPDATE informacion SET cartel = ?;");
+
+            $archivos['tmp_name'];
+            $nombre_real = $archivos['name'];
+            $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real;
+            move_uploaded_file($archivos['tmp_name'], $ruta_destino);
+
+            $consulta->bind_param("s", $nombre_real);
+            $consulta->execute();
 
 
+            $consulta->close();
+            return true;
+        }
+
+
+    public function subirReglamento($arch2){
+
+            $this->conectar();
+//            var_dump($arch2);
+
+            $archivos2 = $arch2['reglamento'];
+            var_dump ($archivos2);
+
+            $consulta = $this->conexion->prepare("UPDATE informacion SET reglamento = ?;");
+
+            $archivos2['tmp_name'];
+            $nombre_real2 = $archivos2['name'];
+            $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real2;
+            move_uploaded_file($archivos2['tmp_name'], $ruta_destino);
+            var_dump($nombre_real2);
+            $consulta->bind_param("s", "hola");
+            $consulta->execute();
+
+
+            $consulta->close();
+            return true;
     }
 
+    public function holatio($arch2){
+
+                $this->conectar();
+    //            var_dump($arch2);
+
+                $archivos2 = $arch2['reglamento'];
+                var_dump ($archivos2);
+
+                $consulta = $this->conexion->prepare("UPDATE informacion SET reglamento = ?;");
+
+                $archivos2['tmp_name'];
+                $nombre_real2 = $archivos2['name'];
+                $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real2;
+                move_uploaded_file($archivos2['tmp_name'], $ruta_destino);
+                var_dump($nombre_real2);
+                $consulta->bind_param("s", "hola");
+                $consulta->execute();
 
 
-
-
-
-
-
-
-
-
-
+                $consulta->close();
+                return true;
+        }
 
 
 

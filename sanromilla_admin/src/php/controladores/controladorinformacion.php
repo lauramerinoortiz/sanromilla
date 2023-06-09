@@ -33,21 +33,31 @@ class informacionController{
 
 
 
+    /**
+    * Método para subir el cartel a bbdd.
+    */
+    public function subirCartel(){
 
-    public function modCartel(){
+            $archivos = $_FILES;
 
-            $result= $this->modelo->modCartel();
-    //        echo $result;
-            if($result >= 1){
-                echo 6;
-            }
-            else if($result == -1){  //error
-                echo -1;
-            }
-            else{       //falta algún dato
-                echo 8;
-            }
-        }
+//            var_dump ($archivos);
+
+            $this->modelo->subirCartel($archivos);
+
+    }
+
+    /**
+    * Método para subir el reglamento a bbdd.
+    */
+    public function subirReglamento(){
+
+            $archivos2 = $_FILES;
+
+//            var_dump ($archivos);
+
+            $this->modelo->subirReglamento($archivos2);
+
+    }
 
 
 

@@ -142,7 +142,7 @@ export class Pago{
         }
 
         var seteado = await this.controlador.setDorsal(datos);
-        console.log('qué pasa: ', seteado)
+        console.log('qué pasa: ', datos)
         if (seteado.data >= 1){
             $('#total').text(0+'€');
             Swal.fire({

@@ -12,16 +12,9 @@ export class Inscripciones {
      */
     async iniciar(controlador){
         this.div=document.getElementById('inscripciones')
-
+        this.activeNavbar();
         this.inscripciones = await this.buscarInscripciones();
 
-        document.getElementById('navTop').classList.remove('d-none');
-        document.getElementById('linkHome').classList.remove('active');
-        document.getElementById('linkFotos').classList.remove('active');
-        document.getElementById('linkPagos').classList.remove('active');
-        document.getElementById('linkCarrera').classList.remove('active');
-        document.getElementById('linkCategorias').classList.remove('active');
-        document.getElementById('linkInscripciones').classList.add('active');
 
         //Guardar página para recargar
         this.saveViewState();
@@ -117,19 +110,8 @@ export class Inscripciones {
 
             // td dorsal
             var dorsal = document.createElement("td")
-            if(dato.dorsal === null){
-                var inputDorsal = document.createElement("input")
-                inputDorsal.setAttribute("type", "text")
-                var id = dato.id_inscripcion
-                inputDorsal.setAttribute("id", id)
-                inputDorsal.setAttribute("placeholder", "nº dorsal")
-                inputDorsal.classList.add("text-center")
-                dorsal.appendChild(inputDorsal)
-                fila.appendChild(dorsal)
-            }else{
-                dorsal.textContent = dato.dorsal
-                fila.appendChild(dorsal)
-            }
+            dorsal.textContent = (dato.dorsal === null) ? '---' : dato.dorsal;
+            fila.appendChild(dorsal)
 
             // td camiseta
             // var camiseta = document.createElement("td")
@@ -142,15 +124,28 @@ export class Inscripciones {
             // camiseta.appendChild(inputCamiseta)
             // fila.appendChild(camiseta)
 
-            // td euros
             var euros = document.createElement("td")
             euros.textContent = dato.importe + '€'
-            if(dato.estado_pago == 1){fila.style.backgroundColor = 'lightgreen';}
             fila.appendChild(euros)
+
+            if(dato.estado_pago == 1){fila.style.backgroundColor = 'lightgreen';}
 
             tbody.appendChild(fila)
         })
 
+    }
+
+    /**
+     * Método para mostrar el item del navbar activo
+     */
+    activeNavbar() {
+        document.getElementById('navTop').classList.remove('d-none');
+        document.getElementById('linkHome').classList.remove('active');
+        document.getElementById('linkFotos').classList.remove('active');
+        document.getElementById('linkPagos').classList.remove('active');
+        document.getElementById('linkCarrera').classList.remove('active');
+        document.getElementById('linkCategorias').classList.remove('active');
+        document.getElementById('linkInscripciones').classList.add('active');
     }
 
     saveViewState() {
