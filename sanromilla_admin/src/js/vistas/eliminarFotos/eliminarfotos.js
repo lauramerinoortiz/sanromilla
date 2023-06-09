@@ -130,13 +130,12 @@ export class EliminarFotos {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await this.controlador.eliminarAllFotos(this.categoria);
+                    const datos = await this.controlador.eliminarFotos(this.imagenesSeleccionadas, this.categoria)
                     Swal.fire(
                         '¡Eliminadas!',
                         'Las imágenes seleccionadas han sido eliminadas',
                         'success'
                     );
-                    const datos = await this.controlador.eliminarFotos(this.imagenesSeleccionadas, this.categoria)
                     this.traerFotos();
                     this.imagenesSeleccionadas = [];
                 } catch (error) {
