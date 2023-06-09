@@ -10,12 +10,23 @@ export class Fotos {
      * Método que inicia la vista
      * @param {*} controlador
      */
-    async iniciar(controlador) {
+    async iniciar() {
         this.div = document.getElementById('fotos')
         this.fotosFormData = new FormData;
         this.activeNavbar();
         //Guardar página para recargar
         this.saveViewState();
+
+        //Trae las categorías
+        this.categorias = await this.controlador.getCategorias();
+
+        //Montar select
+        this.categorias.data.forEach((categoria) => {
+            const option = document.createElement('option');
+            option.value = categoria.id_categoria;
+            option.textContent = categoria.nombre;
+            selectCategoria.appendChild(option);
+        });
 
         this.btnIrEliminar = document.getElementById('btnIrEliminar');
         this.btnIrEliminar.onclick = () => this.controlador.mostrarEliminarFotos(this.controlador);

@@ -6,7 +6,7 @@ import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
 import { Inicio } from "../vistas/inicio/inicio.js"
 import { Fotos } from "../vistas/fotos/fotos.js"
-import { EliminarFotos } from "../vistas/eliminarFotos/eliminarfotos.js";
+import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js";
 
 export class Controlador{
 
@@ -152,7 +152,6 @@ export class Controlador{
      */
     async getCategorias(){
         let datos = await this.modelo.getCategorias()
-        console.log(datos)
         return datos;
     }
 

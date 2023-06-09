@@ -44,11 +44,12 @@ class ModeloFotos
                 $consultaCategoria->execute();
 
                 $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
-                $nombreCategoria = mysqli_fetch_assoc($nombreCategoria)['nombre'];
+                $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
 
                 foreach ($archivos['tmp_name'] as $indice => $tmp_name) {
                     $nombre_archivo = $archivos['name'][$indice];
                     $extension = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
+
 
                     // Verificar si el archivo es una imagen válida
                     $mimeTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
@@ -114,9 +115,8 @@ class ModeloFotos
                 $consultaCategoria->execute();
 
                 $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
-                $nombreCategoria = mysqli_fetch_assoc($nombreCategoria)['nombre'];
+                $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
 
-                $directorio = 'D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\' . $nombreCategoria;
 
                 $consulta->bind_param("i", $idFoto);
                 $consulta->execute();
@@ -124,8 +124,8 @@ class ModeloFotos
                 $resultado = $consulta->get_result();
                 $fila = $resultado->fetch_assoc();
                 $url = $fila['url'];
-                //$directorio = 'sanromilla/sanromilla_admin/src/assets/images/categorias/'.$categoriaRuta.'/'
-                $directorio ='D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\'.$nombreCategoria.'\\';
+                $directorio = 'sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+                //$directorio ='D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\'.$nombreCategoria.'\\';
                 $rutaAbsoluta = $directorio . $url;
 
                 unlink(realpath($rutaAbsoluta));
@@ -146,6 +146,7 @@ class ModeloFotos
     public function eliminarAllFotos($categoria){
         $this->conectar();
 
+
         $consultaCategoria = $this->conexion->prepare("SELECT nombre FROM categorias WHERE id_categoria = ?");
         $consulta = $this->conexion->prepare("DELETE FROM imagenes WHERE id_categoria = ?");
 
@@ -156,12 +157,13 @@ class ModeloFotos
             $consultaCategoria->execute();
 
             $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
-            $nombreCategoria = mysqli_fetch_assoc($nombreCategoria)['nombre'];
+            $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
 
             $consulta->bind_param("i", $categoria);
             $consulta->execute();
 
-            $directorio = 'D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\' . $nombreCategoria;
+            $directorio = 'sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+            //$directorio = 'D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\' . $nombreCategoria;
 
             // Verificar si el directorio existe
             if (is_dir($directorio)) {
