@@ -17,6 +17,8 @@ export class Fotos {
         //Guardar página para recargar
         this.saveViewState();
 
+        this.btnIrEliminar = document.getElementById('btnIrEliminar');
+        this.btnIrEliminar.onclick = () => this.controlador.mostrarEliminarFotos(this.controlador);
 
         const dropzone = document.getElementById("dropzone");
         const archivos = document.getElementById("archivos");
@@ -35,35 +37,77 @@ export class Fotos {
 
         const self = this;
 
+        /**
+         * Método para funcionalidad de drag and drop de imágenes para subir
+         * @param event
+         */
         function handleDragOver(event) {
             event.preventDefault();
             dropzone.classList.add("dragover");
         }
 
+        /**
+         * Método para funcionalidad de drag and drop de imágenes para subir
+         * @param event
+         */
         function handleDrop(event) {
             event.preventDefault();
             dropzone.classList.remove("dragover");
             handleFileSelect(event);
         }
 
+        /**
+         * Método para añadir las imágenes a un un FormData y mostrar la vista previa
+         * @param event
+         */
         const handleFileSelect = (event) => {
-
             const listado_archivos =
-                event.target.id == "archivos" ? archivos.files : event.dataTransfer.files;
+                event.target.id === "archivos" ? archivos.files : event.dataTransfer.files;
 
             for (let file of listado_archivos) {
-                this.fotosFormData.append("files[]", file);
-                mostrarVistaPrevia(file);
+                if (isImage(file)) {
+                    this.fotosFormData.append("files[]", file);
+                    mostrarVistaPrevia(file);
+                } else {
+                    Swal.fire({
+                        title: 'Formato incorrecto',
+                        text: 'Solo se pueden subir imágenes.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar',
+                    });
+                }
             }
             console.log(this.fotosFormData);
         }
 
+        /**
+         * Tipo de archivos permitidos
+         * @param file
+         * @returns {boolean}
+         */
+        const isImage = (file) => {
+            const mimeTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/gif",
+                "image/jpg"
+                // Agrega aquí otros tipos de archivo de imagen permitidos si es necesario
+            ];
+
+            return mimeTypes.includes(file.type);
+        }
+
+        /**
+         * Método para realizar la subida de imágenes.
+         * @param event
+         * @returns {null}
+         */
         const subirImagenes = (event) => {
             let categoria = document.getElementById('selectCategoria').value
             if (this.fotosFormData.entries().next().done){
                 Swal.fire({
-                    title: 'Aviso',
-                    text: 'No ha seleccionado ninguna imagen.',
+                    title: 'No hay imágenes cargadas',
+                    text: 'Debe seleccionar como mínimo una imagen.',
                     icon: 'warning',
                     confirmButtonText: 'Aceptar',
                 });
@@ -72,7 +116,7 @@ export class Fotos {
 
             Swal.fire({
                 title: '¿Está seguro?',
-                text: "Este cambio no podrá ser revertido",
+                text: "Estas imágenes podrán ser vistas por el resto de usuarios",
                 icon: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'Cancelar',
@@ -107,6 +151,10 @@ export class Fotos {
             archivos.value = "";
         }
 
+        /**
+         * Método encargado de realizar la vista previa mediante DOM
+         * @param file
+         */
         function mostrarVistaPrevia(file) {
             const reader = new FileReader();
             reader.onload = function (event) {

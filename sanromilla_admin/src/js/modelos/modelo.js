@@ -56,6 +56,11 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para asignar dorsal
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
     async setDorsal(datos) {
         return new Promise(resolve => {
             $.ajax({
@@ -69,6 +74,11 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método para realizar el login, se manda el token y se comprueba el email que está en el payload
+     * @param token string con el token
+     * @returns {Promise<unknown>}
+     */
     async doLogin(token) {
         return new Promise(resolve => {
             $.post({
@@ -86,8 +96,13 @@ export class Modelo{
         });
     }
 
+    /**
+     * Método que envía al servidor las imágenes en un FormData
+     * @param FD FormData con los datos de las imágenes
+     * @param categoria id de la categoría
+     * @returns {Promise<*>}
+     */
     async subirFotos(FD, categoria) {
-        console.log(FD, categoria);
         try {
             FD.append("categoria", categoria)
             const response = await $.ajax({
@@ -96,6 +111,66 @@ export class Modelo{
                 data: FD,
                 processData: false,
                 contentType: false,
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
+
+    /**
+     * Devuelve todas las fotos de una categoría
+     * @param categoria id de la categoría
+     * @returns {Promise<unknown>}
+     */
+    async traerFotos(categoria){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'fotos/'+'getFotos', {
+                categoria: categoria,
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
+    /**
+     * Elimina las fotos seleccionadas
+     * @param seleccionadas array numérico con os id de las fotos a eliminar
+     * @returns {Promise<void>}
+     */
+    async eliminarFotos(seleccionadas, categoria) {
+        console.log(seleccionadas)
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}fotos/eliminarFotosSeleccionadas`,
+                type: 'POST',
+                data: JSON.stringify({ seleccionadas, categoria }),
+                contentType: 'application/json',
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
+
+    /**
+     * Elimina todas las fotos de una categoría
+     * @param categoria id de la categoría
+     * @returns {Promise<unknown>}
+     */
+    async eliminarAllFotos(categoria) {
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}fotos/eliminarAllFotos`,
+                type: 'POST',
+                data: JSON.stringify({ categoria }),
+                contentType: 'application/json',
             });
             console.log(response);
             return response;

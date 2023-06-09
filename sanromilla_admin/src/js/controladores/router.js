@@ -6,6 +6,7 @@
  */
 export  class Router  {
     cargar(route){
+        console.log(route)
         $('#app-container').load('./js/vistas/' + route + '/'+route +'.html?', () => {});
     }
 
