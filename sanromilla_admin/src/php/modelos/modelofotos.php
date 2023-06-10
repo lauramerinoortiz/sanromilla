@@ -124,7 +124,7 @@ class ModeloFotos
                 $resultado = $consulta->get_result();
                 $fila = $resultado->fetch_assoc();
                 $url = $fila['url'];
-                $directorio = 'sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+                $directorio = '/home/user2daw/public_html/22/sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
                 //$directorio ='D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\'.$nombreCategoria.'\\';
                 $rutaAbsoluta = $directorio . $url;
 
@@ -162,7 +162,7 @@ class ModeloFotos
             $consulta->bind_param("i", $categoria);
             $consulta->execute();
 
-            $directorio = 'sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+            $directorio = '/home/user2daw/public_html/22/sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
             //$directorio = 'D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\' . $nombreCategoria;
 
             // Verificar si el directorio existe
