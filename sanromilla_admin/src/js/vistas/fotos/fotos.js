@@ -209,6 +209,7 @@ export class Fotos {
         document.getElementById('linkCarrera').classList.remove('active');
         document.getElementById('linkCategorias').classList.remove('active');
         document.getElementById('linkInscripciones').classList.remove('active');
+        document.getElementById('linkUsuarios').classList.remove('active');
     }
 
     /**

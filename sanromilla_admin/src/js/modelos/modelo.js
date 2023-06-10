@@ -179,4 +179,46 @@ export class Modelo{
             return error;
         }
     }
+
+    /**
+     *
+     * @returns {Promise<any>}
+     */
+    async getUsuarios() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `${this.base_url}usuarios/getUsuarios`,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    resolve(data);
+                },
+                error: function(xhr, status, error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    /**
+     * Método para eliminar usuario
+     * @param categoria
+     * @returns {Promise<*>}
+     */
+    async eliminarUsuario(id) {
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}usuarios/eliminarUsuario`,
+                type: 'POST',
+                data: JSON.stringify({ id }),
+                contentType: 'application/json',
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
+
 }

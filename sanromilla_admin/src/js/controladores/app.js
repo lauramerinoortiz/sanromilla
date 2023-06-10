@@ -6,7 +6,8 @@ import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
 import { Inicio } from "../vistas/inicio/inicio.js"
 import { Fotos } from "../vistas/fotos/fotos.js"
-import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js";
+import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js"
+import { Usuarios } from "../vistas/usuarios/usuarios.js"
 
 export class Controlador{
 
@@ -38,6 +39,8 @@ export class Controlador{
         cerrarSesion.onclick = this.doLogout.bind(this)
         let fotos = document.getElementById('linkFotos')
         fotos.onclick = this.mostrarFotos.bind(this)
+        let usuarios = document.getElementById('linkUsuarios')
+        usuarios.onclick = this.mostrarUsuarios.bind(this)
     }
 
     /**
@@ -99,10 +102,18 @@ export class Controlador{
      * Método que carga la vista para eliminar fotos
      */
     mostrarEliminarFotos(){
-        console.log('hola')
         this.ocultarMenu()
         this.router.cargar("eliminarfotos")
         this.vistaEliminarFotos = new EliminarFotos(this)
+    }
+
+    /**
+     * Método para cargar la vista de roles y usuarios
+     */
+    mostrarUsuarios(){
+        this.ocultarMenu()
+        this.router.cargar("usuarios")
+        this.visitarUsuarios = new Usuarios(this)
     }
 
 
@@ -212,9 +223,24 @@ export class Controlador{
      * @returns {Promise<void>}
      */
     async eliminarAllFotos(categoria){
-        console.log(categoria);
         this.data = await this.modelo.eliminarAllFotos(categoria);
-        console.log(this.data)
+    }
+
+    /**
+     * Método para traer lista de usuarios
+     */
+    async getUsuarios(){
+        this.data = await this.modelo.getUsuarios();
+        return this.data;
+    }
+
+    /**
+     * Método para eliminar usuario
+     * @param id
+     * @returns {Promise<void>}
+     */
+    async eliminarUsuario(id){
+        this.data = await this.modelo.eliminarUsuario(id)
     }
 
 }

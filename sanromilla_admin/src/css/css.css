@@ -306,6 +306,24 @@ thead th {
     border-color: rgba(255, 0, 0, 0.58);
 }
 
+/** Vista usuarios **/
+
+.iconos-acciones{
+    text-align: center;
+    margin: 0px 5px;
+}
+
+.iconos-acciones:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#btn-crear-usuario{
+    position: absolute;
+    top: 130px;
+    right: 65px;
+}
+
 
 @media (max-width: 1000px) {
     #col1 , #col2 , #col3{

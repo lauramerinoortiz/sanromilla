@@ -56,9 +56,8 @@ class fotosController{
      */
     public function eliminarAllFotos(){
         $datos = json_decode(file_get_contents('php://input'), true);
-
+        var_dump($datos);
         if ($datos !== null) {
-            $seleccionadas = $datos['categoria'];
             $categoria = $datos['categoria'];
             $this->modelo->eliminarAllFotos($categoria);
 
