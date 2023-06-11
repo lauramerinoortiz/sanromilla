@@ -57,7 +57,7 @@ export class Usuarios {
             iconoEditar.classList.add('pointer');
             iconoEditar.setAttribute('id', `editar-${usuario.id_colaborador}`);
             iconoEditar.addEventListener('click', () => {
-                this.editarUsuario(usuario.id_colaborador)
+                this.editarUsuario(usuario)
             });
 
             const iconoEliminar = document.createElement('i');
@@ -125,12 +125,147 @@ export class Usuarios {
         });
     }
 
-    editarUsuario(){
-        console.log('editando usuario')
+    async editarUsuario(usuario){
+        console.log(usuario)
+        $('#app-container').empty()
+
+        let contenedor=document.createElement('div')
+        contenedor.classList.add('container')
+        $('#app-container').append(contenedor)
+
+        let formulario=document.createElement('div')
+        formulario.classList.add('text-center')
+        let h1=document.createElement('h1')
+        contenedor.append(h1)
+        contenedor.append(formulario)
+        h1.textContent='Modificar Usuario'
+        h1.classList.add('text-center', 'mt-5')
+
+        let label1=document.createElement('label')
+        label1.classList.add('form-label','mt-4')
+        label1.textContent='Nombre'
+        formulario.append(label1)
+
+        let input1=document.createElement('input')
+        input1.classList.add('form-control','mt-4')
+        input1.style.type='text'
+        input1.id='nombreUsuario'
+        formulario.append(input1)
+
+        let label2=document.createElement('label')
+        label2.classList.add('form-label','mt-4')
+        label2.textContent='Correo'
+        formulario.append(label2)
+
+        let input2=document.createElement('input')
+        input2.classList.add('form-control','mt-4')
+        input2.style.type='text'
+        input2.id='correoUsuario'
+        formulario.append(input2)
+
+        let label3=document.createElement('label')
+        label3.classList.add('form-label','mt-4')
+        label3.textContent='Roles'
+        formulario.append(label3)
+
+        let roles=document.createElement('select')
+        roles.classList.add('form-select')
+        roles.id='roles'
+        formulario.append(roles)
+
+        let html=''
+        let respuesta= await this.controlador.getRoles()
+        if(respuesta.data.length!=0){
+            console.log(respuesta.data)
+            for(let item of respuesta.data){
+                if(item.nombre==usuario.roles){
+                    html+=`<option id='`+item.id_rol+`' selected>`+item.nombre+`</option>`
+                }
+                else{
+                    html+=`<option id='`+item.id_rol+`'>`+item.nombre+`</option>`
+                }
+            }
+            roles.innerHTML=html
+        }
+        else{
+            html+=`<option>No hay roles</option>`
+        }
+
+        input1.value=usuario.nombre
+        input2.value=usuario.correo
+        let enviar=document.createElement('button')
+        enviar.classList.add('btn', 'btn-success', 'mt-5')
+        enviar.textContent='Enviar'
+        enviar.onclick= this.enviarModificado.bind(this, usuario)
+        formulario.append(enviar)
     }
 
-    crearUsuario(){
-        console.log('creando usuario')
+    async crearUsuario(){
+        $('#app-container').empty()
+
+        let contenedor=document.createElement('div')
+        contenedor.classList.add('container')
+        $('#app-container').append(contenedor)
+
+        let formulario=document.createElement('div')
+        formulario.classList.add('text-center')
+        let h1=document.createElement('h1')
+        contenedor.append(h1)
+        contenedor.append(formulario)
+        h1.textContent='Nuevo Usuario'
+        h1.classList.add('text-center', 'mt-5')
+
+        let label1=document.createElement('label')
+        label1.classList.add('form-label','mt-4')
+        label1.textContent='Nombre'
+        formulario.append(label1)
+
+        let input1=document.createElement('input')
+        input1.classList.add('form-control','mt-4')
+        input1.style.type='text'
+        input1.id='nombreUsuario'
+        formulario.append(input1)
+
+        let label2=document.createElement('label')
+        label2.classList.add('form-label','mt-4')
+        label2.textContent='Correo'
+        formulario.append(label2)
+
+        let input2=document.createElement('input')
+        input2.classList.add('form-control','mt-4')
+        input2.style.type='text'
+        input2.id='correoUsuario'
+        formulario.append(input2)
+
+        let label3=document.createElement('label')
+        label3.classList.add('form-label','mt-4')
+        label3.textContent='Roles'
+        formulario.append(label3)
+
+        let roles=document.createElement('select')
+        roles.classList.add('form-select')
+        roles.id='roles'
+        formulario.append(roles)
+
+        let html=''
+        let respuesta= await this.controlador.getRoles()
+        if(respuesta.data.length!=0){
+            console.log(respuesta.data)
+            for(let item of respuesta.data){
+                html+=`<option id='`+item.id_rol+`'>`+item.nombre+`</option>`
+            }
+            roles.innerHTML=html
+        }
+        else{
+            html+=`<option>No hay roles</option>`
+        }
+
+        let enviar=document.createElement('button')
+        enviar.classList.add('btn', 'btn-success', 'mt-5')
+        enviar.textContent='Enviar'
+        enviar.onclick= this.enviarNuevo.bind(this)
+        formulario.append(enviar)
+       
     }
 
     montarNav(){
@@ -142,5 +277,134 @@ export class Usuarios {
         document.getElementById('linkCategorias').classList.remove('active');
         document.getElementById('linkInscripciones').classList.remove('active');
         document.getElementById('linkUsuarios').classList.add('active');
+    }
+
+    /**
+     * Método que guarda un nuevo usuario
+     */
+    async enviarNuevo(){
+        let nombre=$('#nombreUsuario').val()
+        let correo=$('#correoUsuario').val()
+        let rol=$('#roles').children(":selected").attr("id");
+
+        if(nombre==''){
+            Swal.fire({
+                title: 'Nombre vacío',
+                text: 'Recuerde rellenar el nombre.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        else if(correo==''){
+            Swal.fire({
+                title: 'Correo vacío',
+                text: 'Recuerde rellenar el correo.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        else{
+            if(this.validarCorreoElectronico(correo)){
+                let respuesta= await this.controlador.newUsuario(nombre, correo, rol)
+                if(respuesta.data>0){
+                    Swal.fire({
+                        title: 'Usuario guardado',
+                        text: 'Se ha guardado el usuario con éxito.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                      })
+                    this.controlador.mostrarUsuarios()
+                }
+                else{
+                    Swal.fire({
+                        title: 'Ups.. ha habido algún error',
+                        text: 'Contacta con algún administrador.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                      })
+                }
+            }
+            else{
+                Swal.fire({
+                    title: 'Correo no válido',
+                    text: 'Compruebe y vuelva a enviar.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+            }
+        }
+    }
+
+    /**
+     * Método que coge los datos para modificar un usuario y lo manda al controlador
+     */
+    async enviarModificado(usuario){
+        let nombre=$('#nombreUsuario').val()
+        let correo=$('#correoUsuario').val()
+        let rol=$('#roles').children(":selected").attr("id");
+
+        if(nombre==''){
+            Swal.fire({
+                title: 'Nombre vacío',
+                text: 'Recuerde rellenar el nombre.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        else if(correo==''){
+            Swal.fire({
+                title: 'Correo vacío',
+                text: 'Recuerde rellenar el correo.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        else{
+            if(this.validarCorreoElectronico(correo)){
+                let respuesta= await this.controlador.updateUsuario(usuario.id_colaborador, nombre, correo, rol)
+                if(respuesta.data>0){
+                    Swal.fire({
+                        title: 'Usuario modificado',
+                        text: 'Se ha guardado el usuario con éxito.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                      })
+                    this.controlador.mostrarUsuarios()
+                }
+                else{
+                    Swal.fire({
+                        title: 'Ups.. ha habido algún error',
+                        text: 'Contacta con algún administrador.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                      })
+                }
+            }
+            else{
+                Swal.fire({
+                    title: 'Correo no válido',
+                    text: 'Compruebe y vuelva a enviar.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                  })
+            }
+        }
+    }
+
+    /**
+     * Valida si el correo introducido es válido
+     * @param correo
+     * @returns {boolean}
+     */
+    validarCorreoElectronico(correo) {
+        // Expresión regular para validar el formato de correo electrónico
+        const regexCorreo = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+
+        // Verificar si el correo cumple con el formato válido
+        if (!regexCorreo.test(correo)) {
+            return false;
+        }
+
+        return true;
     }
 }

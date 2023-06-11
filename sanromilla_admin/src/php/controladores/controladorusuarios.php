@@ -36,4 +36,21 @@ class usuariosController{
         }
     }
 
+
+    /**
+     * Método que llama al modelo para añadir un usuario
+     */
+    public function newUsuario(){
+        $respuesta = $this->modelo->newUsuario();
+        echo $respuesta;
+    }
+
+    /**
+     * Método que llama al modelo para modificar un usuario
+     */
+    public function updateUsuario(){
+        $respuesta = $this->modelo->updateUsuario();
+        echo $respuesta;
+    }
+
 }

@@ -243,5 +243,38 @@ export class Controlador{
         this.data = await this.modelo.eliminarUsuario(id)
     }
 
+    /**
+     * Método que llama al modelo para pedir los roles de la bbdd
+     * @returns array de roles
+     */
+    async getRoles(){
+        let datos = await this.modelo.getRoles()
+        return datos;
+    }
+
+    /**
+     * Método que llama al modelo para guardar un usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     * @returns array
+     */
+    async newUsuario(nombre, correo, rol){
+        let datos = await this.modelo.newUsuario(nombre, correo, rol)
+        return datos;
+    }
+
+    /**
+     * Método que llama al modelo para modificar un usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     * @returns array
+     */
+    async updateUsuario(id,nombre,correo,rol){
+        let datos = await this.modelo.updateUsuario(id,nombre, correo, rol)
+        return datos;
+    }
+
 }
 const app= new Controlador()

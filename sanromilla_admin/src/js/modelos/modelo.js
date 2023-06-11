@@ -221,4 +221,60 @@ export class Modelo{
         }
     }
 
+    /**
+     * Método que pide todos los roles
+     * @returns array de roles
+     */
+    async getRoles(){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'roles/'+'getRoles', {
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
+    /**
+     * Método que manda a la bbdd un nuevo usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     */
+    async newUsuario(nombre, correo, rol){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'usuarios/'+'newUsuario', {
+                nombre:nombre,
+                correo:correo,
+                rol:rol
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
+    /**
+     * Método que manda a la bbdd una modificación usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     */
+    async updateUsuario(id,nombre, correo, rol){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'usuarios/'+'updateUsuario', {
+                id:id,
+                nombre:nombre,
+                correo:correo,
+                rol:rol
+            }, (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
 }
