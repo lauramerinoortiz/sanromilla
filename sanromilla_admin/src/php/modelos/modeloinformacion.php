@@ -36,18 +36,13 @@ class ModeloInformacion{
                 $fecha = $datos['fecha'];
                 $hora = $datos['hora'];
                 $fechaCarrera = date("Y-m-d H:i:s", strtotime("$fecha $hora"));
-//                $cartel = $datos['cartel'];
-//                echo $cartel;
-                $reglamento = $datos['reglamento'];
                 $inicio_inscripcion = $datos['inicio_inscripcion'];
                 $fin_inscripcion = $datos['fin_inscripcion'];
                 $precio_camiseta = $datos['precio_camiseta'];
                 $beneficio_camiseta = $datos['beneficio_camiseta'];
 
-//                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, cartel = ?, reglamento = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
-                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, reglamento = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
-//                $upd->bind_param("sssssii", $fechaCarrera, $cartel, $reglamento, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
-                $upd->bind_param("ssssii", $fechaCarrera, $reglamento, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
+                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
+                $upd->bind_param("sssii", $fechaCarrera, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
                 $upd->execute();
                 $upd->close();
                 echo 1;
@@ -56,86 +51,36 @@ class ModeloInformacion{
                 echo -1;
             }  
         }else{
-                echo 9;
+            echo 0;
         }
     }
 
 
+    /**
+    * Método para modificar los archivos
+    */
+    public function modificarArchivos($arch){
 
+        $this->conectar();
 
+        $cartel = $arch['cartel'];
+        $reglamento = $arch['reglamento'];
 
-    public function subirCartel($arch){
+        $consulta = $this->conexion->prepare("UPDATE informacion SET cartel = ?, reglamento = ?;");
 
-            $this->conectar();
-//            var_dump($arch);
+        $nombre_cartel = $cartel['name'];
+        $nombre_reglamento = $reglamento['name'];
+        $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_cartel;
+        $ruta_destino2 = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_reglamento;
+        move_uploaded_file($cartel['tmp_name'], $ruta_destino);
+        move_uploaded_file($reglamento['tmp_name'], $ruta_destino2);
 
-            $archivos = $arch['cartel'];
-            var_dump ($archivos);
+        $consulta->bind_param("ss", $nombre_cartel, $nombre_reglamento);
+        $consulta->execute();
 
-            $consulta = $this->conexion->prepare("UPDATE informacion SET cartel = ?;");
-
-            $archivos['tmp_name'];
-            $nombre_real = $archivos['name'];
-            $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real;
-            move_uploaded_file($archivos['tmp_name'], $ruta_destino);
-
-            $consulta->bind_param("s", $nombre_real);
-            $consulta->execute();
-
-
-            $consulta->close();
-            return true;
-        }
-
-
-    public function subirReglamento($arch2){
-
-            $this->conectar();
-//            var_dump($arch2);
-
-            $archivos2 = $arch2['reglamento'];
-            var_dump ($archivos2);
-
-            $consulta = $this->conexion->prepare("UPDATE informacion SET reglamento = ?;");
-
-            $archivos2['tmp_name'];
-            $nombre_real2 = $archivos2['name'];
-            $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real2;
-            move_uploaded_file($archivos2['tmp_name'], $ruta_destino);
-            var_dump($nombre_real2);
-            $consulta->bind_param("s", "hola");
-            $consulta->execute();
-
-
-            $consulta->close();
-            return true;
+        $consulta->close();
+        return true;
     }
-
-    public function holatio($arch2){
-
-                $this->conectar();
-    //            var_dump($arch2);
-
-                $archivos2 = $arch2['reglamento'];
-                var_dump ($archivos2);
-
-                $consulta = $this->conexion->prepare("UPDATE informacion SET reglamento = ?;");
-
-                $archivos2['tmp_name'];
-                $nombre_real2 = $archivos2['name'];
-                $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_real2;
-                move_uploaded_file($archivos2['tmp_name'], $ruta_destino);
-                var_dump($nombre_real2);
-                $consulta->bind_param("s", "hola");
-                $consulta->execute();
-
-
-                $consulta->close();
-                return true;
-        }
-
-
-
 
     /**
     * Método para obtener la información general de la carrera

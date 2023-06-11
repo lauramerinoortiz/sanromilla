@@ -151,9 +151,9 @@ export class Controlador{
         return modif;
     }
 
-    async modCartel(datos){
+    async modArchivos(datos){
         console.log('datosen app: ', datos)
-        let modif = await this.modelo.modCartel(datos)
+        let modif = await this.modelo.modArchivos(datos)
         return modif;
     }
 
@@ -174,28 +174,6 @@ export class Controlador{
             document.body.innerHTML = lastViewHTML;
             this.iniciar();
         }
-    }
-
-    /**
-     * Método para guardar el cartel de la carrera.
-     * @param FD
-     * @param categoria
-     * @returns {Promise<*>}
-     */
-    // async subirCartel(dato){
-    //     console.log('fotos en app: ', dato)
-    //     return await this.modelo.modCartel(dato)
-    // }
-
-    /**
-     * Método para guardar el reglamento de la carrera.
-     * @param datos
-     * @returns {Promise<*>}
-     */
-    async modReglamento(datos){
-        console.log('datosen app: ', datos)
-        let modif = await this.modelo.modReglamento(datos)
-        return modif;
     }
 
 }

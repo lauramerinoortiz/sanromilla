@@ -54,23 +54,22 @@ export class Carrera {
             })
         }else{
             var inputCartel = document.getElementById('cartel');
-            var archivo = inputCartel.files[0];
+            var cartel = inputCartel.files[0];
             var inputReglamento = document.getElementById('reglamento');
             var reglamento = inputReglamento.files[0];
 
             var formData = new FormData();
-            formData.append('cartel', archivo);
+            formData.append('cartel', cartel);
+            formData.append('reglamento', reglamento);
 
-            var formData2 = new FormData();
-            formData2.append('reglamento', reglamento);
+            if (cartel || reglamento) {
+                var modificacionArchivos = await this.controlador.modArchivos(formData);
+                console.log('modif: ', modificacionArchivos )
+            }
 
-            var cartell = await this.controlador.modCartel(formData);
-
-            var reglamentoo = await this.controlador.modReglamento(formData2);
-
-            var modificar = await this.controlador.modificarInfo(datos);
-            console.log('modif: ', modificar )
-            if (modificar.data >= 1){
+            var modificarDatos = await this.controlador.modificarInfo(datos);
+            console.log('modif: ', modificarDatos)
+            if (modificarDatos.data >= 1){
                 Swal.fire({
                     title: '¡Cambios realizados!',
                     text: 'Se han registrado correctamente los cambios en la base de datos.',
@@ -94,15 +93,12 @@ export class Carrera {
      */
     introDatos(datos) {
         var fechaInput = document.getElementById('fecha');
-        var cartelInput = document.getElementById('cartel');
-        var reglamentoInput = document.getElementById('reglamento');
         var inicioInscripcionInput = document.getElementById('inicio_inscripcion');
         var finInscripcionInput = document.getElementById('fin_inscripcion');
         var precioCamisetaInput = document.getElementById('precio_camiseta');
         var beneficioCamisetaInput = document.getElementById('beneficio_camiseta');
 
         var timestamp = datos.fecha;
-
         var partes = timestamp.split(' ');
         var fecha = partes[0];
         var hora = partes[1];
@@ -112,13 +108,10 @@ export class Carrera {
 
         fechaInput.value = fecha;
         horaInput.value = hora;
-        //cartelInput.value = datos.cartel;
-        //reglamentoInput.value = datos.reglamento;
         inicioInscripcionInput.value = datos.inicio_inscripcion;
         finInscripcionInput.value = datos.fin_inscripcion;
         precioCamisetaInput.value = datos.precio_camiseta;
         beneficioCamisetaInput.value = datos.beneficio_camiseta;
-
     }
 
     /**
@@ -203,7 +196,7 @@ export class Carrera {
 
         for (var j = 0; j < reglamentoInput.files.length; j++) {
             if (!isPdf(reglamentoInput.files[j])) {
-                return 'El archivo del campo reglamento no es una imagen válida';
+                return 'El archivo del campo reglamento no es una documento válido';
             }
         }
         return "";

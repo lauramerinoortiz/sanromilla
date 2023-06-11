@@ -94,12 +94,11 @@ export class Modelo{
      * @returns {Promise<unknown>}
      */
     async modificarInfo(datos) {
-        console.log('datos modelojs: ', datos)
         return new Promise(resolve => {
             $.ajax({
                 url: this.base_url + 'informacion/modificarInfo',
                 type: 'POST',
-                // data: { datos: JSON.stringify(datos) },
+                //data: { datos: JSON.stringify(datos) },
                 data: { datos: datos },
                 success: function(data) {
                     resolve({ data });
@@ -113,29 +112,11 @@ export class Modelo{
      * @param datos
      * @returns {Promise<unknown>}
      */
-    async modCartel(datos) {
+    async modArchivos(datos) {
         console.log('cartel modelojsasdf: ', datos)
         try {
             const response = await $.ajax({
-                url: `${this.base_url}informacion/subirCartel`,
-                type: 'POST',
-                data: datos,
-                processData: false,
-                contentType: false,
-            });
-            console.log(response);
-            return response;
-        } catch (error) {
-            console.log('Error en la solicitud:', error.responseText);
-            return error;
-        }
-    }
-
-    async modReglamento(datos) {
-        console.log('reglamento modelojsasdf: ', datos)
-        try {
-            const response = await $.ajax({
-                url: `${this.base_url}informacion/subirReglamento`,
+                url: `${this.base_url}informacion/modificarArchivos`,
                 type: 'POST',
                 data: datos,
                 processData: false,
