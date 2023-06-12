@@ -130,6 +130,7 @@ export class Modelo{
         }
     }
 
+    /*
      * Método para realizar el login, se manda el token y se comprueba el email que está en el payload
      * @param token string con el token
      * @returns {Promise<unknown>}

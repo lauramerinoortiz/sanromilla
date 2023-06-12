@@ -195,6 +195,7 @@ export class Controlador{
         return modif;
     }
   
+    /*
      * Método que llama al modelo y recibe las categorias de la bbdd
      * @returns array de categorias
      */
