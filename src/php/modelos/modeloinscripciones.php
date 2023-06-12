@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Mode de Inscripciones
+ */
 class ModeloInscripciones{
     private $servidor;
     private $usuario;
@@ -53,9 +56,9 @@ class ModeloInscripciones{
 
             $consultaInsertInscripcion = $this->mysqli->prepare("INSERT INTO `inscripciones`( `nombre`, `apellidos`, `genero`,
                                                                              `fecha_nacimiento`, `dni`, `email`, `telefono`, `info_adicional`,
-                                                                             `codigo_inscripcion`, `talla_camiseta`, `importe`, 
+                                                                             `codigo_inscripcion`, `importe`, 
                                                                              `id_categoria`)
-                                                                VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+                                                                VALUES (?,?,?,?,?,?,?,?,?,?,?);");
             foreach($inscripciones as $item){
                 //Miramos de qué genero es
                 $genero='M';
@@ -63,20 +66,10 @@ class ModeloInscripciones{
                     $genero='F';
                 }
 
-                //Buscamos el precio de cada camiseta
-                $consulta="SELECT precio_camiseta FROM informacion";
-                $result=$this->conexion->query($consulta);
-                $precio=$result->fetch_all( $resulttype = MYSQLI_ASSOC);
-                $precioCamiseta=$precio[0]['precio_camiseta'];
 
                 //Calculamos el total a pagar
                 $importe=intval($item['precioDorsal']);
-                if($item['camiseta']!='null'){
-                    $importe += intval($precioCamiseta);
-                    $camiseta = $item['camiseta'];
-                }else{
-                    $camiseta = NULL;
-                }
+                
 
                 $adicional = !empty($item['infoAdicional']) ? $item['infoAdicional'] : NULL;
 
@@ -88,9 +81,9 @@ class ModeloInscripciones{
                 $id = $resultado->fetch_all(MYSQLI_ASSOC);
                 $idCategoria = $id[0]['id_categoria'];
 
-                $consultaInsertInscripcion->bind_param("ssssssssisii", $item["nombre"], $item["apellidos"], $genero,
+                $consultaInsertInscripcion->bind_param("sssssssisii", $item["nombre"], $item["apellidos"], $genero,
                     $item["fechaNac"], $item["dni"], $correo, $item["telefono"], $adicional,
-                    $codigo, $camiseta, $importe, $idCategoria);
+                    $codigo, $importe, $idCategoria);
                 $consultaInsertInscripcion->execute();
 
                 $consultaInsertInscripcion->reset();

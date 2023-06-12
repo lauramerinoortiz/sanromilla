@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase de la Vista Pago
+ */
 export class VistaPago{
     constructor(controlador,inscripciones, correo){
         this.inscripciones=inscripciones

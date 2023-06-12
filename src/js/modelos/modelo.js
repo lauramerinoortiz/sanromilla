@@ -1,5 +1,8 @@
 "use strict" //activo modo estricto
 
+/**
+ * Clase Modelo quee realiza llamadas ajax al servidor
+ */
 export class Modelo{
     constructor(){
         this.base_url='./php/index.php/'

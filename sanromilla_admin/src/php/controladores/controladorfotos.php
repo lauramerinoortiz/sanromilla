@@ -1,5 +1,9 @@
 <?php
 require_once('modelos/modelofotos.php');
+
+/**
+ * Clase Controlador de Fotos
+ */
 class fotosController{
     private $modelo;
     function __construct(){

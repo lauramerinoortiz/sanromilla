@@ -1,4 +1,7 @@
 "use strict" //activo modo estricto
+/**
+ * Clase Carrera
+ */
 export class Carrera {
 
     constructor(controlador){
@@ -23,6 +26,9 @@ export class Carrera {
 
     }
 
+    /**
+     * Método que coge la información general
+     */
     async getInformacion(){
         this.datos=await this.controlador.getInformacion()
         this.introDatos(this.datos.data[0]);

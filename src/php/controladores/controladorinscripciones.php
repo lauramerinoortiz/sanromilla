@@ -1,5 +1,8 @@
 <?php 
 require_once('modelos/modeloinscripciones.php');
+/**
+ * Clase Controlador de Inscripciones
+ */
 class inscripcionesController{
     private $modelo;
     function __construct(){

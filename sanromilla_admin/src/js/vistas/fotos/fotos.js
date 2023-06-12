@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Fotos de Admin
+ */
 export class Fotos {
 
     constructor(controlador) {

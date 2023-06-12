@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Fotos
+ */
 class ModeloFotos
 {
     private $servidor;
@@ -9,8 +12,7 @@ class ModeloFotos
     private $bd;
     private $conexion;
 
-    function __construct()
-    {
+    function __construct(){
         $this->servidor = constant('SERVIDOR');
         $this->usuario = constant('USUARIO');
         $this->contrasenia = constant('CONTRASENIA');
@@ -20,12 +22,14 @@ class ModeloFotos
     /**
      * Iniciar conexión con la base de datos.
      */
-    private function conectar()
-    {
+    private function conectar(){
         $this->conexion = new mysqli($this->servidor, $this->usuario, $this->contrasenia, $this->bd);
         $this->conexion->set_charset("utf8");
     }
 
+    /**
+     * Método para subir las fotos a la base de datos
+     */
     public function subirFotos($archivos, $categoria)
     {
         $this->conectar();
@@ -62,7 +66,7 @@ class ModeloFotos
                     $fecha_actual = date('Ymd_His');
                     $nombre_real = pathinfo($nombre_archivo, PATHINFO_FILENAME);
                     $nombre_final = "{$nombre_real}_{$fecha_actual}.{$extension}";
-                    $ruta_destino = "../../src/assets/images/categorias/" . $nombreCategoria . "/" . $nombre_final;
+                    $ruta_destino = "/home/user2daw/public_html/22/sanromilla/admin/assets/images/categorias/" . $nombreCategoria . "/" . $nombre_final;
 
                     $subir = move_uploaded_file($tmp_name, $ruta_destino);
 
@@ -78,6 +82,9 @@ class ModeloFotos
         }
     }
 
+    /**
+     * Método para sacar las fotos de la base de datos
+     */
     public function getFotos($categoria)
     {
         $this->conectar();
@@ -101,6 +108,9 @@ class ModeloFotos
         return $datos; // Devuelve los datos como resultado de la función
     }
 
+    /**
+     * Método para eliminar las fotos seleccionadas
+     */
     public function eliminarFotosSeleccionadas($seleccionadas, $categoria)
     {
         $this->conectar();
@@ -124,7 +134,7 @@ class ModeloFotos
                 $resultado = $consulta->get_result();
                 $fila = $resultado->fetch_assoc();
                 $url = $fila['url'];
-                $directorio = '/home/user2daw/public_html/22/sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+                $directorio = '/home/user2daw/public_html/22/sanromilla/admin/assets/images/categorias/'.$nombreCategoria.'/';
                 //$directorio ='D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\'.$nombreCategoria.'\\';
                 $rutaAbsoluta = $directorio . $url;
 
@@ -143,6 +153,9 @@ class ModeloFotos
         $this->conexion->close();
     }
 
+    /**
+     * Método para eliminar las fotos de una categoría de la base de datos
+     */
     public function eliminarAllFotos($categoria){
         $this->conectar();
 
@@ -162,7 +175,7 @@ class ModeloFotos
             $consulta->bind_param("i", $categoria);
             $consulta->execute();
 
-            $directorio = '/home/user2daw/public_html/22/sanromilla/sanromilla_admin/src/assets/images/categorias/'.$nombreCategoria.'/';
+            $directorio = '/home/user2daw/public_html/22/sanromilla/admin/assets/images/categorias/'.$nombreCategoria.'/';
             //$directorio = 'D:\PROGRAMAS\XAMPP\htdocs\sanromilla\sanromilla_admin\src\assets\images\categorias\\' . $nombreCategoria;
 
             // Verificar si el directorio existe

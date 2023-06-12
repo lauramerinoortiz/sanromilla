@@ -1,5 +1,9 @@
 <?php 
 require_once('modelos/modelocategorias.php');
+
+/**
+ * Clase Controlador de Categorías
+ */
 class categoriasController{
     private $modelo;
     function __construct(){

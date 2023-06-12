@@ -1,5 +1,9 @@
 <?php
 require_once('modelos/modeloroles.php');
+
+/**
+ * Clase Controlador de Roles
+ */
 class rolesController{
     private $modelo;
     function __construct(){

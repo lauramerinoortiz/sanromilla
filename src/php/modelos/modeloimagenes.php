@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Imágenes
+ */
 class ModeloImagenes{
     private $servidor;
     private $usuario;
@@ -23,6 +26,9 @@ class ModeloImagenes{
         $this->conexion->set_charset("utf8");
     }
 
+    /**
+     * Método para pedir las fotos a la base de datos
+     */
     public function getfotos(){
         $this->conectar();
         $consulta="SELECT * FROM imagenes;";

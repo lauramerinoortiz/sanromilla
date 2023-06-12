@@ -1,5 +1,9 @@
 <?php
 require_once('modelos/modelousuarios.php');
+
+/**
+ * Clase Controlador de Usuarios
+ */
 class usuariosController{
     private $modelo;
     function __construct(){

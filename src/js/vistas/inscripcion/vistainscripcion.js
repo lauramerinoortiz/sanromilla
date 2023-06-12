@@ -1,5 +1,9 @@
 "use strict" //activo modo estricto
 import {InscripcionModel} from '../../modelos/inscripcionModel.js'
+
+/**
+ * Clase Vista de Inscripción
+ */
 export class VistaInscripcion{
 
     constructor(controlador, datos){
@@ -11,6 +15,10 @@ export class VistaInscripcion{
         window.setTimeout(this.iniciar.bind(this), 500)
     }
 
+    /**
+     * Método que inica la vista
+     * @param {*} controlador 
+     */
     async iniciar(controlador){
         this.div=document.getElementById('inscripcion')
         this.datos=await this.controlador.sacarCategorias()
@@ -127,7 +135,6 @@ export class VistaInscripcion{
             const inputs = divsInscripcion[i].querySelectorAll('input');
             const textarea = divsInscripcion[i].querySelector('textarea');
             const generoRadios = divsInscripcion[i].querySelectorAll('input[type="radio"][name="genero"]');
-            const camisetaSelect = divsInscripcion[i].querySelector('#camiseta');
             let generoSeleccionado = '';
 
             for (let j = 0; j < generoRadios.length; j++) {
@@ -187,7 +194,6 @@ export class VistaInscripcion{
                 inputs[4].value, // fecha
                 inputs[5].value, // categoria
                 inputs[6].value.slice(0, -1),
-                camisetaSelect.options[camisetaSelect.selectedIndex].value, // camiseta
                 inputs[7].value, // dni
                 inputs[8].value, // telefono
                 textarea.value, // info
@@ -198,6 +204,9 @@ export class VistaInscripcion{
         this.controlador.mostrarConfirmacion(this.inscripciones)
     }
 
+    /**
+     * Método que borra la última inscripción
+     */
     borrarUltimaInscripcion() {
         if (this.inscripcionCounter > 1) {
             const lastInscripcionId = `divInscripcion-inscripcion-${this.inscripcionCounter}`;
@@ -252,14 +261,7 @@ export class VistaInscripcion{
                         break;
                     }
                 }
-                //Establecer la opción seleccionada del campo de selección de camiseta
-                const camisetaSelect = this.divInscripcion.querySelector('#camiseta');
-                for (let k = 0; k < camisetaSelect.options.length; k++) {
-                    if (camisetaSelect.options[k].value === inscripcion.camiseta) {
-                        camisetaSelect.selectedIndex = k;
-                        break;
-                    }
-                }
+                
                 this.inscripcionCounter++;
                 if(index == this.inscripciones.length){
                     this.inscripcionCounter--;

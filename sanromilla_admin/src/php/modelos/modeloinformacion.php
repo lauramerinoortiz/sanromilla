@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Información General
+ */
 class ModeloInformacion{
     private $servidor;
     private $usuario;

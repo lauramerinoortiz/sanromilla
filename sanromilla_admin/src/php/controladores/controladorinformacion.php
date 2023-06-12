@@ -1,5 +1,9 @@
 <?php 
 require_once('modelos/modeloinformacion.php');
+
+/**
+ * Clase Controlador de Información General
+ */
 class informacionController{
     private $modelo;
     function __construct(){

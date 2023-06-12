@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Home 
+ */
 export class Home{
       
     constructor(controlador){
@@ -46,6 +50,10 @@ export class Home{
         this.controlador.mostrarPagos();
     }
 
+    /**
+     * Método que comprueba los roles del usuario
+     * @param {array} datosToken 
+     */
     comprobarRoles(datosToken){
         for (let rol of datosToken.roles){
             if (rol.id_rol === 1) {
@@ -72,6 +80,9 @@ export class Home{
         document.getElementById('div-principal-home').classList.remove('d-none');
     }
 
+    /**
+     * Método que guarda la vista 
+     */
     saveViewState() {
         var bodyHTML = document.body.innerHTML;
         localStorage.setItem('lastView', bodyHTML);

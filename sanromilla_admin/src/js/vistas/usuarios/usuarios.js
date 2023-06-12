@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Usuarios
+ */
 export class Usuarios {
 
     constructor(controlador) {
@@ -91,6 +95,11 @@ export class Usuarios {
         localStorage.setItem('lastView', bodyHTML);
     }
 
+    /**
+     * Método para eliminar un usuario
+     * @param {int} id 
+     * @param {string} nombre 
+     */
     eliminarUsuario(id, nombre){
         Swal.fire({
             title: '¿Está seguro?',
@@ -125,6 +134,10 @@ export class Usuarios {
         });
     }
 
+    /**
+     * Método para modificar un usuario
+     * @param {array} usuario 
+     */
     async editarUsuario(usuario){
         console.log(usuario)
         $('#app-container').empty()
@@ -200,6 +213,9 @@ export class Usuarios {
         formulario.append(enviar)
     }
 
+    /**
+     * Método de crear un Usuario
+     */
     async crearUsuario(){
         $('#app-container').empty()
 
@@ -268,6 +284,9 @@ export class Usuarios {
        
     }
 
+    /**
+     * Método que monta el nav
+     */
     montarNav(){
         document.getElementById('navTop').classList.remove('d-none');
         document.getElementById('linkHome').classList.remove('active');

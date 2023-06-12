@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase de Vista de Fotos
+ */
 export class VistaFotos{
     constructor(controlador){
         this.controlador=controlador
@@ -63,31 +67,39 @@ export class VistaFotos{
                 console.log(element.id_categoria)
                 let divFoto=document.createElement('div')
                 divFoto.classList.add('rounded','col-sm-3','m-1','p-3', 'fotosCarrera')
-                divFoto.style.backgroundImage='url('+element.url+')'
+                
                 
                 switch(element.id_categoria) {
                     case '1':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/babyrunner/'+element.url+')'
                         div1.appendChild(divFoto)
                         break;
                     case '2':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/prebenjamin/'+element.url+')'
                         div2.appendChild(divFoto)
                         break;
                     case '3':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/benjamin/'+element.url+')'
                         div3.appendChild(divFoto)
                         break;
                     case '4':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/alevin/'+element.url+')'
                         div4.appendChild(divFoto)
                         break;
                     case '5':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/infantil/'+element.url+')'
                         div5.appendChild(divFoto)
                         break;
                     case '6':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/cadete/'+element.url+')'
                         div6.appendChild(divFoto)
                         break;
                     case '7':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/juvenil/'+element.url+')'
                         div7.appendChild(divFoto)
                         break;
                     case '8':
+                        divFoto.style.backgroundImage='url(./admin/assets/images/categorias/absoluta/'+element.url+')'
                         div8.appendChild(divFoto)
                         break;
                 }
@@ -95,27 +107,69 @@ export class VistaFotos{
             let divContenedor=document.getElementsByClassName('container')[0]
             divContenedor.appendChild(titulo1)
             divContenedor.appendChild(div1)
+            if(div1.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div1.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo2)
             divContenedor.appendChild(div2)
+            if(div2.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div2.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo3)
             divContenedor.appendChild(div3)
+            if(div3.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div3.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo4)
             divContenedor.appendChild(div4)
+            if(div4.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div4.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo5)
             divContenedor.appendChild(div5)
+            if(div5.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div5.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo6)
             divContenedor.appendChild(div6)
+            if(div6.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div6.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo7)
             divContenedor.appendChild(div7)
+            if(div7.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div7.appendChild(h6)
+            }
 
             divContenedor.appendChild(titulo8)
             divContenedor.appendChild(div8)
+            if(div8.childNodes.length == 0){
+                let h6=document.createElement('h6')
+                h6.textContent='No hay fotos de esta categoría'
+                div8.appendChild(h6)
+            }
+
+            
         }
         else{
             console.log('no hay')

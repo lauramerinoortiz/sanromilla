@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Inscripciones
+ */
 class ModeloInscripciones{
     private $servidor;
     private $usuario;

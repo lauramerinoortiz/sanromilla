@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Pago de Admin
+ */
 export class Pago{
 
     precioCamiseta;
@@ -338,6 +342,10 @@ export class Pago{
     activeBtnConfirmar(importe) {
         (importe <= 0) ? this.btnConfirmar.classList.add('disabled') : this.btnConfirmar.classList.remove('disabled')
     }
+
+    /**
+     * Método que guarda la vista
+     */
 
     saveViewState() {
         var bodyHTML = document.body.innerHTML;

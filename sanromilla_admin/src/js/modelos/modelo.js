@@ -1,5 +1,8 @@
 "use strict" //activo modo estricto
 
+/**
+ * Clase Modelo de Administración
+ */
 export class Modelo{
     constructor(){
         this.base_url='./php/index.php/'

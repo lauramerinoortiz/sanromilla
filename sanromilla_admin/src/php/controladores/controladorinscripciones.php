@@ -1,5 +1,9 @@
 <?php 
 require_once('modelos/modeloinscripciones.php');
+
+/**
+ * Clase Controlador de Inscripciones
+ */
 class inscripcionesController{
     private $modelo;
     function __construct(){
@@ -31,6 +35,9 @@ class inscripcionesController{
         }
     }
 
+    /**
+     * Método para filtrar las inscripciones
+     */
     public function filtroInscripciones(){
         $datos= $this->modelo->filtroInscripciones();
         if($datos>=1){
@@ -44,6 +51,9 @@ class inscripcionesController{
         }
     }
 
+    /**
+     * Método que coge todas las inscripciones
+     */
     public function getInscripciones(){
         $datos= $this->modelo->getInscripciones();
 

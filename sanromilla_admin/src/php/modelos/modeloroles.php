@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de roles
+ */
 class ModeloRoles{
     private $servidor;
     private $usuario;
@@ -25,7 +28,9 @@ class ModeloRoles{
         $this->conexion->set_charset("utf8");
     }
 
-
+    /**
+     * Método para coger todos los roles
+     */
     public function getRoles(){
         $this->conectar();
         $datos = array();

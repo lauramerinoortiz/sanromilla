@@ -1,5 +1,9 @@
 <?php 
 require_once('modelos/modeloimagenes.php');
+
+/**
+ * Clase Controlador de Imágenes
+ */
 class imagenesController{
     private $modelo;
     function __construct(){

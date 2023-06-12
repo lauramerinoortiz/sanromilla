@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Eliminar Fotos
+ */
 export class EliminarFotos {
 
     constructor(controlador) {

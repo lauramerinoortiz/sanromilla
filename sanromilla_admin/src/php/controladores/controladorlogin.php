@@ -4,6 +4,9 @@ require_once('modelos/modelologin.php');
 require_once ('config/logingoogle/vendor/autoload.php');
 require_once ('config/config.php');
 
+/**
+ * Clase Controlador de Login
+ */
 class LoginController{
     private $modelo;
     public static $clave = "null";
@@ -15,7 +18,9 @@ class LoginController{
         $this->modelo=new ModeloLogin();
     }
 
-
+    /**
+     * Método para comprobar el usuario
+     */
     public function comprobarUsuario(){
 
         $token = $_POST["token"];
@@ -52,11 +57,6 @@ class LoginController{
             http_response_code(404);
             echo 'Usuario no permitido';
         }
-
-
-
-
-
 
     }
 }

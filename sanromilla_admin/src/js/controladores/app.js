@@ -10,7 +10,9 @@ import { Fotos } from "../vistas/fotos/fotos.js"
 import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js"
 import { Usuarios } from "../vistas/usuarios/usuarios.js"
 
-
+/**
+ * Clase Controlador que maneja todas las vistas de Administración
+ */
 export class Controlador{
 
     constructor() {
@@ -189,6 +191,11 @@ export class Controlador{
         return modif;
     }
 
+    /**
+     * Método que modifica los archivos
+     * @param {array} datos 
+     * @returns array
+     */
     async modArchivos(datos){
         console.log('datosen app: ', datos)
         let modif = await this.modelo.modArchivos(datos)

@@ -76,7 +76,7 @@ nav li a{
 }
 
 .nav-link:hover{
-    color: #D9C45B !important;
+    color: #fcefb0 !important;
     cursor: pointer;
 }
 
@@ -242,7 +242,7 @@ nav li a{
     text-decoration: underline !important;
 }
 #footerLegales:hover{
-    color: #D9C45B !important;
+    color: #fcefb0 !important;
 }
 
 

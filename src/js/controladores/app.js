@@ -7,6 +7,9 @@ import {VistaConfirmacion} from '../vistas/confirmacion/vistaconfirmacion.js'
 import { VistaFotos } from '../vistas/fotos/vistafotos.js'
 import { VistaClasificacion } from '../vistas/clasificacion/vistaclasificacion.js'
 
+/**
+ * Clase Controlador que maneja todo lo de la web pública
+ */
 export class Controlador{
 
     constructor() {

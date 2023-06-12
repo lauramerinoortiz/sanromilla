@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Usuarios
+ */
 class ModeloUsuarios
 {
     private $servidor;
@@ -26,7 +29,9 @@ class ModeloUsuarios
         $this->conexion->set_charset("utf8");
     }
 
-
+    /**
+     * Método para sacar todos los usuarios
+     */
     public function getUsuarios(){
         $this->conectar();
         $datos = array();
@@ -47,6 +52,9 @@ class ModeloUsuarios
         return $datos;
     }
 
+    /**
+     * Método para eliminar un usuario y sus roles
+     */
     public function eliminarUsuario($id){
         $this->conectar();
 

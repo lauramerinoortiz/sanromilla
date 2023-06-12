@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo del login
+ */
 class ModeloLogin
 {
     private $servidor;
@@ -26,6 +29,9 @@ class ModeloLogin
         $this->conexion->set_charset("utf8");
     }
 
+    /**
+     * Método para comprobar el usuario
+     */
     public function comprobarUsuario($email) {
         $this->conectar();
 
@@ -53,6 +59,9 @@ class ModeloLogin
         }
     }
 
+    /**
+     * Método para coger los roles de la base de datos
+     */
     public function getRoles($idColaborador) {
         $this->conectar();
 

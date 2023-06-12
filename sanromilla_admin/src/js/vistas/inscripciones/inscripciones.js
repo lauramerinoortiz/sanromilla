@@ -1,4 +1,7 @@
 "use strict" //activo modo estricto
+/**
+ * Clase Inscripciones
+ */
 export class Inscripciones {
       
     constructor(controlador){
@@ -148,6 +151,9 @@ export class Inscripciones {
         document.getElementById('linkInscripciones').classList.add('active');
     }
 
+    /**
+     * Método que guarda la vista
+     */
     saveViewState() {
         var bodyHTML = document.body.innerHTML;
         localStorage.setItem('lastView', bodyHTML);

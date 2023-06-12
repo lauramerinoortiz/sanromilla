@@ -1,5 +1,8 @@
 "use strict" //activo modo estricto
 
+/**
+ * Clase inicio de Admin
+ */
 export class Inicio{
 
     constructor (controlador) {

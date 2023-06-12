@@ -1,4 +1,7 @@
 "use strict" //activo modo estricto
+/**
+ * Clase Vista de Clasificación
+ */
 export class VistaClasificacion{
     constructor(controlador){
         this.controlador=controlador

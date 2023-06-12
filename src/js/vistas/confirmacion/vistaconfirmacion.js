@@ -1,4 +1,8 @@
 "use strict" //activo modo estricto
+
+/**
+ * Clase Vista de Confirmacion
+ */
 export class VistaConfirmacion{
 
     inscripciones = null;
@@ -59,15 +63,6 @@ export class VistaConfirmacion{
             p2.appendChild(b1);
             div.appendChild(p2);
 
-            //camiseta y precio
-            if(dato.camiseta != 'null'){
-                var p3 = document.createElement('p');
-                p3.textContent = 'Precio camiseta (' + dato.camiseta + '): ';
-                var b2 = document.createElement('b');
-                b2.textContent = '6€';
-                p3.appendChild(b2);
-                div.appendChild(p3);
-            }
             
             // Agrega el div al contenedor
             if(dato.nombre != '' && dato.precioDorsal != ''){
@@ -89,11 +84,7 @@ export class VistaConfirmacion{
             if(dato.nombre != '' && dato.precioDorsal != ''){
                 let dorsal = parseInt(dato.precioDorsal);
                 console.log()
-                let camiseta = 0
-                if(dato.camiseta != 'null'){
-                    camiseta = 6;
-                }
-                total += dorsal + camiseta;
+                total += dorsal ;
             }
         }
         precioTotal.textContent = total + '€';

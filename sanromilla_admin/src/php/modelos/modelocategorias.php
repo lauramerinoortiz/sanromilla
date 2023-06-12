@@ -1,6 +1,9 @@
 <?php
-
 require_once('config/configdb.php');
+
+/**
+ * Clase Modelo de Categorías
+ */
 class ModeloCategorias{
     private $servidor;
     private $usuario;

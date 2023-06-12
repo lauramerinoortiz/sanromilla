@@ -1,14 +1,16 @@
 "use strict" //activo modo estricto
 
+/**
+ * Clase Inscripcion para crear inscripciones a partir de ella
+ */
 export class InscripcionModel {
-    constructor(nombre, apellidos, genero, fechaNac, categoria, precioDorsal, camiseta, dni, telefono, infoAdicional, estadoPago) {
+    constructor(nombre, apellidos, genero, fechaNac, categoria, precioDorsal, dni, telefono, infoAdicional, estadoPago) {
         this.nombre = nombre
         this.apellidos = apellidos
         this.genero = genero
         this.fechaNac = fechaNac
         this.categoria = categoria
         this.precioDorsal = precioDorsal
-        this.camiseta = camiseta
         this.dni = dni
         this.telefono = telefono
         this.infoAdicional = infoAdicional
