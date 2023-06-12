@@ -6,10 +6,15 @@ import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
 import {Inicio} from "../vistas/inicio/inicio.js"
 import {Inscripciones} from "../vistas/inscripciones/inscripciones.js"
+import { Fotos } from "../vistas/fotos/fotos.js"
+import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js"
+import { Usuarios } from "../vistas/usuarios/usuarios.js"
+
 
 export class Controlador{
 
     constructor() {
+        this.controlador = this.controlador;
 		$(document).ready(this.iniciar.bind(this))
         this.router=new Router;
         this.modelo=new Modelo;
@@ -36,6 +41,10 @@ export class Controlador{
         carrera.onclick=this.mostrarCarrera.bind(this)
         let cerrarSesion = document.getElementById('logout-nav')
         cerrarSesion.onclick = this.doLogout.bind(this)
+        let fotos = document.getElementById('linkFotos')
+        fotos.onclick = this.mostrarFotos.bind(this)
+        let usuarios = document.getElementById('linkUsuarios')
+        usuarios.onclick = this.mostrarUsuarios.bind(this)
     }
 
     /**
@@ -94,7 +103,35 @@ export class Controlador{
     }
 
     /**
-     * Cierra la sesión
+     * Método que carga la vista de fotos
+     */
+    mostrarFotos(){
+        this.ocultarMenu()
+        this.router.cargar("fotos")
+        this.vistaFotos = new Fotos(this)
+    }
+
+    /**
+     * Método que carga la vista para eliminar fotos
+     */
+    mostrarEliminarFotos(){
+        this.ocultarMenu()
+        this.router.cargar("eliminarfotos")
+        this.vistaEliminarFotos = new EliminarFotos(this)
+    }
+
+    /**
+     * Método para cargar la vista de roles y usuarios
+     */
+    mostrarUsuarios(){
+        this.ocultarMenu()
+        this.router.cargar("usuarios")
+        this.visitarUsuarios = new Usuarios(this)
+    }
+
+
+    /**
+     * Método para cerrar la sesión
      */
     doLogout(){
         sessionStorage.clear();
@@ -106,7 +143,7 @@ export class Controlador{
     /**
      * Método que llama al modelo para obtener las inscripciones
      * @param {int} codigo 
-     * @returns 
+     * @returns aray
      */
     async getInscripciones(tipoBusqueda, codigo){
         let datos = await this.modelo.getInscripciones(tipoBusqueda, codigo)
@@ -130,6 +167,7 @@ export class Controlador{
         let datos = await this.modelo.getInformacion()
         return datos;
     }
+
 
     /**
      * Método que setea el dorsal.
@@ -156,6 +194,14 @@ export class Controlador{
         let modif = await this.modelo.modArchivos(datos)
         return modif;
     }
+  
+     * Método que llama al modelo y recibe las categorias de la bbdd
+     * @returns array de categorias
+     */
+    async getCategorias(){
+        let datos = await this.modelo.getCategorias()
+        return datos;
+    }
 
     /**
      * Método para realizar el login comprobando usuario en la bbdd
@@ -167,13 +213,104 @@ export class Controlador{
     }
 
 
-    //Recuperar y restaurar la última vista almacenada después de la recarga
+    /**
+     * Recupera la última vista de al recargar
+     */
     restoreLastView = () => {
         var lastViewHTML = localStorage.getItem('lastView');
         if (lastViewHTML) {
             document.body.innerHTML = lastViewHTML;
             this.iniciar();
         }
+    }
+
+    /**
+     * Subida de fotos al servidor
+     * @param FD FormData con las imágenes
+     * @param categoria id de la categoría elegida
+     * @returns {Promise<*|undefined>}
+     */
+    async subirFotos(FD, categoria){
+        return await this.modelo.subirFotos(FD, categoria)
+    }
+
+    /**
+     * Trae fotos de la base de datos dependiendo de la categoría seleccionada
+     * @param categoria
+     * @returns {Promise<*>}
+     */
+    async traerFotos(categoria){
+        let datos = await this.modelo.traerFotos(categoria)
+        return datos.data
+    }
+
+    /**
+     * Método para eliminar las fotos seleccionadas de una categoría
+     * @param seleccionadas
+     * @param categoria
+     * @returns {Promise<void>}
+     */
+    async eliminarFotos(seleccionadas, categoria){
+        await this.modelo.eliminarFotos(seleccionadas, categoria);
+    }
+
+    /**
+     * Método para eliminar todas las fotos de una categoría
+     * @param categoria
+     * @returns {Promise<void>}
+     */
+    async eliminarAllFotos(categoria){
+        this.data = await this.modelo.eliminarAllFotos(categoria);
+    }
+
+    /**
+     * Método para traer lista de usuarios
+     */
+    async getUsuarios(){
+        this.data = await this.modelo.getUsuarios();
+        return this.data;
+    }
+
+    /**
+     * Método para eliminar usuario
+     * @param id
+     * @returns {Promise<void>}
+     */
+    async eliminarUsuario(id){
+        this.data = await this.modelo.eliminarUsuario(id)
+    }
+
+    /**
+     * Método que llama al modelo para pedir los roles de la bbdd
+     * @returns array de roles
+     */
+    async getRoles(){
+        let datos = await this.modelo.getRoles()
+        return datos;
+    }
+
+    /**
+     * Método que llama al modelo para guardar un usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     * @returns array
+     */
+    async newUsuario(nombre, correo, rol){
+        let datos = await this.modelo.newUsuario(nombre, correo, rol)
+        return datos;
+    }
+
+    /**
+     * Método que llama al modelo para modificar un usuario
+     * @param {string} nombre 
+     * @param {string} correo 
+     * @param {int} rol 
+     * @returns array
+     */
+    async updateUsuario(id,nombre,correo,rol){
+        let datos = await this.modelo.updateUsuario(id,nombre, correo, rol)
+        return datos;
     }
 
 }

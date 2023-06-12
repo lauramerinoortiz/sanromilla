@@ -31,6 +31,7 @@ export class Home{
         document.getElementById('linkCarrera').classList.remove('active');
         document.getElementById('linkCategorias').classList.remove('active');
         document.getElementById('linkInscripciones').classList.remove('active');
+        document.getElementById('linkUsuarios').classList.remove('active');
 
         //Guardar página para recargar
         this.saveViewState();
@@ -54,6 +55,7 @@ export class Home{
                 document.getElementById('linkCarrera').classList.remove('d-none');
                 document.getElementById('linkCategorias').classList.remove('d-none');
                 document.getElementById('linkInscripciones').classList.remove('d-none');
+                document.getElementById('linkUsuarios').classList.remove('d-none');
 
                 break;
             }

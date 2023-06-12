@@ -242,7 +242,91 @@ th#total {
 }
 
 
+/** Vista fotos admin **/
+#dropzone{
+    padding: 18px 40px;
+    background: #ccc;
+}
+#dropzone p{
+    margin-bottom: 0px;
+    padding: 20px 10px;
+    background: white;
+    text-align: center;
+    border: 2px dashed #333;
+}
 
+#dropzone label{
+    border-bottom: 1px solid blue;
+    color: blue;
+    cursor: pointer;
+}
+
+#dropzone input{
+    display: none;
+}
+
+#fotos{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#fotos img{
+    height: 100px;
+}
+
+
+/** Vista Eliminar Fotos **/
+.ekko-lightbox-nav-overlay a {
+    color: goldenrod !important;
+}
+.gallery-title {
+    text-align: center !important;
+    font-weight: 500 !important;
+    border-bottom: 1px dotted orange !important;
+    margin-top: 1em !important;
+}
+.div-imagen-eliminar{
+    margin: 10px;
+}
+
+.image-container {
+    margin-bottom: 20px;
+}
+.image-container h2 {
+    margin-bottom: 10px;
+}
+.image-container img {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+    margin: 10px;
+}
+.image-container img.selected {
+    border-color: rgba(255, 0, 0, 0.58);
+}
+
+/** Vista usuarios **/
+
+.iconos-acciones{
+    text-align: center;
+    margin: 0px 5px;
+}
+
+.iconos-acciones:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#btn-crear-usuario{
+    position: absolute;
+    top: 130px;
+    right: 65px;
+}
 
 
 @media (max-width: 1000px) {
@@ -251,6 +335,11 @@ th#total {
     }
     #col1:hover , #col2:hover , #col3:hover{
         height: 170px;
+    }
+
+    /** Fotos admin **/
+    #previewContainer{
+        grid-template-columns: repeat(6, 1fr) !important;
     }
 }
 
@@ -272,6 +361,12 @@ th#total {
     #col1:hover , #col2:hover , #col3:hover{
         height: 120px;
     }
+
+    /** Fotos admin **/
+    #previewContainer{
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+
 }
 
 @media (max-width: 776px) {
@@ -283,6 +378,11 @@ th#total {
 
     #botones button{
         margin: 9px !important;
+    }
+
+    /** Fotos admin **/
+    #previewContainer{
+        grid-template-columns: repeat(4, 1fr) !important;
     }
 }
 

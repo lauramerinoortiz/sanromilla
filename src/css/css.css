@@ -219,7 +219,7 @@ nav li a{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 220px;
+    height: 250px;
 }
 
 .titulosFotos{
@@ -266,6 +266,10 @@ nav li a{
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+.col-sm-3{
+    width: 30% !important;
 }
 
 /* .card-header{
@@ -330,6 +334,10 @@ nav li a{
     .col-sm-9 {
         flex: 0 0 auto;
         width: 75% !important;
+    }
+
+    .container{
+        max-width: 850px !important;
     }
 
     .fotosCarrera{

@@ -46,6 +46,7 @@ export class Pago{
         document.getElementById('linkCarrera').classList.remove('active');
         document.getElementById('linkCategorias').classList.remove('active');
         document.getElementById('linkInscripciones').classList.remove('active');
+        document.getElementById('linkUsuarios').classList.remove('active');
 
         //Guardar página para recargar
         this.saveViewState();
