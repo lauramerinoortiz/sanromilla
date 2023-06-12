@@ -49,6 +49,11 @@ class ModeloFotos
 
                 $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
                 $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
+                $table = array(
+                    'á'=>'a','é'=>'e','í'=>'i', 'ó'=>'o','ú'=>'u','Á'=>'A','É'=>'E','Í'=>'I','Ó'=>'O','Ú'=>'U'
+                );
+                $nombreCategoria = strtr($nombreCategoria, $table);
+                $nombreCategoria = strtolower($nombreCategoria);
 
                 foreach ($archivos['tmp_name'] as $indice => $tmp_name) {
                     $nombre_archivo = $archivos['name'][$indice];
@@ -126,7 +131,11 @@ class ModeloFotos
 
                 $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
                 $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
-
+                $table = array(
+                    'á'=>'a','é'=>'e','í'=>'i', 'ó'=>'o','ú'=>'u','Á'=>'A','É'=>'E','Í'=>'I','Ó'=>'O','Ú'=>'U'
+                );
+                $nombreCategoria = strtr($nombreCategoria, $table);
+                $nombreCategoria = strtolower($nombreCategoria);
 
                 $consulta->bind_param("i", $idFoto);
                 $consulta->execute();
@@ -171,6 +180,11 @@ class ModeloFotos
 
             $nombreCategoria = mysqli_stmt_get_result($consultaCategoria);
             $nombreCategoria = strtolower(mysqli_fetch_assoc($nombreCategoria)['nombre']);
+            $table = array(
+                'á'=>'a','é'=>'e','í'=>'i', 'ó'=>'o','ú'=>'u','Á'=>'A','É'=>'E','Í'=>'I','Ó'=>'O','Ú'=>'U'
+            );
+            $nombreCategoria = strtr($nombreCategoria, $table);
+            $nombreCategoria = strtolower($nombreCategoria);
 
             $consulta->bind_param("i", $categoria);
             $consulta->execute();
