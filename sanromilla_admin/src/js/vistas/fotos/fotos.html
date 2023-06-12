@@ -1,22 +1,20 @@
 <div class="container mt-3" id="fotos">
-        <h1 class="text-center">Subir imágenes</h1>
+    <div class="col">
+        <h1 class="text-center">Subida de imágenes</h1>
         <form id="uploadForm">
             <div class="form-group pb-1">
-                <select class="form-select mt-4 text-center" id="camiseta">
-                    <option value="1">Babyrunner</option>
-                    <option value="2">Prebenjamín</option>
-                    <option value="3">Benjamín</option>
-                    <option value="4">Infantil</option>
-                    <option value="5">Juvenil</option>
-                    <option value="6">Cadete</option>
-                    <option value="7">Absoluta</option>
+                <label for="selectCategoria" class="col-form-label">Seleccione categoría: </label>
+                <select class="col-2 form-select my-2 w-25" id="selectCategoria">
+                    <!-- Se carga mediante DOM -->
                 </select>
+                <button id="btnSubirImagenes" class="btn btn-primary ml-2" type="button">Subir imágenes</button>
+                <button id="btnIrEliminar" class="btn btn-warning ml-2" type="button">Ir a control de imágenes</button>
             </div>
-            <div class="form-group mt-4">
-                <label for="photoInput">Seleccionar Fotos:</label>
-                <input type="file" accept="image/png, image/jpg" id="photoInput" class="form-control-file mb-3" multiple>
+            <div id="dropzone" class="mb-2">
+                <p>Arrastre los archivos a esta zona <label for="archivos">o haga click aquí</label></p>
+                <input type="file" accept="image/*" id="archivos" name="archivos" multiple />
             </div>
-            <div id="previewContainer"></div>
-            <button type="submit" class="btn btn-primary">Subir</button>
         </form>
+        <div id="vistas-previas"></div>
+    </div>
 </div>
