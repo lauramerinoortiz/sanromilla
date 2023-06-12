@@ -111,7 +111,7 @@ class ModeloInscripciones{
                     <h1>GRACIAS POR APUNTARTE A LA SAN ROMILLA</h1>
                     <h3>Aquí tienes tu código de inscripción. Presentalo en portería para pagar tu dorsal y camiseta.</h3>
                     <h1><b>'.$codigo.'</b></h1>
-                    <h3>Recuerda que el dorsal y la camiseta debes recogerla en portería o el día de la carrera.</h3>
+                    <h3>Recuerda que el dorsal y la camiseta debes recogerla en portería antes de la carrera.</h3>
                 </body>
             </html>
             ';
