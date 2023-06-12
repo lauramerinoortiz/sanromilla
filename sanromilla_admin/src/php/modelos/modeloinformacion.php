@@ -66,6 +66,16 @@ class ModeloInformacion{
         $cartel = $arch['cartel'];
         $reglamento = $arch['reglamento'];
 
+        var_dump($cartel);
+        var_dump($reglamento);
+
+        if (!$this->esPngOJpg($cartel)) {
+                return false;
+            }
+        if (!$this->esPdf($reglamento)) {
+                return false;
+            }
+
         $consulta = $this->conexion->prepare("UPDATE informacion SET cartel = ?, reglamento = ?;");
 
         $nombre_cartel = $cartel['name'];
@@ -108,6 +118,30 @@ class ModeloInformacion{
         $array=$datos->fetch_all(MYSQLI_ASSOC);
         $resultado->close();
         return $array;
+    }
+
+    /* Función para comprobar si la extensión de la imagen es válida o no.
+    */
+    function esPngOJpg($archivo) {
+        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+        if ($extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /* Función para comprobar si la extensión del archivo es pdf o no.
+        */
+    function esPdf($archivo) {
+        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+        if ($extension === 'pdf') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
