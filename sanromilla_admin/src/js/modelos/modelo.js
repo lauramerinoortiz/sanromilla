@@ -25,7 +25,7 @@ export class Modelo{
      * Método par aretornar las inscripciones según el código.
      * @param tipoBusqueda
      * @param codigo
-     * @returns {Promise<unknown>}
+     * @returns array
      */
     async getInscripciones(tipoBusqueda, codigo){
         return new Promise(resolve => {
@@ -57,7 +57,21 @@ export class Modelo{
     }
 
     /**
-     * Método para asignar dorsal
+     * Método para obtener el precio de la camiseta
+     * @returns {Promise<unknown>}
+     */
+    async getPrecioCamiseta(){
+        return new Promise(resolve => {
+            $.get(this.base_url + 'informacion/'+'getPrecioCamiseta', (data) => {
+                resolve({
+                    data
+                });
+            });
+        });
+    }
+
+    /**
+     * Método para setear el dorsal
      * @param datos
      * @returns {Promise<unknown>}
      */
@@ -75,6 +89,47 @@ export class Modelo{
     }
 
     /**
+     * Método para modificar la información de la carrera.
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
+    async modificarInfo(datos) {
+        return new Promise(resolve => {
+            $.ajax({
+                url: this.base_url + 'informacion/modificarInfo',
+                type: 'POST',
+                //data: { datos: JSON.stringify(datos) },
+                data: { datos: datos },
+                success: function(data) {
+                    resolve({ data });
+                }
+            });
+        });
+    }
+
+    /**
+     * Método para modificar el cartel.
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
+    async modArchivos(datos) {
+        console.log('cartel modelojsasdf: ', datos)
+        try {
+            const response = await $.ajax({
+                url: `${this.base_url}informacion/modificarArchivos`,
+                type: 'POST',
+                data: datos,
+                processData: false,
+                contentType: false,
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log('Error en la solicitud:', error.responseText);
+            return error;
+        }
+    }
+
      * Método para realizar el login, se manda el token y se comprueba el email que está en el payload
      * @param token string con el token
      * @returns {Promise<unknown>}

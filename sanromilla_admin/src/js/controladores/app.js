@@ -4,10 +4,12 @@ import {Modelo}  from '../modelos/modelo.js'
 import { Home } from '../vistas/home/home.js'
 import { Pago } from '../vistas/pago/pago.js'
 import { Carrera } from '../vistas/carrera/carrera.js'
-import { Inicio } from "../vistas/inicio/inicio.js"
+import {Inicio} from "../vistas/inicio/inicio.js"
+import {Inscripciones} from "../vistas/inscripciones/inscripciones.js"
 import { Fotos } from "../vistas/fotos/fotos.js"
 import { EliminarFotos } from "../vistas/eliminarfotos/eliminarfotos.js"
 import { Usuarios } from "../vistas/usuarios/usuarios.js"
+
 
 export class Controlador{
 
@@ -31,6 +33,8 @@ export class Controlador{
         // captura botones nav
         let home= document.getElementById('linkHome')
         home.onclick=this.mostrarHome.bind(this)
+        let inscripciones= document.getElementById('linkInscripciones')
+        inscripciones.onclick=this.mostrarInscripciones.bind(this)
         let pagos= document.getElementById('linkPagos')
         pagos.onclick=this.mostrarPagos.bind(this)
         let carrera= document.getElementById('linkCarrera')
@@ -72,6 +76,15 @@ export class Controlador{
     }
 
     /**
+     * Método que carga la vista de Inscripciones
+     */
+    mostrarInscripciones(){
+        this.ocultarMenu()
+        this.router.cargar("inscripciones")
+        this.vistaPago = new Inscripciones(this)
+    }
+
+    /**
      * Método que carga la vista de pagos
      */
     mostrarPagos(){
@@ -81,7 +94,7 @@ export class Controlador{
     }
 
     /**
-     * Muestra la vista de los datos generales de la carrera
+     * Método que carga la vista de información de la carrera
      */
     mostrarCarrera(){
         this.ocultarMenu()
@@ -138,6 +151,15 @@ export class Controlador{
     }
 
     /**
+     * Método para obtener el precio de la camiseta.
+     * @returns {Promise<*>}
+     */
+    async getPrecioCamiseta(){
+        let precio = await this.modelo.getPrecioCamiseta()
+        return precio.data[0]['precio_camiseta'];
+    }
+
+    /**
      * Método para obtener la información de la carrera.
      * @returns {Promise<unknown>}
      */
@@ -148,7 +170,7 @@ export class Controlador{
 
 
     /**
-     * Asigna un dorsal a un usuario
+     * Método que setea el dorsal.
      * @param datos
      * @returns {Promise<unknown>}
      */
@@ -158,6 +180,21 @@ export class Controlador{
     }
 
     /**
+     * Método que setea la información nueva
+     * @param datos
+     * @returns {Promise<unknown>}
+     */
+    async modificarInfo(datos){
+        let modif = await this.modelo.modificarInfo(datos)
+        return modif;
+    }
+
+    async modArchivos(datos){
+        console.log('datosen app: ', datos)
+        let modif = await this.modelo.modArchivos(datos)
+        return modif;
+    }
+  
      * Método que llama al modelo y recibe las categorias de la bbdd
      * @returns array de categorias
      */

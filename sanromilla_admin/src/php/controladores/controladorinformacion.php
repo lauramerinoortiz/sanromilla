@@ -8,27 +8,21 @@ class informacionController{
 
 
     /**
-     * Método que asigna un dorsal a una participación
-     * Si la modificación va bien devuelve 1
-     * Si la modificación va mal devuelve -1
-     * Si no se envían todos los datos devuelve 0
+     * Método que modifica la información general de la carrera
      */
-    public function asignarDorsal(){
+    public function modificarInfo(){
 
-        $datos = json_decode($_POST['datos']);
+        $datos = $_POST['datos'];
+        $result= $this->modelo->modificarInfo($datos);
+        echo $result;
+    }
 
-        $datos= $this->modelo->asignarDorsal($datos);
-        if($datos >= 1){
-            echo $datos;
-            return $datos;
-        }
-        else if($datos == -1){  //error
-            echo $datos;
-        }
-        else{       //falta algún dato
-            echo 0;
-            return 0;
-        }
+    /**
+    * Método para subir el cartel y el reglamento a bbdd.
+    */
+    public function modificarArchivos(){
+            $archivos = $_FILES;
+            $this->modelo->modificarArchivos($archivos);
     }
 
     /**
@@ -41,6 +35,16 @@ class informacionController{
         $cosas= json_encode($datos);
         echo $cosas;
     }
+
+    /**
+        * Método para obtener la el precio de la camiseta.
+        */
+        public function getPrecioCamiseta(){
+            $datos= $this->modelo->getPrecioCamiseta();
+            header('Content-type: application/json; charset=uft-8');
+            $cosas= json_encode($datos);
+            echo $cosas;
+        }
 }
 
 ?>

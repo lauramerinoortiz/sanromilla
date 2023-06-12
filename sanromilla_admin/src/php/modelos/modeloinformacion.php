@@ -25,35 +25,76 @@ class ModeloInformacion{
 
 
     /**
-     * Método que asigna un dorsal a una participación
-     * Si la modificación va bien devuelve 1
-     * Si la modificación va mal devuelve -1
-     * Si no se envían todos los datos devuelve 0
+     * Método que modifica la información general de la carrera.
      */
-    public function asignarDorsal($datos){
+    public function modificarInfo($datos){
+
 
         if($datos){
             $this->conectar();
-
             try{
-                foreach ($datos as $dato) {
-                    $dorsal = $dato->dorsal;
-                    $id_inscripcion = $dato->idInscripcion;
-                    $upd = $this->conexion->prepare("UPDATE inscripciones SET dorsal = ?, estado_pago=1 WHERE id_inscripcion = ?");
-                    $upd->bind_param('ii', $dorsal, $id_inscripcion);
-                    $upd->execute();
-                }
+                $fecha = $datos['fecha'];
+                $hora = $datos['hora'];
+                $fechaCarrera = date("Y-m-d H:i:s", strtotime("$fecha $hora"));
+                $inicio_inscripcion = $datos['inicio_inscripcion'];
+                $fin_inscripcion = $datos['fin_inscripcion'];
+                $precio_camiseta = $datos['precio_camiseta'];
+                $beneficio_camiseta = $datos['beneficio_camiseta'];
+
+                $upd = $this->conexion->prepare("UPDATE informacion SET fecha = ?, inicio_inscripcion = ?, fin_inscripcion = ?, precio_camiseta = ?, beneficio_camiseta = ?");
+                $upd->bind_param("sssii", $fechaCarrera, $inicio_inscripcion, $fin_inscripcion, $precio_camiseta, $beneficio_camiseta);
+                $upd->execute();
                 $upd->close();
-                return 1;
+                echo 1;
             }
             catch(Exception $e){
-                return -1;
+                echo -1;
             }  
         }else{
-                return 0;
+            echo 0;
         }
     }
 
+
+    /**
+    * Método para modificar los archivos
+    */
+    public function modificarArchivos($arch){
+
+        $this->conectar();
+
+        $cartel = $arch['cartel'];
+        $reglamento = $arch['reglamento'];
+
+        var_dump($cartel);
+        var_dump($reglamento);
+
+        if (!$this->esPngOJpg($cartel)) {
+                return false;
+            }
+        if (!$this->esPdf($reglamento)) {
+                return false;
+            }
+
+        $consulta = $this->conexion->prepare("UPDATE informacion SET cartel = ?, reglamento = ?;");
+
+        $nombre_cartel = $cartel['name'];
+        $nombre_reglamento = $reglamento['name'];
+        $ruta_destino = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_cartel;
+        $ruta_destino2 = 'C:\xampp\htdocs\san_romilla\sanromilla\sanromilla_admin\src\assets\carrera_archivos\\'. $nombre_reglamento;
+        move_uploaded_file($cartel['tmp_name'], $ruta_destino);
+        move_uploaded_file($reglamento['tmp_name'], $ruta_destino2);
+
+        $consulta->bind_param("ss", $nombre_cartel, $nombre_reglamento);
+        $consulta->execute();
+
+        $consulta->close();
+        return true;
+    }
+
+    /**
+    * Método para obtener la información general de la carrera
+    */
     function getInformacion(){
         $this->conectar();
 
@@ -63,7 +104,44 @@ class ModeloInformacion{
         $array=$datos->fetch_all(MYSQLI_ASSOC);
         $resultado->close();
         return $array;
+    }
 
+    /**
+    * Método para obtener el precio de la camiseta
+    */
+    function getPrecioCamiseta(){
+        $this->conectar();
+
+        $resultado= $this->conexion->prepare("SELECT precio_camiseta FROM informacion");
+        $resultado->execute();
+        $datos = $resultado->get_result();
+        $array=$datos->fetch_all(MYSQLI_ASSOC);
+        $resultado->close();
+        return $array;
+    }
+
+    /* Función para comprobar si la extensión de la imagen es válida o no.
+    */
+    function esPngOJpg($archivo) {
+        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+        if ($extension === 'png' || $extension === 'jpg' || $extension === 'jpeg') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /* Función para comprobar si la extensión del archivo es pdf o no.
+        */
+    function esPdf($archivo) {
+        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+
+        if ($extension === 'pdf') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

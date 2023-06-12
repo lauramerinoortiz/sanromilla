@@ -5,7 +5,7 @@
           <label class="input-group ms-1 fs-6">Búsqueda por:</label>
           <select class="form-select" id="tipoBusqueda">
             <option value="codigo">Código</option>
-            <option value="dni">DNI</option>
+            <option value="dni">Teléfono</option>
           </select>
         </div>
         <div class="col-5">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <table class="text-center w-100 my-3" id="tabla-datos">
-        <thead>
+        <thead class="">
           <tr>
             <th style="width: 15%">Inscripción</th>
             <th style="width: 50%">Nombre</th>
@@ -27,37 +27,28 @@
             <th style="width: 10%">Importe</th>
           </tr>
         </thead>
-      </tr>
-      </thead>
-        <tbody>
-          <tr>
-            <td>-</td>
-            <td>---</td>
-            <td>
-              <input class="text-center" type="text" placeholder="nº dorsal">
-            </td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
+        <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th><input class="" type="button" id="actualizarPrecio" value="Actualizar total"></th>
+          <th>Total</th>
+          <th style="font-size: 1.75rem;" id="total"></th>
+        </tr>
+        </tfoot>
       </table>
+    <table class="text-center w-100 my-3 hide" id="tabla-telefonos"></table>
     </div>
     </div>
     <div class="row my-2 justify-content-center">
-      <div class="col-4">
+      <div class="col-auto">
         <div class="card hide" >
-          <div class="card-header text-center carta-fondo">
-            CONFIRMACIÓN DE PAGO
+          <div class="card-footer d-flex justify-content-around">
+  <!--          <a href="#" class="btn btn-danger text-white">CANCELAR</a>-->
+            <a href="#" id="confirmar" class="btn btn-success text-white">CONFIRMAR PAGO</a>
           </div>
-          <div class="card-body row">
-            <p class="col-5">Total a pagar:</p>
-            <span class="col-7" style="font-size: 3.5rem;" id="total"></span>
-          </div>
-        <div class="card-footer d-flex justify-content-around">
-<!--          <a href="#" class="btn btn-danger text-white">CANCELAR</a>-->
-          <a href="#" id="confirmar" class="btn btn-success text-white">CONFIRMAR</a>
         </div>
-      </div>
       </div>
     </div>
 

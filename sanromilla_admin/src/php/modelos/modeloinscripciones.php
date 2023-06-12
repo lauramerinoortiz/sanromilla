@@ -66,7 +66,9 @@ class ModeloInscripciones{
         }
     }
 
-
+    /**
+     * Método que obtiene las inscripciones según el tipo de búsqueda
+     */
     function getInscripciones(){
         if (isset($_GET['codigo']) && isset($_GET['tipoBusqueda'])){
             $argumento=$_GET['codigo'];
@@ -74,7 +76,7 @@ class ModeloInscripciones{
             $this->conectar();
 
             if($tipoBusqueda == 'codigo'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ?;");
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones i WHERE i.codigo_inscripcion = ? AND i.estado_pago = 0;");
                 $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();
@@ -83,13 +85,22 @@ class ModeloInscripciones{
             }
 
             if($tipoBusqueda == 'dni'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones WHERE codigo_inscripcion IN (SELECT codigo_inscripcion FROM inscripciones WHERE dni = ?);");
+                $resultado= $this->conexion->prepare("SELECT MIN(id_inscripcion) as id_inscripcion, codigo_inscripcion, MIN(fecha_inscripcion) as fecha_inscripcion FROM inscripciones WHERE telefono = ? AND estado_pago = 0 GROUP BY codigo_inscripcion;");
                 $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();
                 $array=$datos->fetch_all(MYSQLI_ASSOC);
                 return $array;
-                        }
+            }
+
+            if($tipoBusqueda == 'all'){
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones ORDER BY apellidos;");
+//                $resultado->bind_param('s', $argumento);
+                $resultado->execute();
+                $datos = $resultado->get_result();
+                $array=$datos->fetch_all(MYSQLI_ASSOC);
+                return $array;
+            }
 
             $resultado->close();
         }else{
