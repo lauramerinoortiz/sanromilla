@@ -18,11 +18,11 @@ body{
 }
 
 #navTop{
-    height: 6vh;
+    min-height: 5vh;
 }
 
 #app-container{
-    min-height: 74vh;
+    min-height: 75vh;
 }
 
 footer{

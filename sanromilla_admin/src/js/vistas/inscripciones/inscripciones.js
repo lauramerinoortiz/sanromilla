@@ -30,7 +30,7 @@ export class Inscripciones {
     async buscarInscripciones(){
 
         this.datos=await this.controlador.getInscripciones('all', 1)
-        // console.log(this.datos.data)
+         console.log(this.datos.data)
         
         if(this.datos.data.length!=0){
             this.introDatos(this.datos.data)
@@ -60,6 +60,7 @@ export class Inscripciones {
         $('#tabla-datos > thead').empty();
 
         var fila = document.createElement('tr');
+        // fila.className = 'text-center';
 
         // Crear celda para "Inscripción"
         var celdaInscripcion = document.createElement('th');
@@ -75,7 +76,7 @@ export class Inscripciones {
 
         // Crear celda para "Dorsal"
         var celdaDorsal = document.createElement('th');
-        celdaDorsal.style.width = '15%';
+        celdaDorsal.style.width = '10%';
         celdaDorsal.textContent = 'Dorsal';
         fila.appendChild(celdaDorsal);
 
@@ -87,9 +88,14 @@ export class Inscripciones {
 
         // Crear celda para "Importe"
         var celdaImporte = document.createElement('th');
-        celdaImporte.style.width = '10%';
+        celdaImporte.style.width = '15%';
         celdaImporte.textContent = 'Importe';
         fila.appendChild(celdaImporte);
+
+        var celdaPagado = document.createElement('th');
+        celdaPagado.style.width = '10%';
+        celdaPagado.textContent = 'Pagado';
+        fila.appendChild(celdaPagado);
 
         // Agregar fila al encabezado
         thead.appendChild(fila);
@@ -128,9 +134,14 @@ export class Inscripciones {
             // fila.appendChild(camiseta)
 
             var euros = document.createElement("td")
+            euros.className = 'text-center'
             euros.textContent = dato.importe + '€'
             fila.appendChild(euros)
 
+            var pagado = document.createElement("td")
+            pagado.className = 'text-center'
+            pagado.textContent = (dato.estado_pago == 1) ? 'Sí' : 'No'
+            fila.appendChild(pagado)
             if(dato.estado_pago == 1){fila.style.backgroundColor = 'lightgreen';}
 
             tbody.appendChild(fila)

@@ -97,7 +97,7 @@ class ModeloInscripciones{
             }
 
             if($tipoBusqueda == 'all'){
-                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones ORDER BY apellidos;");
+                $resultado= $this->conexion->prepare("SELECT * FROM inscripciones ORDER BY codigo_inscripcion;");
 //                $resultado->bind_param('s', $argumento);
                 $resultado->execute();
                 $datos = $resultado->get_result();
