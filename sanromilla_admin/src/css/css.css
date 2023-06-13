@@ -87,9 +87,10 @@ a{
     transition: 0.7s;
 }
 
-a:hover{
+
+/* a:hover{
     color:#1FA2BF !important;
-}
+} */
 
 #sanromilla{
     font-weight: 900;

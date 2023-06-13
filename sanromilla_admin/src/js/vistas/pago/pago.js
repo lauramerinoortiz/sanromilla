@@ -22,6 +22,8 @@ export class Pago{
 
         this.btnBuscar = document.getElementById('buscar');
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
+        this.btnVolver= document.getElementById('volver');
+        this.btnVolver.onclick = this.buscarInscripciones.bind(this);
         console.log(this.btnBuscar)
 
         this.btnCancelar = document.getElementById('confirmar');
@@ -33,8 +35,8 @@ export class Pago{
         this.btnConfirmar.onclick = this.setDorsal.bind(this);
 
 
-        this.btnActualizar = document.getElementById('actualizarPrecio');
-        this.btnActualizar.onclick = this.actualizarPrecio.bind(this);
+        // this.btnActualizar = document.getElementById('actualizarPrecio');
+        // this.btnActualizar.onclick = this.actualizarPrecio.bind(this);
 
         var codigoBuscar = document.getElementById('codigoBuscar');
         codigoBuscar.addEventListener('keypress', function(event) {
@@ -75,11 +77,12 @@ export class Pago{
             var fila = document.createElement("tr")
             var inscripcion = document.createElement("td")
             inscripcion.colSpan =5
-            inscripcion.textContent = 'No hay ninguna inscripción con ese código o dni.'
+            inscripcion.textContent = 'No hay ninguna inscripción con ese código o teléfono.'
             fila.appendChild(inscripcion)
             var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
             tbody.appendChild(fila)
             document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
+            document.getElementsByClassName('card')[1].setAttribute('style', 'display:none !important');
         }
     }
 
@@ -99,11 +102,13 @@ export class Pago{
             var fila = document.createElement("tr")
             var inscripcion = document.createElement("td")
             inscripcion.colSpan =5
-            inscripcion.textContent = 'No hay ninguna inscripción con ese código o dni.'
+            inscripcion.textContent = 'No hay ninguna inscripción con ese código o teléfono.'
             fila.appendChild(inscripcion)
             var tbody= document.getElementById("tabla-datos").getElementsByTagName("tbody")[0]
             tbody.appendChild(fila)
             document.getElementsByClassName('card')[0].setAttribute('style', 'display:none !important');
+            document.getElementsByClassName('card')[1].setAttribute('style', 'display:none !important');
+
         }
     }
 
@@ -258,6 +263,8 @@ export class Pago{
 
                 var enlace = document.createElement("p");
                 enlace.textContent = dato.codigo_inscripcion;
+                enlace.style.cursor='pointer'
+                enlace.style.textDecoration='underline'
                 enlace.onclick = this.buscarInscripciones2.bind(this, dato.codigo_inscripcion)
                 inscripcion.appendChild(enlace);
                 fila.appendChild(inscripcion);
@@ -306,6 +313,7 @@ export class Pago{
                 var inputCamiseta = document.createElement("input")
                 inputCamiseta.setAttribute("type", "checkbox")
                 inputCamiseta.setAttribute("id", dato.id_inscripcion)
+                inputCamiseta.onclick=this.actualizarPrecio.bind(this)
                 inputCamiseta.classList.add("text-center")
                 camiseta.appendChild(inputCamiseta)
                 fila.appendChild(camiseta)
@@ -327,6 +335,8 @@ export class Pago{
 
         }
         document.getElementsByClassName('card')[0].setAttribute('style', 'display:block !important');
+        document.getElementsByClassName('card')[1].setAttribute('style', 'display:block !important');
+
 
         this.precioTotal = importe
 
@@ -357,6 +367,7 @@ export class Pago{
      * @returns {number}
      */
     actualizarPrecio() {
+        console.log('actualizar')
         var table = document.getElementById('tabla-datos');
         var checkboxes = table.querySelectorAll('input[type="checkbox"]');
         var count = 0;
