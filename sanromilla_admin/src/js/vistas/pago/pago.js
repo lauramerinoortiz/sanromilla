@@ -162,7 +162,16 @@ export class Pago{
                 confirmButtonText: 'Vale!'
             })
             this.buscarInscripciones();
-        }else{
+        }
+        else if(seteado.data==-2){
+            Swal.fire({
+                title: 'Dorsal duplicado',
+                text: 'Algún dorsal de los introducidos está ya guardado en la base de datos.',
+                icon: 'error',
+                confirmButtonText: 'Vale!'
+            })
+        }
+        else{
             Swal.fire({
                 title: 'Error en la petición',
                 text: 'Algo no ha ido bien.',

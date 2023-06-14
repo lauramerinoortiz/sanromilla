@@ -22,17 +22,7 @@ class inscripcionesController{
         $datos = json_decode($_POST['datos']);
 
         $datos= $this->modelo->asignarDorsal($datos);
-        if($datos >= 1){
-            echo $datos;
-            return $datos;
-        }
-        else if($datos == -1){  //error
-            echo $datos;
-        }
-        else{       //falta algún dato
-            echo 0;
-            return 0;
-        }
+        echo $datos;
     }
 
     /**

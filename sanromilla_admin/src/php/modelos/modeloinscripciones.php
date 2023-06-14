@@ -50,7 +50,13 @@ class ModeloInscripciones{
                 return 1;
             }
             catch(Exception $e){
-                return -1;
+                if($this->conexion->errno==1062){
+                    return -2;
+                }
+                else{
+                    return  -1;
+                }
+                
             }  
         }else{
                 return 0;
