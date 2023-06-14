@@ -36,8 +36,15 @@ class ModeloInscripciones{
         $this->conectar();
         $consulta='SELECT codigo_inscripcion FROM inscripciones';
         $respuesta=$this->conexion->query($consulta);
+        $datos=$respuesta->fetch_all($resulttype = MYSQLI_ASSOC);
+        $array=[];
+        // print_r($datos);
+        for($i=0; $i<sizeof($datos); $i++){
+            // echo '<br>';
+            $array[]=$datos[$i]['codigo_inscripcion'];
+        }
         $this->conexion->close();
-        return $respuesta;
+        return $array;
 
     }
 

@@ -14,17 +14,11 @@ class inscripcionesController{
      */
     public function getCodigos(){
         $datos= $this->modelo->getCodigos();
-        $datos=$datos->fetch_all($resulttype = MYSQLI_ASSOC);
-        $array=[];
-        // print_r($datos);
-        for($i=0; $i<sizeof($datos); $i++){
-            // echo '<br>';
-            $array[]=$datos[$i]['codigo_inscripcion'];
-        }
+        
         // print_r($array) ;
         header('Content-type: application/json; charset=uft-8');
         // // print_r ($datos);
-        $cosas= json_encode($array);
+        $cosas= json_encode($datos);
         echo $cosas;
     }
 
