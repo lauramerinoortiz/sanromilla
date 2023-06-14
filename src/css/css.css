@@ -149,14 +149,7 @@ nav li a{
 
 
 #camiseta img{
-    width: 100%;
-}
-
-
-/* --------INSCRIPCIONES--------- */
-
-.tallas{
-    margin: 0 auto;
+    width: 80%;
 }
 
 #contacto, #contacto a{
@@ -171,6 +164,16 @@ nav li a{
 #contacto a:hover{
     color: #1FA2BF !important;
 }
+
+
+
+/* --------INSCRIPCIONES--------- */
+
+.tallas{
+    margin: 0 auto;
+}
+
+
 
 
 #inscripcion .form-check-input, #inscripcion .form-check-label{
@@ -380,6 +383,16 @@ nav li a{
 
     #divFotoNada{
         margin-top: 0;
+    }
+
+    #contacto .col-sm-9{
+        padding: 1rem !important;
+        width: 100% !important;
+    }
+
+    #conocenos .col-sm-9{
+        padding: 1rem !important;
+        width: 100% !important;
     }
  
 }
