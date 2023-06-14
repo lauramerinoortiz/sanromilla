@@ -13,10 +13,10 @@ export class VistaClasificacion{
      */
     async iniciar(){
         this.clasificaciones= await this.controlador.getClasificacion()
-        if(this.clasificaciones.length>0){
-            // console.log('hay cosiiis')
-        }
-        else{
+        // if(this.clasificaciones.length>0){
+        //     // console.log('hay cosiiis')
+        // }
+        // else{
             // console.log('no hay')
             let div=document.getElementsByClassName('container')[0]
             // console.log(div)
@@ -28,6 +28,6 @@ export class VistaClasificacion{
             let divFoto=document.createElement('div')
             divFoto.id='divFotoNada'
             div.appendChild(divFoto)
-        }
+        // }
     }
 }
