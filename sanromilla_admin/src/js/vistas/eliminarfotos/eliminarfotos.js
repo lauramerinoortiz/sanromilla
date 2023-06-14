@@ -59,7 +59,7 @@ export class EliminarFotos {
 
         document.getElementById('image-container').innerHTML = '';
         this.categoria = document.getElementById('selectCategoria').value;
-        console.log(this.categoria)
+        // console.log(this.categoria)
         try {
             const datos = await this.controlador.traerFotos(this.categoria);
 
@@ -93,7 +93,7 @@ export class EliminarFotos {
             });
 
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
 
         // Marcar/Desmarcar imágenes al hacer clic en ellas

@@ -30,7 +30,7 @@ export class Inscripciones {
     async buscarInscripciones(){
 
         this.datos=await this.controlador.getInscripciones('all', 1)
-         console.log(this.datos.data)
+        //  console.log(this.datos.data)
         
         if(this.datos.data.length!=0){
             this.introDatos(this.datos.data)

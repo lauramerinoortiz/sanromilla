@@ -36,7 +36,7 @@ export class Usuarios {
         document.getElementById('tbody-usuarios').innerHTML = '';
 
         this.usuarios = await this.controlador.getUsuarios();
-        console.log(this.usuarios)
+        // console.log(this.usuarios)
         this.usuarios.forEach((usuario) => {
             // Crea una nueva fila en la tabla
             const fila = document.createElement('tr');
@@ -139,7 +139,7 @@ export class Usuarios {
      * @param {array} usuario 
      */
     async editarUsuario(usuario){
-        console.log(usuario)
+        // console.log(usuario)
         $('#app-container').empty()
 
         let contenedor=document.createElement('div')
@@ -189,7 +189,7 @@ export class Usuarios {
         let html=''
         let respuesta= await this.controlador.getRoles()
         if(respuesta.data.length!=0){
-            console.log(respuesta.data)
+            // console.log(respuesta.data)
             for(let item of respuesta.data){
                 if(item.nombre==usuario.roles){
                     html+=`<option id='`+item.id_rol+`' selected>`+item.nombre+`</option>`
@@ -266,7 +266,7 @@ export class Usuarios {
         let html=''
         let respuesta= await this.controlador.getRoles()
         if(respuesta.data.length!=0){
-            console.log(respuesta.data)
+            // console.log(respuesta.data)
             for(let item of respuesta.data){
                 html+=`<option id='`+item.id_rol+`'>`+item.nombre+`</option>`
             }

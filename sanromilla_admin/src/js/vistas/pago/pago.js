@@ -24,7 +24,7 @@ export class Pago{
         this.btnBuscar.onclick = this.buscarInscripciones.bind(this);
         this.btnVolver= document.getElementById('volver');
         this.btnVolver.onclick = this.buscarInscripciones.bind(this);
-        console.log(this.btnBuscar)
+        // console.log(this.btnBuscar)
 
         this.btnCancelar = document.getElementById('confirmar');
         this.btnCancelar.onclick = function() {
@@ -93,7 +93,7 @@ export class Pago{
     async buscarInscripciones2(codigo){
 
         this.datos=await this.controlador.getInscripciones('codigo', codigo)
-        console.log(codigo)
+        // console.log(codigo)
         
         if(this.datos.data.length!=0){
             this.introDatos(this.datos.data)
@@ -152,7 +152,7 @@ export class Pago{
         }
 
         var seteado = await this.controlador.setDorsal(datos);
-        console.log('qué pasa: ', datos)
+        // console.log('qué pasa: ', datos)
         if (seteado.data >= 1){
             $('#total').text(0+'€');
             Swal.fire({
@@ -255,8 +255,8 @@ export class Pago{
         // Recorre el array de inscripciones y agrega las filas a la tabla
         for(let dato of datos)  {
             if(dato.nombre == null){
-                console.log('holaa')
-                console.log(this)
+                // console.log('holaa')
+                // console.log(this)
                 var fila = document.createElement('tr');
 
                 var inscripcion = document.createElement('td');
@@ -367,7 +367,7 @@ export class Pago{
      * @returns {number}
      */
     actualizarPrecio() {
-        console.log('actualizar')
+        // console.log('actualizar')
         var table = document.getElementById('tabla-datos');
         var checkboxes = table.querySelectorAll('input[type="checkbox"]');
         var count = 0;

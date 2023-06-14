@@ -70,11 +70,11 @@ export class Carrera {
 
             if (cartel || reglamento) {
                 var modificacionArchivos = await this.controlador.modArchivos(formData);
-                console.log('modif: ', modificacionArchivos )
+                // console.log('modif: ', modificacionArchivos )
             }
 
             var modificarDatos = await this.controlador.modificarInfo(datos);
-            console.log('modif: ', modificarDatos)
+            // console.log('modif: ', modificarDatos)
             if (modificarDatos.data >= 1){
                 Swal.fire({
                     title: '¡Cambios realizados!',

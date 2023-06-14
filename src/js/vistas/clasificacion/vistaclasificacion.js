@@ -14,12 +14,12 @@ export class VistaClasificacion{
     async iniciar(){
         this.clasificaciones= await this.controlador.getClasificacion()
         if(this.clasificaciones.length>0){
-            console.log('hay cosiiis')
+            // console.log('hay cosiiis')
         }
         else{
-            console.log('no hay')
+            // console.log('no hay')
             let div=document.getElementsByClassName('container')[0]
-            console.log(div)
+            // console.log(div)
             let h6=document.createElement('h4')
             h6.classList.add('mt-4')
             h6.id='fotosNada'

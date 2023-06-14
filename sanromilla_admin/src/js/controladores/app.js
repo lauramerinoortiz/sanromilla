@@ -197,7 +197,7 @@ export class Controlador{
      * @returns array
      */
     async modArchivos(datos){
-        console.log('datosen app: ', datos)
+        // console.log('datosen app: ', datos)
         let modif = await this.modelo.modArchivos(datos)
         return modif;
     }

@@ -8,7 +8,9 @@ export class Inicio{
     constructor (controlador) {
         this.controlador=controlador
         window.setTimeout(this.iniciar.bind(this), 500)
-        window.onerror = function (error) { console.log('Error capturado. ' + error) }
+        window.onerror = function (error) {
+            //  console.log('Error capturado. ' + error) 
+            }
     }
 
     /**
@@ -37,7 +39,7 @@ export class Inicio{
             .then(tokenSesion => {
                 sessionStorage.setItem('token', tokenSesion)
                 let datosToken= JSON.parse (atob (tokenSesion.split('.')[1]));
-                console.log(datosToken);
+                // console.log(datosToken);
 
                 Swal.fire({
                     title: 'Login realizado con éxito',

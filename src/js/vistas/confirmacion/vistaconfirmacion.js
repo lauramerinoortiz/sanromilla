@@ -83,7 +83,7 @@ export class VistaConfirmacion{
         for (let dato of this.inscripciones){
             if(dato.nombre != '' && dato.precioDorsal != ''){
                 let dorsal = parseInt(dato.precioDorsal);
-                console.log()
+                // console.log()
                 total += dorsal ;
             }
         }

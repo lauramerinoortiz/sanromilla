@@ -27,7 +27,7 @@ export class Controlador{
 
         //Nav
         let boton= document.getElementById('inscripciones')
-        console.log(boton)
+        // console.log(boton)
         boton.onclick=this.mostrarInscripciones.bind(this)
         let inicio= document.getElementById('inicio')
         inicio.onclick=this.mostrarInicio.bind(this)
@@ -87,7 +87,7 @@ export class Controlador{
         window.scrollTo(0, 0);
         this.ocultarMenu()
         this.router.cargar("fotos")
-        this.vistaFotos= new VistaFotos (this)
+        this.vistaFotos= new VistaFotos(this)
     }
 
     /**
@@ -116,7 +116,7 @@ export class Controlador{
      * @returns array de categorias
      */
     async sacarCategorias(){
-        console.log('estoy en aaap')
+        // console.log('estoy en aaap')
         let datos = await this.modelo.getCategorias()
         return datos;
     }
@@ -153,11 +153,11 @@ export class Controlador{
      * @param {string} codigo 
      */
     async insertarInscripciones(inscripciones, codigo, correo){
-        console.log('CORREO'+ correo)
+        // console.log('CORREO'+ correo)
         let respuesta = await this.modelo.insertarInscripciones(inscripciones, codigo, correo)
-        console.log(respuesta.data);
+        // console.log(respuesta.data);
         if(respuesta.data!=1){
-            console.log('Ha ocurrido un error')
+            // console.log('Ha ocurrido un error')
         }
     }
 }

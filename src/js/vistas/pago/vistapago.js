@@ -16,7 +16,7 @@ export class VistaPago{
      * Lo manda al controlador para que lo inserte
      */
     async iniciar(){
-        console.log(this.correo)
+        // console.log(this.correo)
         this.codigo=document.getElementById('codigo')
         this.codigo.textContent='espere...'
         this.codigo_inscripcion=Math.floor(Math.random() * 99999);

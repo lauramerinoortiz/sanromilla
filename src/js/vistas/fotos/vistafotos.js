@@ -64,7 +64,7 @@ export class VistaFotos{
             div8.classList.add('row','text-center','justify-content-around','mt-5')
 
             this.fotos.forEach(element => {
-                console.log(element.id_categoria)
+                // console.log(element.id_categoria)
                 let divFoto=document.createElement('div')
                 divFoto.classList.add('rounded','col-sm-3','m-1','p-3', 'fotosCarrera')
                 
@@ -172,9 +172,9 @@ export class VistaFotos{
             
         }
         else{
-            console.log('no hay')
+            // console.log('no hay')
             let div=document.getElementsByClassName('container')[0]
-            console.log(div)
+            // console.log(div)
             let h6=document.createElement('h4')
             h6.classList.add('mt-4')
             h6.id='fotosNada'

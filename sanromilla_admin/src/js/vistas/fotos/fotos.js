@@ -92,7 +92,7 @@ export class Fotos {
                     });
                 }
             }
-            console.log(this.fotosFormData);
+            // console.log(this.fotosFormData);
         }
 
         /**
