@@ -164,10 +164,10 @@ export class Carrera {
         var fechaFin = new Date(datos.fin_inscripcion);
 
 
-        if (fechaInicio < fechaFin && fechaInicio > fechaCarrera) {
+        if (fechaInicio < fechaFin && fechaInicio < fechaCarrera && fechaFin < fechaCarrera) {
             return '';
         } else {
-            return 'Fecha inicio de inscripción que ser posterior a fecha de la carrera y a la fecha de fin de inscripción. ';
+            return 'La fecha de inicio de inscripción debe ser anterior a fecha de la carrera y a la fecha de fin de inscripción. También la fecha fin de inscripción debe ser anterior a la de la carrera';
         }
     }
 
