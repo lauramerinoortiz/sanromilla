@@ -86,7 +86,7 @@ export class Fotos {
                 } else {
                     Swal.fire({
                         title: 'Formato incorrecto',
-                        text: 'Solo se pueden subir imágenes.',
+                        text: 'Recuerde que solo se admiten formatos png, jpg, jpeg y gif.',
                         icon: 'error',
                         confirmButtonText: 'Aceptar',
                     });
